@@ -1,14 +1,15 @@
 import { Outlet } from "react-router-dom";
-import styles from "./Layout.module.css";
+import MyNavbar from "../Navbar/MyNavbar";
+import Footer from "../Footer/Footer";
 
 const Layout = () => {
   return (
-    <div className={styles.layout}>
-      {/* Qui puoi mettere header, nav, etc. */}
-      <main className={styles.main}>
+    <div className="d-flex flex-column min-vh-100">
+      <MyNavbar />
+      <main className="flex-grow-1">
         <Outlet /> {/* Questo renderizza le pagine figlie */}
       </main>
-      {/* Qui puoi mettere il footer */}
+      <Footer />
     </div>
   );
 };

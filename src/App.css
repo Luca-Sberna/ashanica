@@ -22,9 +22,9 @@
 }
 
 :root {
-  --primary: #2a2a2a;
-  --secondary: #e63946;
+  --primary: #ffffff;
+  --secondary: #080808;
   --accent: #f1faee;
   --text: #333;
-  --light: #f8f9fa;
+  --light: #d8daca;
 }

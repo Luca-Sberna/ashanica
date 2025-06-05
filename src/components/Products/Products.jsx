@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ProductCard from "../Products/ProductCard";
 import styles from "./Products.module.css";
+import Header from "../Header/Header";
 
 // Mock dati direttamente nel file
 const mockProducts = [
@@ -33,6 +34,7 @@ const Products = () => {
 
   return (
     <div className={styles.container}>
+      <Header />
       <h1>Il nostro catalogo</h1>
       <div className={styles.grid}>
         {products.map((product) => (

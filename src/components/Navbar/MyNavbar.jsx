@@ -1,22 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   Container,
   Nav,
-  Form,
   Button,
-  InputGroup,
   Dropdown,
   Offcanvas,
 } from "react-bootstrap";
 import { Search, PersonCircle, Cart, List, X } from "react-bootstrap-icons";
+import i18n from "../../i18n";
+import ita from "../../assets/imgs/itaflag.png";
+import eng from "../../assets/imgs/engflag.png";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
-const ResponsiveNavbar = () => {
+const MyNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const [searchFocused, setSearchFocused] = useState(false);
+  //const [showMenu2, setShowMenu2] = useState(false);
+
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const toggleMenu = () => setShowMenu(!showMenu);
   const closeMenu = () => setShowMenu(false);
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem("lang", lng);
+  };
+
+  const { t } = useTranslation();
+  const toggleSearch = () => setShowSearch((prev) => !prev);
+
+  const cartCount = useSelector((state) =>
+    state.cart.items.reduce((acc, item) => acc + item.quantity, 0),
+  );
+
+  useEffect(() => {
+    const lang = localStorage.getItem("lang");
+    if (lang) {
+      i18n.changeLanguage(lang);
+    }
+  }, []);
 
   return (
     <>
@@ -28,7 +53,7 @@ const ResponsiveNavbar = () => {
         className="py-2 shadow"
       >
         <Container className="d-flex justify-content-between align-items-center">
-          <div className="">
+          <div className="d-flex justify-content-center align-items-center">
             <Button
               variant="outline-dark"
               className="d-md-none me-2 border-0"
@@ -36,10 +61,34 @@ const ResponsiveNavbar = () => {
             >
               <List size={24} />
             </Button>
-
-            <Button variant="outline-dark" className="border-0">
-              <Search size={20} />
-            </Button>
+            {!showSearch ? (
+              <Button
+                variant="outline-dark"
+                className="border-0"
+                onClick={toggleSearch}
+              >
+                <Search size={20} />
+              </Button>
+            ) : (
+              <div className="search-bar d-flex align-items-center">
+                <input
+                  type="text"
+                  className="form-control form-control-sm"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  autoFocus
+                  style={{ maxWidth: "200px" }}
+                />
+                <Button
+                  variant="outline-dark"
+                  className="border-0 ms-2"
+                  onClick={toggleSearch}
+                >
+                  <X size={18} />
+                </Button>
+              </div>
+            )}
           </div>
           <div className="d-flex align-items-center">
             <Button
@@ -48,9 +97,11 @@ const ResponsiveNavbar = () => {
               href="/cart"
             >
               <Cart size={20} />
-              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                3
-              </span>
+              {cartCount > 0 && (
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {cartCount}
+                </span>
+              )}
             </Button>
 
             {/* Dropdown utente */}
@@ -62,7 +113,7 @@ const ResponsiveNavbar = () => {
                 <Dropdown.Item href="/login">Accedi</Dropdown.Item>
                 <Dropdown.Item href="/register">Registrati</Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item href="/help">Assistenza</Dropdown.Item>
+                <Dropdown.Item href="/assistance">Assistenza</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>
@@ -96,7 +147,7 @@ const ResponsiveNavbar = () => {
               className="text-dark py-3"
               onClick={closeMenu}
             >
-              Prodotti
+              {t("Products")}
             </Nav.Link>
             <Nav.Link
               href="/about"
@@ -135,29 +186,46 @@ const ResponsiveNavbar = () => {
                 as={Nav.Link}
                 className="text-dark d-flex justify-content-between align-items-center p-0"
               >
-                <span>Lingua</span>
+                <span>
+                  Lingua
+                  <img
+                    src={i18n.language === "it" ? ita : eng}
+                    alt={i18n.language}
+                    width="22"
+                    height="22"
+                    className={`ita rounded-circle ms-2`}
+                    style={{ cursor: "pointer" }}
+                  />
+                </span>
               </Dropdown.Toggle>
               <Dropdown.Menu className="bg-light border-secondary">
                 <Dropdown.Item
-                  href="/category/electronics"
-                  className="text-dark py-2"
+                  onClick={() => changeLanguage("it")}
+                  className="text-dark py-2 justify-content-between d-flex"
                 >
                   Italiano
+                  <img
+                    src={ita}
+                    alt={i18n.language}
+                    width="22"
+                    height="22"
+                    className={`ita rounded-circle`}
+                    style={{ cursor: "pointer" }}
+                  />
                 </Dropdown.Item>
                 <Dropdown.Item
-                  href="/category/clothing"
-                  className="text-dark py-2"
+                  onClick={() => changeLanguage("en")}
+                  className="text-dark py-2 justify-content-between d-flex"
                 >
                   Inglese
-                </Dropdown.Item>
-                <Dropdown.Item href="/category/home" className="text-dark py-2">
-                  Spagnolo
-                </Dropdown.Item>
-                <Dropdown.Item
-                  href="/category/sports"
-                  className="text-dark py-2"
-                >
-                  Francese
+                  <img
+                    src={eng}
+                    alt={i18n.language}
+                    width="22"
+                    height="22"
+                    className={`eng rounded-circle`}
+                    style={{ cursor: "pointer" }}
+                  />
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
@@ -168,4 +236,4 @@ const ResponsiveNavbar = () => {
   );
 };
 
-export default ResponsiveNavbar;
+export default MyNavbar;

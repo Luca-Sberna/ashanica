@@ -3,10 +3,16 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import Loading from './components/Loading/Loading';
 import MyNavbar from './components/Navbar/MyNavbar.jsx';
+import Cart from './components/Cart/Cart.jsx';
+
+
 
 const Home = lazy(() => import('../src/components/Home/Home.jsx'));
 const About = lazy(() => import('../src/components/About/About.jsx'));
 const Products = lazy(() => import('../src/components/Products/Products.jsx'));
+const Login = lazy(() => import('../src/components/Logging/Login.jsx'));
+const SignUp = lazy(() => import('../src/components/Logging/Signup.jsx'));
+const Assistance = lazy(() => import('../src/components/Assistance/Assistance.jsx'));
 const NotFound = lazy(() => import('../src/components/NotFound/NotFound.jsx'));
 
 
@@ -19,6 +25,10 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/about" element={<About />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<SignUp />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/assistance" element={<Assistance />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

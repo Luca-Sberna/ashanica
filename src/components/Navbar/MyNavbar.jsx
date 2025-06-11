@@ -112,6 +112,10 @@ const MyNavbar = () => {
               <Dropdown.Menu className="dropdown-menu-end mt-2">
                 <Dropdown.Item href="/login">Accedi</Dropdown.Item>
                 <Dropdown.Item href="/register">Registrati</Dropdown.Item>
+                <Dropdown.Item href="/user/:id">Profilo</Dropdown.Item>
+                <Dropdown.Item href="/user/payment-methods">
+                  Metodi di pagamento
+                </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item href="/assistance">Assistenza</Dropdown.Item>
                 <Dropdown.Item href="/admin">Admin</Dropdown.Item>
@@ -175,7 +179,21 @@ const MyNavbar = () => {
                 Registrati
               </Nav.Link>
               <Nav.Link
-                href="/help"
+                href="/user/:id"
+                className="text-dark py-2"
+                onClick={closeMenu}
+              >
+                Profilo
+              </Nav.Link>
+              <Nav.Link
+                href="/user/payment-methods"
+                className="text-dark py-2"
+                onClick={closeMenu}
+              >
+                Metodi di pagamento
+              </Nav.Link>
+              <Nav.Link
+                href="/assistance"
                 className="text-dark py-2"
                 onClick={closeMenu}
               >

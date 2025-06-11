@@ -6,6 +6,8 @@ import {
 } from "../../redux/ProductSlice";
 import { Table, Button, Image, Container } from "react-bootstrap";
 import AdminForm from "../Admin/AdminForm";
+import { Link } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 
 const AdminDashboard = () => {
   const products = useSelector((state) => state.products.items);
@@ -13,6 +15,13 @@ const AdminDashboard = () => {
 
   return (
     <Container className="py-4">
+      <Link
+        to={"/"}
+        className="menu-icon-link text-dark text-decoration-none align-items-center justify-content-end d-none d-md-flex pt-4"
+      >
+        <p className="m-0 pe-2">torna al menù</p>
+        <FaHome className="fs-5 menu-icon" />
+      </Link>
       <h3>Dashboard Prodotti</h3>
 
       {products.length === 0 ? (

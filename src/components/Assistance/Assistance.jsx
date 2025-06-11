@@ -97,8 +97,8 @@ const Support = () => {
             Ai sensi del Regolamento UE 2016/679 (GDPR), garantiamo il
             trattamento dei dati personali in maniera conforme alla normativa
             vigente. Per maggiori dettagli consulta la nostra{" "}
-            <a href="/privacy">Privacy Policy</a> e le
-            <a href="/terms">Condizioni Generali</a>.
+            <a href="/policies">Privacy Policy</a> e le
+            <a href="/conditions">Condizioni Generali</a>.
           </p>
         </section>
       </div>

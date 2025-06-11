@@ -103,9 +103,11 @@ const Cart = () => {
               </div>
               <hr />
               <h4>€ {total.toFixed(2)}</h4>
-              <Button variant="dark" className="w-100 mt-3">
-                Procedi al pagamento
-              </Button>
+              <Link to={"/checkout"}>
+                <Button variant="dark" className="w-100 mt-3">
+                  Procedi al pagamento
+                </Button>
+              </Link>
             </Card.Body>
           </Card>
         </Col>

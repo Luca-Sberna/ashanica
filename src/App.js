@@ -7,6 +7,7 @@ import Cart from './components/Cart/Cart.jsx';
 import ProductDetail from './components/Products/ProductDetail.jsx';
 import AdminDashboard from './components/Admin/AdminDashboard.jsx';
 import ProtectedRoute from './components/Admin/ProtectedRoute.jsx';
+import CookieConsent from "react-cookie-consent";
 
 const Home = lazy(() => import('./components/Home/Home.jsx'));
 const About = lazy(() => import('./components/About/About.jsx'));
@@ -15,9 +16,17 @@ const Login = lazy(() => import('./components/Logging/Login.jsx'));
 const SignUp = lazy(() => import('./components/Logging/Signup.jsx'));
 const Assistance = lazy(() => import('./components/Assistance/Assistance.jsx'));
 const NotFound = lazy(() => import('./components/NotFound/NotFound.jsx'));
+const GeneralCondition = lazy(() => import('./components/Assistance/GeneralCondition.jsx'));
+const PrivacyPolicy = lazy(() => import('./components/Assistance/PrivacyPolicy.jsx'));
+const Checkout = lazy(() => import('./components/Checkout/Checkout.jsx'));
+const UserDetail = lazy(() => import('./components/User/UserDetail.jsx'));
+const PaymentMethods = lazy(() => import('./components/User/PaymentMethods.jsx'));
 
-// Simulazione accesso admin (sostituibile con Redux o Context API)
-const isAdmin = true;
+
+
+
+const isAdmin = false;
+const isLoggedIn = false;
 
 function App() {
   return (
@@ -33,6 +42,18 @@ function App() {
           <Route path="register" element={<SignUp />} />
           <Route path="cart" element={<Cart />} />
           <Route path="assistance" element={<Assistance />} />
+          <Route path="conditions" element={<GeneralCondition />} />
+          <Route path="policies" element={<PrivacyPolicy />} />
+          <Route
+            path="checkout"
+            element={
+              <ProtectedRoute isAllowed={isLoggedIn}>
+                <Checkout />
+              </ProtectedRoute>
+            }
+          />   <Route path="user/:id" element={<UserDetail />} />
+          <Route path="user/payment-methods" element={<PaymentMethods />} />
+
           <Route
             path="admin"
             element={
@@ -44,6 +65,19 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+
+      {/* ✅ CookieConsent sempre visibile in fondo */}
+      <CookieConsent
+        location="bottom"
+        buttonText="Accetta"
+        cookieName="cookieConsent"
+        style={{ background: "#2b373b" }}
+        buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
+        expires={150}
+      >
+        Utilizziamo i cookie per offrirti la migliore esperienza possibile.{" "}
+        <a href="/privacy-policy" style={{ color: "#ffd700" }}>Leggi di più</a>.
+      </CookieConsent>
     </Suspense>
   );
 }

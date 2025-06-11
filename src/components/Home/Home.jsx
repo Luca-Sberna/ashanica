@@ -11,18 +11,21 @@ const heroImages = [
     src: "https://placehold.co/1200x400",
     alt: "Offerta 1",
     caption: "Sconti fino al 50%",
+    description: "la descrizione",
   },
   {
     id: 2,
     src: "https://placehold.co/1200x400",
     alt: "Offerta 2",
     caption: "Nuova Collezione",
+    description: "la descrizione",
   },
   {
     id: 3,
     src: "https://placehold.co/1200x400",
     alt: "Offerta 3",
     caption: "Spedizione Gratuita",
+    description: "la descrizione",
   },
 ];
 
@@ -61,14 +64,33 @@ const Home = () => {
       <Carousel className="mb-5">
         {heroImages.map((slide) => (
           <Carousel.Item key={slide.id}>
-            <img className="d-block w-100" src={slide.src} alt={slide.alt} />
-            <Carousel.Caption>
-              <h3>{slide.caption}</h3>
-              <Button variant="primary">Scopri di più</Button>
-            </Carousel.Caption>
+            <div className="d-flex justify-content-start">
+              <img className="d-block w-100" src={slide.src} alt={slide.alt} />
+              <Carousel.Caption>
+                <h3>{slide.caption}</h3>
+                <p>{slide.description}</p>
+                <Button variant="warning">Scopri di più</Button>
+              </Carousel.Caption>
+            </div>
           </Carousel.Item>
         ))}
       </Carousel>
+      {/* Banner Promozionale */}
+      <div className="bg-light py-3 mb-5">
+        <Container>
+          <Row className="align-items-center">
+            <Col md={8}>
+              <h3>Offerta Speciale!</h3>
+              <p>Registrati oggi e ricevi il 10% di sconto sul primo ordine.</p>
+            </Col>
+            <Col md={4} className="text-md-end">
+              <Button variant="warning" size="lg">
+                Registrati Ora
+              </Button>
+            </Col>
+          </Row>
+        </Container>
+      </div>
       <hr />
       {/* Sezione Prodotti in Evidenza */}
       <Container className="mb-5">
@@ -87,7 +109,7 @@ const Home = () => {
                   <p className="card-text">€ {product.price.toFixed(2)}</p>
                   <Link
                     to={`/products/${product.id}`}
-                    className="btn btn-primary mt-auto"
+                    className="btn btn-warning mt-auto"
                   >
                     Dettagli
                   </Link>
@@ -97,22 +119,6 @@ const Home = () => {
           ))}
         </Row>
       </Container>
-      {/* Banner Promozionale */}
-      <div className="bg-light py-5 mb-5">
-        <Container>
-          <Row className="align-items-center">
-            <Col md={8}>
-              <h3>Offerta Speciale!</h3>
-              <p>Registrati oggi e ricevi il 10% di sconto sul primo ordine.</p>
-            </Col>
-            <Col md={4} className="text-md-end">
-              <Button variant="success" size="lg">
-                Registrati Ora
-              </Button>
-            </Col>
-          </Row>
-        </Container>
-      </div>
     </div>
   );
 };

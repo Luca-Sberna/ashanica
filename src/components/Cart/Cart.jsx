@@ -1,5 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart } from "../../redux/cartSlice";
+import {
+  removeFromCart,
+  decreaseQuantity,
+  addToCart,
+  clearCart,
+} from "../../redux/cartSlice";
 import styles from "./Cart.module.css";
 import {
   Container,
@@ -47,7 +52,23 @@ const Cart = () => {
                     <Image src={item.image} width="60" height="60" rounded />
                     <div>
                       <h6>{item.name}</h6>
+                      <Button
+                        variant="outline-danger"
+                        size="sm"
+                        className="mx-3"
+                        onClick={() => dispatch(decreaseQuantity(item.id))}
+                      >
+                        -
+                      </Button>
                       <small>Quantità: {item.quantity}</small>
+                      <Button
+                        variant="outline-success"
+                        size="sm"
+                        className="mx-3"
+                        onClick={() => dispatch(addToCart(item))}
+                      >
+                        +
+                      </Button>
                     </div>
                   </div>
                   <div>
@@ -69,7 +90,17 @@ const Cart = () => {
         <Col md={4}>
           <Card className="shadow-sm">
             <Card.Body>
-              <h5>Totale</h5>
+              <div className="d-flex justify-content-between">
+                <h5>Totale</h5>
+                {cartItems.length > 0 && (
+                  <Button
+                    variant="outline-danger"
+                    onClick={() => dispatch(clearCart())}
+                  >
+                    🗑️
+                  </Button>
+                )}
+              </div>
               <hr />
               <h4>€ {total.toFixed(2)}</h4>
               <Button variant="dark" className="w-100 mt-3">

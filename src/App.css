@@ -28,3 +28,7 @@
   --text: #333;
   --light: #d8daca;
 }
+
+.link-product:hover {
+  text-decoration: underline;
+}

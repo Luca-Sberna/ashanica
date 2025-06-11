@@ -1,0 +1,140 @@
+.about {
+    background: #fff;
+    min-height: 90vh;
+    padding: 3rem 1.5rem 6rem;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #222;
+    overflow-x: hidden;
+}
+
+.heroSection {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    position: relative;
+    padding-top: 4rem;
+}
+
+.textContent {
+    flex: 1;
+    max-width: 480px;
+}
+
+.textContent h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+    line-height: 1.1;
+    color: #111;
+    letter-spacing: -1px;
+}
+
+.textContent p {
+    font-size: 1.3rem;
+    line-height: 1.7;
+    color: #555;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+/* Contenitore immagini con posizione relativa */
+.imagesWrapper {
+    flex: 1;
+    position: relative;
+    height: 520px;
+    min-width: 350px;
+}
+
+/* Stile base immagini */
+.imagesWrapper img {
+    position: absolute;
+    border-radius: 16px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.12);
+    object-fit: cover;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.08));
+    cursor: pointer;
+    will-change: transform;
+}
+
+/* Immagine grande a sinistra */
+.img1 {
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 100%;
+    z-index: 3;
+    border-radius: 20px;
+}
+
+/* Immagine media in alto a destra */
+.img2 {
+    top: 0;
+    right: 0;
+    width: 45%;
+    height: 60%;
+    z-index: 2;
+    border-radius: 20px;
+    filter: brightness(0.9);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Immagine piccola in basso a destra */
+.img3 {
+    bottom: 0;
+    right: 10%;
+    width: 35%;
+    height: 45%;
+    z-index: 4;
+    border-radius: 20px;
+    filter: brightness(1);
+    box-shadow: 0 22px 38px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover sulle immagini */
+.imagesWrapper img:hover {
+    transform: scale(1.07) translateY(-8px);
+    box-shadow: 0 30px 55px rgba(0, 0, 0, 0.25);
+    filter: brightness(1);
+}
+
+/* Responsive - tablet */
+@media (max-width: 992px) {
+    .heroSection {
+        flex-direction: column;
+        padding-top: 3rem;
+    }
+
+    .imagesWrapper {
+        height: 400px;
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    .img1,
+    .img2,
+    .img3 {
+        position: relative;
+        width: 100% !important;
+        height: auto !important;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        filter: none !important;
+        cursor: default;
+        transform: none !important;
+    }
+}
+
+/* Responsive - mobile */
+@media (max-width: 576px) {
+    .textContent h1 {
+        font-size: 2.6rem;
+    }
+
+    .textContent p {
+        font-size: 1.1rem;
+    }
+}

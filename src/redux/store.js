@@ -1,6 +1,7 @@
-// store.js
 import { configureStore } from "@reduxjs/toolkit";
-import cartReducer from "./cartSlice";
+import productReducer from "../redux/ProductSlice";
+import cartReducer from "../redux/cartSlice";
+
 import {
     persistStore,
     persistReducer,
@@ -11,17 +12,27 @@ import {
     PURGE,
     REGISTER,
 } from "redux-persist";
-import storage from "redux-persist/lib/storage"; // usa localStorage
 
-const persistConfig = {
-    key: "root",
+import storage from "redux-persist/lib/storage";
+
+const productPersistConfig = {
+    key: "products",
     storage,
+    whitelist: ["items"],
 };
 
-const persistedCartReducer = persistReducer(persistConfig, cartReducer);
+const cartPersistConfig = {
+    key: "cart",
+    storage,
+    whitelist: ["items"],
+};
+
+const persistedProductReducer = persistReducer(productPersistConfig, productReducer);
+const persistedCartReducer = persistReducer(cartPersistConfig, cartReducer);
 
 export const store = configureStore({
     reducer: {
+        products: persistedProductReducer,
         cart: persistedCartReducer,
     },
     middleware: (getDefaultMiddleware) =>

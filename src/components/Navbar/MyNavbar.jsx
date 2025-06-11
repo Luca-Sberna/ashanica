@@ -33,7 +33,7 @@ const MyNavbar = () => {
   const toggleSearch = () => setShowSearch((prev) => !prev);
 
   const cartCount = useSelector((state) =>
-    state.cart.items.reduce((acc, item) => acc + item.quantity, 0),
+    state.cart.items.reduce((acc, item) => acc + (item.quantity || 1), 0),
   );
 
   useEffect(() => {
@@ -114,6 +114,7 @@ const MyNavbar = () => {
                 <Dropdown.Item href="/register">Registrati</Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item href="/assistance">Assistenza</Dropdown.Item>
+                <Dropdown.Item href="/admin">Admin</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>

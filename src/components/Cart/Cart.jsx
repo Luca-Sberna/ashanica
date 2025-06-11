@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../../redux/cartSlice";
+import styles from "./Cart.module.css";
 import {
   Container,
   ListGroup,
@@ -9,6 +10,8 @@ import {
   Button,
   Card,
 } from "react-bootstrap";
+import { FaHome } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -20,7 +23,14 @@ const Cart = () => {
   );
 
   return (
-    <Container className="py-5">
+    <Container className={styles.cart}>
+      <Link
+        to={"/"}
+        className="menu-icon-link text-dark text-decoration-none align-items-center justify-content-end d-none d-md-flex pt-4"
+      >
+        <p className="m-0 pe-2">torna al menù</p>
+        <FaHome className="fs-5 menu-icon" />
+      </Link>
       <h2>Il tuo carrello</h2>
       <Row>
         <Col md={8}>

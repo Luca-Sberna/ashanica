@@ -1,8 +1,37 @@
 import React from "react";
-import { Container, Row, Col, Button, Carousel } from "react-bootstrap";
+import { Container, Row, Col, Button, Carousel, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
 import Header from "../Header/Header";
+import { ChevronLeft, ChevronRight, StarFill } from "react-bootstrap-icons";
+
+const reviews = [
+  {
+    username: "Luca",
+    avatar: "https://i.pravatar.cc/40?img=1",
+    comment: "Prodotto eccezionale! Spedizione veloce e servizio impeccabile.",
+  },
+  {
+    username: "Giulia",
+    avatar: "https://i.pravatar.cc/40?img=2",
+    comment: "Adoro questo shop! Tutto perfetto come sempre.",
+  },
+  {
+    username: "Marco",
+    avatar: "https://i.pravatar.cc/40?img=3",
+    comment: "Qualità altissima, tornerò sicuramente a comprare qui.",
+  },
+  {
+    username: "Sara",
+    avatar: "https://i.pravatar.cc/40?img=4",
+    comment: "Ottima esperienza, consiglio vivamente a tutti.",
+  },
+  {
+    username: "Alessandro",
+    avatar: "https://i.pravatar.cc/40?img=5",
+    comment: "Tutto perfetto! Complimenti per la professionalità.",
+  },
+];
 
 // Mock data per il carosello e i prodotti in evidenza
 const heroImages = [
@@ -34,29 +63,33 @@ const featuredProducts = [
     id: 1,
     name: "Prodotto 1",
     price: 49.99,
-    image: "https://via.placeholder.com/300x300?text=Prodotto+1",
+    image: "https://placehold.co/300x300",
   },
   {
     id: 2,
     name: "Prodotto 2",
     price: 59.99,
-    image: "https://via.placeholder.com/300x300?text=Prodotto+2",
+    image: "https://placehold.co/300x300",
   },
   {
     id: 3,
     name: "Prodotto 3",
     price: 39.99,
-    image: "https://via.placeholder.com/300x300?text=Prodotto+3",
+    image: "https://placehold.co/300x300",
   },
   {
     id: 4,
     name: "Prodotto 4",
     price: 79.99,
-    image: "https://via.placeholder.com/300x300?text=Prodotto+4",
+    image: "https://placehold.co/300x300",
   },
 ];
 
 const Home = () => {
+  const groupedReviews = [];
+  for (let i = 0; i < reviews.length; i += 2) {
+    groupedReviews.push(reviews.slice(i, i + 2));
+  }
   return (
     <div className={styles.home}>
       <Header />
@@ -75,29 +108,13 @@ const Home = () => {
           </Carousel.Item>
         ))}
       </Carousel>
-      {/* Banner Promozionale */}
-      <div className="bg-light py-3 mb-5">
-        <Container>
-          <Row className="align-items-center">
-            <Col md={8}>
-              <h3>Offerta Speciale!</h3>
-              <p>Registrati oggi e ricevi il 10% di sconto sul primo ordine.</p>
-            </Col>
-            <Col md={4} className="text-md-end">
-              <Button variant="warning" size="lg">
-                Registrati Ora
-              </Button>
-            </Col>
-          </Row>
-        </Container>
-      </div>
       <hr />
       {/* Sezione Prodotti in Evidenza */}
       <Container className="mb-5">
         <h2 className="text-center mb-4">Prodotti in Evidenza</h2>
         <Row>
           {featuredProducts.map((product) => (
-            <Col key={product.id} lg={3} md={6} className="mb-4">
+            <Col key={product.id} lg={3} md={6} xs={4} className="mb-4">
               <div className="card h-100">
                 <img
                   src={product.image}
@@ -117,6 +134,122 @@ const Home = () => {
               </div>
             </Col>
           ))}
+        </Row>
+        <hr className="py-3" />
+        <Row>
+          <Col xs={5} className="bg-light p-3">
+            <h4>Titolo</h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
+              necessitatibus consectetur, ratione excepturi sequi voluptatem
+              eius nam ipsam voluptatum accusamus eum! Odio nisi est distinctio
+              ut impedit debitis, magnam velit.ssitatibus consectetur, ratione
+              excepturi sequi voluptatem eius nam ipsam voluptatum accusamus
+              eum! Odio nisi est distinctio ut impedit debitis, magnam velit.
+            </p>
+          </Col>
+
+          <Col xs={7}>
+            <img
+              className="img-fluid"
+              src="https://placehold.co/1200x800"
+              alt="img"
+            />
+          </Col>
+        </Row>
+        <hr className="" />
+        <Row>
+          <Col xs={12} className="bg-light p-3">
+            <h4 className="text-center pb-3">Su di noi</h4>
+            <p className="text-center px-5">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Voluptates repellendus adipisci beatae architecto suscipit
+              provident eaque, asperiores commodi omnis laboriosam vero
+              perferendis libero nihil reprehenderit, nemo voluptatem, expedita
+              temporibus similique?ssitatibus consectetur, ratione excepturi
+              sequi voluptatem eius nam ipsam voluptatum accusamus eum! Odio
+              nisi est distinctio ut impedit debitis, magnam velit.
+            </p>
+            <Link
+              className="d-flex justify-content-center text-decoration-none"
+              to={"/about"}
+            >
+              <Button className="" variant="warning">
+                Scopri di più
+              </Button>
+            </Link>
+          </Col>
+        </Row>
+        <hr />
+        <Row className="justify-content-center pb-3">
+          <Col md={10}>
+            <Carousel
+              controls={true}
+              indicators={false}
+              interval={3000}
+              className="shadow-sm "
+            >
+              {groupedReviews.map((group, idx) => (
+                <Carousel.Item key={idx} className="p-4">
+                  <Row className="g-4 justify-content-center">
+                    {group.map((review, i) => (
+                      <Col key={i} md={6}>
+                        <div className="p-3 border rounded h-100 d-flex flex-column align-items-start justify-content-between bg-light">
+                          <div className="d-flex align-items-center mb-2">
+                            <Image
+                              src={review.avatar}
+                              roundedCircle
+                              width={40}
+                              height={40}
+                              className="me-2"
+                              alt={review.username}
+                            />
+                            <strong>{review.username}</strong>
+                          </div>
+                          <div className="text-warning mb-2">
+                            {Array(5)
+                              .fill()
+                              .map((_, i) => (
+                                <StarFill key={i} size={16} className="me-1" />
+                              ))}
+                          </div>
+                          <p className="fst-italic mb-0">"{review.comment}"</p>
+                        </div>
+                      </Col>
+                    ))}
+                  </Row>
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          </Col>
+        </Row>
+        <hr className="" />
+        <Row>
+          <Col xs={12} className="bg-light p-3">
+            <img
+              className="img-fluid"
+              src="https://placehold.co/1200x800"
+              alt="img"
+            />
+            <h4 className=" pt-3">Crea la tua borsa!</h4>
+            <p className=" ">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Voluptates repellendus adipisci beatae architecto suscipit
+              provident eaque, asperiores commodi omnis laboriosam vero
+              perferendis libero nihil reprehenderit, nemo voluptatem, expedita
+              temporibus similique?ssitatibus consectetur, ratione excepturi
+              sequi voluptatem eius nam ipsam voluptatum accusamus eum! Odio
+              nisi est distinctio ut impedit debitis, magnam velit.
+            </p>
+            <Link
+              className="d-flex justify-content-center text-decoration-none"
+              to={"/"}
+            >
+              <Button className="" variant="warning">
+                Prendi appuntamento
+              </Button>
+            </Link>
+          </Col>
         </Row>
       </Container>
     </div>

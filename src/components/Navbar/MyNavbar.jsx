@@ -12,25 +12,24 @@ import i18n from "../../i18n";
 import ita from "../../assets/imgs/itaflag.png";
 import eng from "../../assets/imgs/engflag.png";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../redux/userSlice";
 
 const MyNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  //const [showMenu2, setShowMenu2] = useState(false);
-
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
   const toggleMenu = () => setShowMenu(!showMenu);
   const closeMenu = () => setShowMenu(false);
-
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-    localStorage.setItem("lang", lng);
-  };
-
-  const { t } = useTranslation();
   const toggleSearch = () => setShowSearch((prev) => !prev);
+  const [showBrand, setShowBrand] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+
+  const { user, isAuthenticated } = useSelector((state) => state.user);
 
   const cartCount = useSelector((state) =>
     state.cart.items.reduce((acc, item) => acc + (item.quantity || 1), 0),
@@ -38,22 +37,44 @@ const MyNavbar = () => {
 
   useEffect(() => {
     const lang = localStorage.getItem("lang");
-    if (lang) {
-      i18n.changeLanguage(lang);
-    }
+    if (lang) i18n.changeLanguage(lang);
   }, []);
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem("lang", lng);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    closeMenu();
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > 65 && currentScrollY > lastScrollY) {
+        // Scroll verso il basso → mostra brand
+        setShowBrand(true);
+      } else {
+        // Scroll verso l’alto → nascondi brand
+        setShowBrand(false);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   return (
     <>
-      <Navbar
-        bg="white"
-        variant="dark"
-        expand="md"
-        sticky="top"
-        className="py-2 shadow"
-      >
+      <Navbar bg="white" expand="md" sticky="top" className="py-2 shadow">
         <Container className="d-flex justify-content-between align-items-center">
-          <div className="d-flex justify-content-center align-items-center">
+          <div className="d-flex align-items-center">
             <Button
               variant="outline-dark"
               className="d-md-none me-2 border-0"
@@ -90,6 +111,21 @@ const MyNavbar = () => {
               </div>
             )}
           </div>
+
+          {showBrand && (
+            <a
+              href="/"
+              className="mx-auto ps-4 fw-bold text-decoration-none text-dark d-md-block"
+              style={{
+                fontSize: "1.5rem",
+                transition: "opacity 0.3s",
+                opacity: 1,
+              }}
+            >
+              Asknica
+            </a>
+          )}
+
           <div className="d-flex align-items-center">
             <Button
               variant="outline-dark"
@@ -104,28 +140,36 @@ const MyNavbar = () => {
               )}
             </Button>
 
-            {/* Dropdown utente */}
             <Dropdown align="end">
               <Dropdown.Toggle variant="outline-dark" className="border-0">
                 <PersonCircle size={20} />
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu-end mt-2">
-                <Dropdown.Item href="/login">Accedi</Dropdown.Item>
-                <Dropdown.Item href="/register">Registrati</Dropdown.Item>
-                <Dropdown.Item href="/user/:id">Profilo</Dropdown.Item>
-                <Dropdown.Item href="/user/payment-methods">
-                  Metodi di pagamento
-                </Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item href="/assistance">Assistenza</Dropdown.Item>
-                <Dropdown.Item href="/admin">Admin</Dropdown.Item>
+                {!isAuthenticated || !user ? (
+                  <>
+                    <Dropdown.Item href="/login">Accedi</Dropdown.Item>
+                    <Dropdown.Item href="/register">Registrati</Dropdown.Item>
+                  </>
+                ) : (
+                  <>
+                    <Dropdown.Item href="/user/profile">Profilo</Dropdown.Item>
+                    <Dropdown.Item href="/user/payment-methods">
+                      Metodi di pagamento
+                    </Dropdown.Item>
+                    {user?.isAdmin && (
+                      <Dropdown.Item href="/admin">Admin</Dropdown.Item>
+                    )}
+                    <Dropdown.Divider />
+                    <Dropdown.Item href="/assistance">Assistenza</Dropdown.Item>
+                    <Dropdown.Item onClick={handleLogout}>Esci</Dropdown.Item>
+                  </>
+                )}
               </Dropdown.Menu>
             </Dropdown>
           </div>
         </Container>
       </Navbar>
 
-      {/* Offcanvas Menu per mobile */}
       <Offcanvas
         show={showMenu}
         onHide={closeMenu}
@@ -164,42 +208,62 @@ const MyNavbar = () => {
 
             <div className="mt-4 pt-3 border-top border-secondary">
               <h6 className="text-muted mb-3">ACCOUNT</h6>
-              <Nav.Link
-                href="/login"
-                className="text-dark py-2"
-                onClick={closeMenu}
-              >
-                Accedi
-              </Nav.Link>
-              <Nav.Link
-                href="/register"
-                className="text-dark py-2"
-                onClick={closeMenu}
-              >
-                Registrati
-              </Nav.Link>
-              <Nav.Link
-                href="/user/:id"
-                className="text-dark py-2"
-                onClick={closeMenu}
-              >
-                Profilo
-              </Nav.Link>
-              <Nav.Link
-                href="/user/payment-methods"
-                className="text-dark py-2"
-                onClick={closeMenu}
-              >
-                Metodi di pagamento
-              </Nav.Link>
-              <Nav.Link
-                href="/assistance"
-                className="text-dark py-2"
-                onClick={closeMenu}
-              >
-                Assistenza
-              </Nav.Link>
+              {!isAuthenticated || !user ? (
+                <>
+                  <Nav.Link
+                    href="/login"
+                    className="text-dark py-2"
+                    onClick={closeMenu}
+                  >
+                    Accedi
+                  </Nav.Link>
+                  <Nav.Link
+                    href="/register"
+                    className="text-dark py-2"
+                    onClick={closeMenu}
+                  >
+                    Registrati
+                  </Nav.Link>
+                </>
+              ) : (
+                <>
+                  <Nav.Link
+                    href="/user/profile"
+                    className="text-dark py-2"
+                    onClick={closeMenu}
+                  >
+                    Profilo
+                  </Nav.Link>
+                  <Nav.Link
+                    href="/user/payment-methods"
+                    className="text-dark py-2"
+                    onClick={closeMenu}
+                  >
+                    Metodi di pagamento
+                  </Nav.Link>
+                  {user?.isAdmin && (
+                    <Nav.Link
+                      href="/admin"
+                      className="text-dark py-2"
+                      onClick={closeMenu}
+                    >
+                      Admin
+                    </Nav.Link>
+                  )}
+                  <Nav.Link
+                    href="/assistance"
+                    className="text-dark py-2"
+                    onClick={closeMenu}
+                  >
+                    Assistenza
+                  </Nav.Link>
+                  <Nav.Link onClick={handleLogout} className="text-dark py-2">
+                    Esci
+                  </Nav.Link>
+                </>
+              )}
             </div>
+
             <Dropdown className="py-3">
               <Dropdown.Toggle
                 as={Nav.Link}
@@ -212,38 +276,35 @@ const MyNavbar = () => {
                     alt={i18n.language}
                     width="22"
                     height="22"
-                    className={`ita rounded-circle ms-2`}
-                    style={{ cursor: "pointer" }}
+                    className={`rounded-circle ms-2`}
                   />
                 </span>
               </Dropdown.Toggle>
               <Dropdown.Menu className="bg-light border-secondary">
                 <Dropdown.Item
                   onClick={() => changeLanguage("it")}
-                  className="text-dark py-2 justify-content-between d-flex"
+                  className="text-dark py-2 d-flex justify-content-between"
                 >
-                  Italiano
+                  Italiano{" "}
                   <img
                     src={ita}
-                    alt={i18n.language}
+                    alt="it"
                     width="22"
                     height="22"
-                    className={`ita rounded-circle`}
-                    style={{ cursor: "pointer" }}
+                    className="rounded-circle"
                   />
                 </Dropdown.Item>
                 <Dropdown.Item
                   onClick={() => changeLanguage("en")}
-                  className="text-dark py-2 justify-content-between d-flex"
+                  className="text-dark py-2 d-flex justify-content-between"
                 >
-                  Inglese
+                  Inglese{" "}
                   <img
                     src={eng}
-                    alt={i18n.language}
+                    alt="en"
                     width="22"
                     height="22"
-                    className={`eng rounded-circle`}
-                    style={{ cursor: "pointer" }}
+                    className="rounded-circle"
                   />
                 </Dropdown.Item>
               </Dropdown.Menu>

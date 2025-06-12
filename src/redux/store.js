@@ -1,6 +1,8 @@
+// src/redux/store.js
 import { configureStore } from "@reduxjs/toolkit";
-import productReducer from "../redux/ProductSlice";
-import cartReducer from "../redux/cartSlice";
+import productReducer from "./ProductSlice";
+import cartReducer from "./cartSlice";
+import userReducer from "./userSlice"; // <-- importa lo userSlice
 
 import {
     persistStore,
@@ -12,7 +14,6 @@ import {
     PURGE,
     REGISTER,
 } from "redux-persist";
-
 import storage from "redux-persist/lib/storage";
 
 const productPersistConfig = {
@@ -27,13 +28,34 @@ const cartPersistConfig = {
     whitelist: ["items"],
 };
 
+const userPersistConfig = {
+    key: "user",
+    storage,
+    whitelist: ["user", "isAuthenticated"],
+    transforms: [
+        {
+            in: (inboundState) => {
+                if (inboundState && inboundState.user) {
+                    const { password, ...rest } = inboundState.user;
+                    return { ...inboundState, user: rest };
+                }
+                return inboundState || {}; // fallback sicuro
+            },
+            out: (outboundState) => outboundState,
+        },
+    ],
+};
+
+
 const persistedProductReducer = persistReducer(productPersistConfig, productReducer);
 const persistedCartReducer = persistReducer(cartPersistConfig, cartReducer);
+const persistedUserReducer = persistReducer(userPersistConfig, userReducer); // <-- persist user
 
 export const store = configureStore({
     reducer: {
         products: persistedProductReducer,
         cart: persistedCartReducer,
+        user: persistedUserReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

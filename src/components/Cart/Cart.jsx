@@ -90,17 +90,7 @@ const Cart = () => {
         <Col md={4}>
           <Card className="shadow-sm">
             <Card.Body>
-              <div className="d-flex justify-content-between">
-                <h5>Totale</h5>
-                {cartItems.length > 0 && (
-                  <Button
-                    variant="outline-danger"
-                    onClick={() => dispatch(clearCart())}
-                  >
-                    🗑️
-                  </Button>
-                )}
-              </div>
+              <h5>Totale</h5>
               <hr />
               <h4>€ {total.toFixed(2)}</h4>
               <Link to={"/checkout"}>

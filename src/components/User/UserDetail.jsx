@@ -1,98 +1,243 @@
 import React, { useState } from "react";
-import { Container, Card, Form, Button, Row, Col } from "react-bootstrap";
+import {
+  Container,
+  Card,
+  Image,
+  Row,
+  Col,
+  Tab,
+  Nav,
+  Button,
+  Modal,
+  Form,
+} from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-const UserDetail = () => {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    address: "",
-    city: "",
-    zip: "",
-    country: "",
+const UserProfile = () => {
+  // Stato dati utente
+  const [user, setUser] = useState({
+    fullName: "Mario Rossi",
+    email: "mario.rossi@example.com",
+    address: "Via Roma 123",
+    city: "Milano",
+    zip: "20100",
+    country: "Italia",
+    profilePic: "https://i.pravatar.cc/150?img=3", // immagine profilo placeholder
   });
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+  // Controllo apertura modale modifica
+  const [showEditModal, setShowEditModal] = useState(false);
+
+  // Campi di modifica in modale
+  const [editData, setEditData] = useState({
+    fullName: user.fullName,
+    email: user.email,
+    password: "",
+    profilePic: user.profilePic,
+  });
+
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSave = (e) => {
+  const handleOpenModal = () => {
+    setEditData({
+      fullName: user.fullName,
+      email: user.email,
+      password: "",
+      profilePic: user.profilePic,
+    });
+    setShowEditModal(true);
+  };
+
+  const handleCloseModal = () => setShowEditModal(false);
+
+  const handleSaveChanges = (e) => {
     e.preventDefault();
-    console.log("Dati salvati:", formData);
-    alert("Dati salvati con successo");
+    // Qui potresti aggiungere validazioni e chiamate API
+    setUser((prev) => ({
+      ...prev,
+      fullName: editData.fullName,
+      email: editData.email,
+      profilePic: editData.profilePic,
+    }));
+    setShowEditModal(false);
+    alert("Dati aggiornati con successo!");
   };
 
   return (
-    <Container className="mt-5">
-      <Card>
-        <Card.Header as="h4">Dati utente e indirizzo di spedizione</Card.Header>
-        <Card.Body>
-          <Form onSubmit={handleSave}>
-            <Row className="mb-3">
-              <Form.Group as={Col} controlId="fullName">
-                <Form.Label>Nome completo</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              <Form.Group as={Col} controlId="address">
-                <Form.Label>Indirizzo</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-            </Row>
+    <Container className="my-5">
+      <Card className="p-4 shadow" style={{ position: "relative" }}>
+        <Row>
+          <Col xs={12} md={9}>
+            <h2 className="fw-bold">{user.fullName}</h2>
+            <div className="d-flex justify-content-between">
+              <p className="text-muted mb-1">{user.email}</p>
+              <Link to={"/"} className="text-link text-danger">
+                cambia e-mail
+              </Link>
+            </div>
+            <div className="d-flex justify-content-between">
+              <p className="text-secondary">
+                {user.address}, {user.city}, {user.zip}, {user.country}
+              </p>
+              <Link to={"/"} className="text-link text-danger">
+                cambia password
+              </Link>
+            </div>
+          </Col>
+          <Col
+            xs={12}
+            md={3}
+            className="d-flex justify-content-md-end justify-content-start align-items-start"
+          >
+            <Image
+              src={user.profilePic}
+              roundedCircle
+              alt="Profile"
+              style={{ width: 110, height: 110, objectFit: "cover" }}
+              className="shadow-sm"
+            />
+          </Col>
+        </Row>
 
-            <Row className="mb-3">
-              <Form.Group as={Col} controlId="city">
-                <Form.Label>Città</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="city"
-                  value={formData.city}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              <Form.Group as={Col} controlId="zip">
-                <Form.Label>CAP</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="zip"
-                  value={formData.zip}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              <Form.Group as={Col} controlId="country">
-                <Form.Label>Paese</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="country"
-                  value={formData.country}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-            </Row>
+        <Button
+          variant="outline-dark"
+          className="my-3"
+          onClick={handleOpenModal}
+        >
+          Modifica Profilo
+        </Button>
 
-            <Button variant="dark" type="submit">
-              Salva dati
-            </Button>
-          </Form>
-        </Card.Body>
+        <Tab.Container defaultActiveKey="orders" className="mt-4">
+          <Nav variant="tabs" className="justify-content-center">
+            <Nav.Item>
+              <Nav.Link className="text-dark" eventKey="orders">
+                I miei ordini
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link className="text-dark" eventKey="reviews">
+                Le mie recensioni
+              </Nav.Link>
+            </Nav.Item>
+          </Nav>
+
+          <Tab.Content className="mt-3">
+            <Tab.Pane eventKey="orders">
+              <p>Qui verranno mostrati i tuoi ordini recenti...</p>
+            </Tab.Pane>
+            <Tab.Pane eventKey="reviews">
+              <p>Qui potrai vedere e gestire le tue recensioni...</p>
+            </Tab.Pane>
+          </Tab.Content>
+        </Tab.Container>
       </Card>
+
+      {/* Modal per modifica dati */}
+      <Modal show={showEditModal} onHide={handleCloseModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Modifica Profilo</Modal.Title>
+        </Modal.Header>
+        <Form onSubmit={handleSaveChanges}>
+          <Modal.Body>
+            <Form.Group className="mb-3" controlId="editFullName">
+              <Form.Label>Nome completo</Form.Label>
+              <Form.Control
+                type="text"
+                name="fullName"
+                value={editData.fullName}
+                onChange={handleEditChange}
+                required
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="editProfilePic">
+              <Form.Label>URL immagine profilo</Form.Label>
+              <Form.Control
+                type="url"
+                name="profilePic"
+                value={editData.profilePic}
+                onChange={handleEditChange}
+                placeholder="Inserisci URL immagine"
+              />
+            </Form.Group>
+
+            {editData.profilePic && (
+              <div className="text-center mb-3">
+                <Image
+                  src={editData.profilePic}
+                  roundedCircle
+                  alt="Anteprima immagine"
+                  style={{ width: 80, height: 80, objectFit: "cover" }}
+                />
+              </div>
+            )}
+
+            {/* Indirizzo */}
+            <Form.Group className="mb-3" controlId="editAddress">
+              <Form.Label>Indirizzo</Form.Label>
+              <Form.Control
+                type="text"
+                name="address"
+                value={editData.address || ""}
+                onChange={handleEditChange}
+                required
+              />
+            </Form.Group>
+
+            <Row>
+              <Col>
+                <Form.Group className="mb-3" controlId="editCity">
+                  <Form.Label>Città</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="city"
+                    value={editData.city || ""}
+                    onChange={handleEditChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group className="mb-3" controlId="editZip">
+                  <Form.Label>CAP</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="zip"
+                    value={editData.zip || ""}
+                    onChange={handleEditChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group className="mb-3" controlId="editCountry">
+                  <Form.Label>Paese</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="country"
+                    value={editData.country || ""}
+                    onChange={handleEditChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleCloseModal}>
+              Annulla
+            </Button>
+            <Button variant="primary" type="submit">
+              Salva modifiche
+            </Button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
     </Container>
   );
 };
 
-export default UserDetail;
+export default UserProfile;

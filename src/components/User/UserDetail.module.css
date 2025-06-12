@@ -1,0 +1,13 @@
+.text-link {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+    /* mantiene il colore del testo */
+}
+
+.text-link:hover,
+.text-link:focus {
+    text-decoration: underline !important;
+    /* forziamo underline */
+    color: inherit;
+}

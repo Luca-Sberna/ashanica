@@ -37,21 +37,21 @@ const reviews = [
 const heroImages = [
   {
     id: 1,
-    src: "https://placehold.co/1200x400",
+    src: "https://placehold.co/1200x600",
     alt: "Offerta 1",
     caption: "Sconti fino al 50%",
     description: "la descrizione",
   },
   {
     id: 2,
-    src: "https://placehold.co/1200x400",
+    src: "https://placehold.co/1200x600",
     alt: "Offerta 2",
     caption: "Nuova Collezione",
     description: "la descrizione",
   },
   {
     id: 3,
-    src: "https://placehold.co/1200x400",
+    src: "https://placehold.co/1200x600",
     alt: "Offerta 3",
     caption: "Spedizione Gratuita",
     description: "la descrizione",
@@ -83,6 +83,30 @@ const featuredProducts = [
     price: 79.99,
     image: "https://placehold.co/300x300",
   },
+  {
+    id: 5,
+    name: "Prodotto 5",
+    price: 49.99,
+    image: "https://placehold.co/300x300",
+  },
+  {
+    id: 6,
+    name: "Prodotto 6",
+    price: 59.99,
+    image: "https://placehold.co/300x300",
+  },
+  {
+    id: 7,
+    name: "Prodotto 7",
+    price: 39.99,
+    image: "https://placehold.co/300x300",
+  },
+  {
+    id: 8,
+    name: "Prodotto 8",
+    price: 79.99,
+    image: "https://placehold.co/300x300",
+  },
 ];
 
 const Home = () => {
@@ -100,9 +124,11 @@ const Home = () => {
             <div className="d-flex justify-content-start">
               <img className="d-block w-100" src={slide.src} alt={slide.alt} />
               <Carousel.Caption>
-                <h3>{slide.caption}</h3>
-                <p>{slide.description}</p>
-                <Button variant="warning">Scopri di più</Button>
+                <h3 className="text-start">{slide.caption}</h3>
+                <p className="text-start">{slide.description}</p>
+                <Button className="text-start" variant="warning">
+                  Scopri di più
+                </Button>
               </Carousel.Caption>
             </div>
           </Carousel.Item>
@@ -114,7 +140,7 @@ const Home = () => {
         <h2 className="text-center mb-4">Prodotti in Evidenza</h2>
         <Row>
           {featuredProducts.map((product) => (
-            <Col key={product.id} lg={3} md={6} xs={4} className="mb-4">
+            <Col key={product.id} lg={3} md={4} xs={6} sm={6} className="mb-4">
               <div className="card h-100">
                 <img
                   src={product.image}
@@ -143,9 +169,7 @@ const Home = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
               necessitatibus consectetur, ratione excepturi sequi voluptatem
               eius nam ipsam voluptatum accusamus eum! Odio nisi est distinctio
-              ut impedit debitis, magnam velit.ssitatibus consectetur, ratione
-              excepturi sequi voluptatem eius nam ipsam voluptatum accusamus
-              eum! Odio nisi est distinctio ut impedit debitis, magnam velit.
+              ut impedit debitis, magnam velit.
             </p>
           </Col>
 

@@ -76,14 +76,6 @@ const Footer = () => {
               >
                 <Instagram />
               </Nav.Link>
-              <Nav.Link
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noreferrer"
-                className="text-dark p-0"
-              >
-                <Linkedin />
-              </Nav.Link>
             </div>
           </Col>
         </Row>

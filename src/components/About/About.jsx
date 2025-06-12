@@ -19,19 +19,19 @@ const About = () => {
 
         <div className={styles.imagesWrapper}>
           <img
-            src="https://source.unsplash.com/400x500/?fashion"
+            src="https://placehold.co/1200x400"
             alt="Eleganza"
             className={styles.img1}
             loading="lazy"
           />
           <img
-            src="https://source.unsplash.com/350x450/?interior"
+            src="https://placehold.co/1200x400"
             alt="Stile"
             className={styles.img2}
             loading="lazy"
           />
           <img
-            src="https://source.unsplash.com/300x400/?luxury"
+            src="https://placehold.co/1200x400"
             alt="Design"
             className={styles.img3}
             loading="lazy"

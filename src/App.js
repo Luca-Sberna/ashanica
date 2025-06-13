@@ -8,6 +8,8 @@ import ProductDetail from './components/Products/ProductDetail.jsx';
 import AdminDashboard from './components/Admin/AdminDashboard.jsx';
 import ProtectedRoute from './components/Admin/ProtectedRoute.jsx';
 import CookieConsent from "react-cookie-consent";
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 
 const Home = lazy(() => import('./components/Home/Home.jsx'));
 const About = lazy(() => import('./components/About/About.jsx'));
@@ -20,51 +22,51 @@ const GeneralCondition = lazy(() => import('./components/Assistance/GeneralCondi
 const PrivacyPolicy = lazy(() => import('./components/Assistance/PrivacyPolicy.jsx'));
 const Checkout = lazy(() => import('./components/Checkout/Checkout.jsx'));
 const UserDetail = lazy(() => import('./components/User/UserDetail.jsx'));
-const PaymentMethods = lazy(() => import('./components/User/PaymentMethods.jsx'));
 
 
 
 
 const isAdmin = false;
-const isLoggedIn = false;
+const isLoggedIn = true;
+const stripePromise = loadStripe("pk_test_51RZX0kQS62gHrfW7TqgLNUIUFAvvoPlj0ENizxZl5nISuSeRomQwdbtUC96o0PbcyIqN8jdlhFmNlqn4GUobS0MF00HKRAXklm");
 
 function App() {
   return (
     <Suspense fallback={<Loading />}>
-      <MyNavbar />
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="products" element={<Products />} />
-          <Route path="products/:id" element={<ProductDetail />} />
-          <Route path="about" element={<About />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<SignUp />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="assistance" element={<Assistance />} />
-          <Route path="conditions" element={<GeneralCondition />} />
-          <Route path="policies" element={<PrivacyPolicy />} />
-          <Route
-            path="checkout"
-            element={
-              <ProtectedRoute isAllowed={isLoggedIn}>
-                <Checkout />
-              </ProtectedRoute>
-            }
-          />   <Route path="user/:id" element={<UserDetail />} />
-          <Route path="user/payment-methods" element={<PaymentMethods />} />
-
-          <Route
-            path="admin"
-            element={
-              <ProtectedRoute isAdmin={isAdmin}>
-                <AdminDashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+      <Elements stripe={stripePromise}>
+        <MyNavbar />
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="products" element={<Products />} />
+            <Route path="products/:id" element={<ProductDetail />} />
+            <Route path="about" element={<About />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<SignUp />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="assistance" element={<Assistance />} />
+            <Route path="conditions" element={<GeneralCondition />} />
+            <Route path="policies" element={<PrivacyPolicy />} />
+            <Route
+              path="checkout"
+              element={
+                <ProtectedRoute isAllowed={isLoggedIn}>
+                  <Checkout />
+                </ProtectedRoute>
+              }
+            />   <Route path="user/:id" element={<UserDetail />} />
+            <Route
+              path="admin"
+              element={
+                <ProtectedRoute isAdmin={isAdmin}>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </Elements>
 
       {/* ✅ CookieConsent sempre visibile in fondo */}
       <CookieConsent

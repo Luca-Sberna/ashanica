@@ -153,9 +153,6 @@ const MyNavbar = () => {
                 ) : (
                   <>
                     <Dropdown.Item href="/user/profile">Profilo</Dropdown.Item>
-                    <Dropdown.Item href="/user/payment-methods">
-                      Metodi di pagamento
-                    </Dropdown.Item>
                     {user?.isAdmin && (
                       <Dropdown.Item href="/admin">Admin</Dropdown.Item>
                     )}
@@ -233,13 +230,6 @@ const MyNavbar = () => {
                     onClick={closeMenu}
                   >
                     Profilo
-                  </Nav.Link>
-                  <Nav.Link
-                    href="/user/payment-methods"
-                    className="text-dark py-2"
-                    onClick={closeMenu}
-                  >
-                    Metodi di pagamento
                   </Nav.Link>
                   {user?.isAdmin && (
                     <Nav.Link

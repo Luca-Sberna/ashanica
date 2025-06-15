@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/userSlice";
 import FloatingCartButton from "../Cart/FloatingCartButton";
+import { Link } from "react-router-dom";
 
 const MyNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -56,10 +57,10 @@ const MyNavbar = () => {
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > 65 && currentScrollY > lastScrollY) {
-        // Scroll verso il basso → mostra brand
+        // Scroll in giù oltre soglia
         setShowBrand(true);
-      } else {
-        // Scroll verso l’alto → nascondi brand
+      } else if (currentScrollY <= 65 && currentScrollY < lastScrollY) {
+        // Scroll in su sotto soglia
         setShowBrand(false);
       }
 
@@ -67,14 +68,14 @@ const MyNavbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
   return (
     <>
       <Navbar bg="white" expand="md" sticky="top" className="py-2 shadow">
-        <Container className="d-flex justify-content-between align-items-center">
+        <Container className="position-relative d-flex justify-content-between align-items-center">
+          {/* SINISTRA */}
           <div className="d-flex align-items-center">
             <Button
               variant="outline-dark"
@@ -100,23 +101,24 @@ const MyNavbar = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   autoFocus
-                  style={{ maxWidth: "200px" }}
+                  style={{ maxWidth: "100px" }}
                 />
                 <Button
                   variant="outline-dark"
-                  className="border-0 ms-2"
+                  className="border-0"
                   onClick={toggleSearch}
                 >
-                  <X size={18} />
+                  <X size={15} />
                 </Button>
               </div>
             )}
           </div>
 
+          {/* CENTRO: BRAND FISSO */}
           {showBrand && (
-            <a
-              href="/"
-              className="mx-auto ps-4 fw-bold text-decoration-none text-dark d-md-block"
+            <Link
+              to={"/"}
+              className="position-absolute top-50 start-50 translate-middle fw-bold text-decoration-none text-dark"
               style={{
                 fontSize: "1.5rem",
                 transition: "opacity 0.3s",
@@ -124,9 +126,10 @@ const MyNavbar = () => {
               }}
             >
               Asknica
-            </a>
+            </Link>
           )}
 
+          {/* DESTRA */}
           <div className="d-flex align-items-center">
             <FloatingCartButton />
             <Button

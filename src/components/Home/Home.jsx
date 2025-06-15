@@ -3,7 +3,14 @@ import { Container, Row, Col, Button, Carousel, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
 import Header from "../Header/Header";
-import { ChevronLeft, ChevronRight, StarFill } from "react-bootstrap-icons";
+import { StarFill } from "react-bootstrap-icons";
+import borsamare from "../../assets/imgs/borsamare.jpg";
+import borsamare2 from "../../assets/imgs/borsabluy.jpg";
+import borsamare3 from "../../assets/imgs/borsanera.jpg";
+import borsabeige from "../../assets/imgs/borsabeige.jpg";
+import borsa2 from "../../assets/imgs/borsarossa.jpg";
+import borsa3 from "../../assets/imgs/borsaverde.jpg";
+import borsa4 from "../../assets/imgs/borsanera2.jpg";
 
 const reviews = [
   {
@@ -37,24 +44,24 @@ const reviews = [
 const heroImages = [
   {
     id: 1,
-    src: "https://placehold.co/1200x600",
+    src: borsabeige,
     alt: "Offerta 1",
-    caption: "Sconti fino al 50%",
-    description: "la descrizione",
+    caption: "Sconti fino al 50% Happy Summer",
+    description: "la descrizione non dovrebbe essere tanto lunga",
   },
   {
     id: 2,
-    src: "https://placehold.co/1200x600",
+    src: borsamare2,
     alt: "Offerta 2",
-    caption: "Nuova Collezione",
-    description: "la descrizione",
+    caption: "Sconti fino al 50% Happy Summer",
+    description: "la descrizione non dovrebbe essere tanto lunga",
   },
   {
     id: 3,
-    src: "https://placehold.co/1200x600",
+    src: borsamare3,
     alt: "Offerta 3",
-    caption: "Spedizione Gratuita",
-    description: "la descrizione",
+    caption: "Sconti fino al 50% Happy Summer",
+    description: "la descrizione non dovrebbe essere tanto lunga",
   },
 ];
 
@@ -63,49 +70,49 @@ const featuredProducts = [
     id: 1,
     name: "Prodotto 1",
     price: 49.99,
-    image: "https://placehold.co/300x300",
+    image: borsamare,
   },
   {
     id: 2,
     name: "Prodotto 2",
     price: 59.99,
-    image: "https://placehold.co/300x300",
+    image: borsamare2,
   },
   {
     id: 3,
     name: "Prodotto 3",
     price: 39.99,
-    image: "https://placehold.co/300x300",
+    image: borsamare3,
   },
   {
     id: 4,
     name: "Prodotto 4",
     price: 79.99,
-    image: "https://placehold.co/300x300",
+    image: borsa2,
   },
   {
     id: 5,
     name: "Prodotto 5",
     price: 49.99,
-    image: "https://placehold.co/300x300",
+    image: borsa3,
   },
   {
     id: 6,
     name: "Prodotto 6",
     price: 59.99,
-    image: "https://placehold.co/300x300",
+    image: borsa4,
   },
   {
     id: 7,
     name: "Prodotto 7",
-    price: 39.99,
-    image: "https://placehold.co/300x300",
+    price: 49.99,
+    image: borsa3,
   },
   {
     id: 8,
     name: "Prodotto 8",
-    price: 79.99,
-    image: "https://placehold.co/300x300",
+    price: 59.99,
+    image: borsa4,
   },
 ];
 
@@ -121,19 +128,20 @@ const Home = () => {
       <Carousel className="mb-5">
         {heroImages.map((slide) => (
           <Carousel.Item key={slide.id}>
-            <div className="d-flex justify-content-start">
-              <img className="d-block w-100" src={slide.src} alt={slide.alt} />
-              <Carousel.Caption>
-                <h3 className="text-start">{slide.caption}</h3>
-                <p className="text-start">{slide.description}</p>
-                <Button className="text-start" variant="warning">
-                  Scopri di più
-                </Button>
-              </Carousel.Caption>
-            </div>
+            <img
+              className={`d-block w-100 ${styles.heroImg}`}
+              src={slide.src}
+              alt={slide.alt}
+            />
+            <Carousel.Caption className={styles.customCaption}>
+              <h3>{slide.caption}</h3>
+              <p className="m-1">{slide.description}</p>
+              <Button variant="warning">Scopri di più</Button>
+            </Carousel.Caption>
           </Carousel.Item>
         ))}
       </Carousel>
+
       <hr />
       {/* Sezione Prodotti in Evidenza */}
       <Container className="mb-5">
@@ -145,6 +153,7 @@ const Home = () => {
                 <img
                   src={product.image}
                   className="card-img-top"
+                  style={{ height: "200px", objectFit: "cover" }}
                   alt={product.name}
                 />
                 <div className="card-body d-flex flex-column">
@@ -163,7 +172,7 @@ const Home = () => {
         </Row>
         <hr className="py-3" />
         <Row>
-          <Col xs={5} className="bg-light p-3">
+          <Col xs={5} sm={6} className="bg-light p-3">
             <h4>Titolo</h4>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
@@ -173,10 +182,10 @@ const Home = () => {
             </p>
           </Col>
 
-          <Col xs={7}>
+          <Col xs={7} sm={6}>
             <img
-              className="img-fluid"
-              src="https://placehold.co/1200x800"
+              className={`img-fluid ${styles.titoloImg}`}
+              src={borsa3}
               alt="img"
             />
           </Col>
@@ -245,34 +254,6 @@ const Home = () => {
                 </Carousel.Item>
               ))}
             </Carousel>
-          </Col>
-        </Row>
-        <hr className="" />
-        <Row>
-          <Col xs={12} className="bg-light p-3">
-            <img
-              className="img-fluid"
-              src="https://placehold.co/1200x800"
-              alt="img"
-            />
-            <h4 className=" pt-3">Crea la tua borsa!</h4>
-            <p className=" ">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Voluptates repellendus adipisci beatae architecto suscipit
-              provident eaque, asperiores commodi omnis laboriosam vero
-              perferendis libero nihil reprehenderit, nemo voluptatem, expedita
-              temporibus similique?ssitatibus consectetur, ratione excepturi
-              sequi voluptatem eius nam ipsam voluptatum accusamus eum! Odio
-              nisi est distinctio ut impedit debitis, magnam velit.
-            </p>
-            <Link
-              className="d-flex justify-content-center text-decoration-none"
-              to={"/"}
-            >
-              <Button className="" variant="warning">
-                Prendi appuntamento
-              </Button>
-            </Link>
           </Col>
         </Row>
       </Container>

@@ -71,12 +71,12 @@ const Cart = () => {
                       </Button>
                     </div>
                   </div>
-                  <div>
+                  <div className="d-flex flex-column">
                     € {item.price.toFixed(2)} x {item.quantity}
                     <Button
                       variant="outline-danger"
                       size="sm"
-                      className="ms-3"
+                      className=""
                       onClick={() => dispatch(removeFromCart(item.id))}
                     >
                       Rimuovi

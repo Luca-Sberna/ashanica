@@ -35,3 +35,50 @@
     height: 200px;
     object-fit: cover;
 }
+
+.customCaption {
+    position: absolute;
+    bottom: -1rem;
+    left: 0px;
+    text-align: left;
+    /* Optional: semi-transparent background */
+    padding: 1rem;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.heroImg {
+    height: 400px;
+    /* o quello che preferisci */
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .heroImg {
+        height: 500px;
+    }
+}
+
+@media (min-width: 900px) {
+    .heroImg {
+        height: 600px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .heroImg {
+        height: 650px;
+    }
+}
+
+.titoloImg {
+    max-height: 400px;
+    width: 100%;
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .titoloImg {
+        max-height: 600px;
+    }
+}

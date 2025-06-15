@@ -10,6 +10,7 @@ import ProtectedRoute from './components/Admin/ProtectedRoute.jsx';
 import CookieConsent from "react-cookie-consent";
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import ScrollToTop from './scrollToTop/ScrollToTop.jsx';
 
 const Home = lazy(() => import('./components/Home/Home.jsx'));
 const About = lazy(() => import('./components/About/About.jsx'));
@@ -35,6 +36,7 @@ function App() {
     <Suspense fallback={<Loading />}>
       <Elements stripe={stripePromise}>
         <MyNavbar />
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
@@ -78,7 +80,7 @@ function App() {
         expires={150}
       >
         Utilizziamo i cookie per offrirti la migliore esperienza possibile.{" "}
-        <a href="/privacy-policy" style={{ color: "#ffd700" }}>Leggi di più</a>.
+        <a href="/policies" style={{ color: "#ffd700" }}>Leggi di più</a>.
       </CookieConsent>
     </Suspense>
   );

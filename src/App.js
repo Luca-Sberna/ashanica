@@ -11,6 +11,7 @@ import CookieConsent from "react-cookie-consent";
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import ScrollToTop from './scrollToTop/ScrollToTop.jsx';
+import { useSelector } from 'react-redux';
 
 const Home = lazy(() => import('./components/Home/Home.jsx'));
 const About = lazy(() => import('./components/About/About.jsx'));
@@ -24,14 +25,12 @@ const PrivacyPolicy = lazy(() => import('./components/Assistance/PrivacyPolicy.j
 const Checkout = lazy(() => import('./components/Checkout/Checkout.jsx'));
 const UserDetail = lazy(() => import('./components/User/UserDetail.jsx'));
 
-
-
-
-const isAdmin = false;
-const isLoggedIn = true;
 const stripePromise = loadStripe("pk_test_51RZX0kQS62gHrfW7TqgLNUIUFAvvoPlj0ENizxZl5nISuSeRomQwdbtUC96o0PbcyIqN8jdlhFmNlqn4GUobS0MF00HKRAXklm");
 
 function App() {
+  const isLoggedIn = useSelector((state) => state.user.isAuthenticated);
+  const isAdmin = useSelector((state) => state.user.isAdmin);
+
   return (
     <Suspense fallback={<Loading />}>
       <Elements stripe={stripePromise}>

@@ -31,7 +31,7 @@ const cartPersistConfig = {
 const userPersistConfig = {
     key: "user",
     storage,
-    whitelist: ["user", "isAuthenticated"],
+    whitelist: ["user", "isAuthenticated", "isAdmin"],
     transforms: [
         {
             in: (inboundState) => {

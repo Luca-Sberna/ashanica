@@ -3,7 +3,6 @@ import {
   removeFromCart,
   decreaseQuantity,
   addToCart,
-  clearCart,
 } from "../../redux/cartSlice";
 import styles from "./Cart.module.css";
 import {
@@ -36,9 +35,9 @@ const Cart = () => {
         <p className="m-0 pe-2">torna al menù</p>
         <FaHome className="fs-5 menu-icon" />
       </Link>
-      <h2>Il tuo carrello</h2>
+      <h2 className="py-4">Il tuo carrello</h2>
       <Row>
-        <Col md={8}>
+        <Col className="pb-4" md={8}>
           {cartItems.length === 0 ? (
             <p>Il carrello è vuoto</p>
           ) : (
@@ -71,7 +70,7 @@ const Cart = () => {
                       </Button>
                     </div>
                   </div>
-                  <div className="d-flex flex-column">
+                  <div className="d-flex gap-1">
                     € {item.price.toFixed(2)} x {item.quantity}
                     <Button
                       variant="outline-danger"
@@ -92,7 +91,10 @@ const Cart = () => {
             <Card.Body>
               <h5>Totale</h5>
               <hr />
-              <h4>€ {total.toFixed(2)}</h4>
+              <div className="d-flex justify-content-between align-items-center">
+                <h4>€ {total.toFixed(2)}</h4>
+                <small>esclusa IVA</small>
+              </div>
               <Link to={"/checkout"}>
                 <Button variant="dark" className="w-100 mt-3">
                   Procedi al pagamento

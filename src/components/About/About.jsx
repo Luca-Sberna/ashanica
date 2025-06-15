@@ -20,9 +20,11 @@ const About = () => {
           <p>
             Italiana di origine, cittadina del mondo per ispirazione, ho vissuto
             in luoghi che mi hanno plasmata: dai colori caldi e speziati di
-            Marrakech all’energia urbana di Londra, Milano e New York. La moda è
-            sempre stata il mio linguaggio, il mio modo di esprimere bellezza,
-            emozione e identità.
+            <strong> Marrakech</strong> all’energia urbana di{" "}
+            <strong>Londra</strong>, <strong>Milano</strong> e{" "}
+            <strong>New York</strong>. La moda è sempre stata il mio linguaggio,
+            il mio modo di esprimere <strong>bellezza</strong>,{" "}
+            <strong>emozione</strong> e <strong>identità</strong>.
           </p>
         </div>
 
@@ -69,19 +71,25 @@ const About = () => {
         <div className={styles.textContent}>
           <h1>La Nascita di ASKNIKA</h1>
           <p>
-            <strong>ASKNIKA</strong>: “Ask” come amore, come desiderio di
-            connessione profonda. “Nika” è il suono affettuoso con cui mio padre
-            mi chiamava, e che oggi diventa memoria viva e ispirazione eterna.
-            Questa capsule è dedicata a lui, che mi ha insegnato a riconoscere
-            l’amore quando arriva e a custodirlo.
+            <strong>ASKNIKA</strong>: <strong>“Ask”</strong> come amore, come
+            desiderio di connessione profonda. <strong>“Nika”</strong> è il
+            suono affettuoso con cui mio padre mi chiamava, e che oggi diventa
+            memoria viva e ispirazione eterna. Questa capsule è dedicata a lui,
+            che mi ha insegnato a riconoscere l’amore quando arriva e a
+            custodirlo.
           </p>
           <p>
-            <strong>ASKNIKA</strong> è un invito: chiedi all’universo amore,
-            fiducia e luce. Non avere paura di osare, di brillare, di essere te
-            stessa.
+            <strong>ASKNIKA</strong> è un invito:
+          </p>
+          <p className="text-center">
+            <strong>
+              chiedi all’universo amore, fiducia e luce.
+              <br /> Non avere paura di osare, di brillare, di essere te stessa.
+            </strong>
           </p>
         </div>
       </section>
+      <section>Contatti</section>
     </div>
   );
 };

@@ -14,10 +14,12 @@ const userSlice = createSlice({
         loginSuccess: (state, action) => {
             state.user = action.payload; // payload: { name, email, password }
             state.isAuthenticated = true;
+            state.isAdmin = action.payload.isAdmin || false;
         },
         logout: (state) => {
             state.user = null;
             state.isAuthenticated = false;
+            state.isAdmin = false;
         },
         updateUser: (state, action) => {
             state.user = { ...state.user, ...action.payload };

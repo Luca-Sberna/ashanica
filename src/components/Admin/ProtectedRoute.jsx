@@ -1,12 +1,9 @@
-// ProtectedRoute.jsx
-import React from "react";
-import { Navigate, useLocation } from "react-router-dom";
+// components/Admin/ProtectedRoute.jsx
+import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ isAllowed, redirectTo = "/login", children }) => {
-  const location = useLocation();
-
-  if (!isAllowed) {
-    return <Navigate to={redirectTo} state={{ from: location }} replace />;
+const ProtectedRoute = ({ children, isAllowed, isAdmin }) => {
+  if (isAdmin === false || isAllowed === false) {
+    return <Navigate to="/login" replace />;
   }
 
   return children;

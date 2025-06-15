@@ -8,7 +8,11 @@ const ProductCard = ({ product }) => {
 
   return (
     <Card style={{ width: "18rem" }} className="m-2 shadow">
-      <Card.Img variant="top" src={product.image} />
+      <Card.Img
+        style={{ height: "200px", objectFit: "cover" }}
+        variant="top"
+        src={product.image}
+      />
       <Card.Body>
         <Link
           to={`/products/${product.id}`}

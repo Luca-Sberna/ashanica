@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Container,
   Form,
@@ -9,6 +9,9 @@ import {
   Col,
   Card,
 } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../../redux/userSlice";
+import { FaHome } from "react-icons/fa";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -17,6 +20,14 @@ const Login = () => {
   const navigate = useNavigate();
 
   const from = location.state?.from?.pathname || "/";
+
+  useDispatch(
+    loginSuccess({
+      name: "Admin",
+      email: "admin@site.com",
+      isAdmin: true,
+    }),
+  );
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -36,6 +47,12 @@ const Login = () => {
       <Row className="justify-content-center">
         <Col xs={12} md={6} lg={5}>
           <Card className="p-4 shadow">
+            <Link
+              to={"/"}
+              className="menu-icon-link text-dark text-decoration-none align-items-center justify-content-end d-none d-md-flex"
+            >
+              <FaHome className="fs-5 menu-icon" />
+            </Link>
             <Card.Body>
               <h3 className="mb-4 text-center">Accedi al tuo account</h3>
 
@@ -72,6 +89,10 @@ const Login = () => {
                   Accedi
                 </Button>
               </Form>
+              <div className="d-flex justify-content-between pt-2">
+                <p>Non hai un account?</p>
+                <Link to={"/register"}>Registrati</Link>
+              </div>
             </Card.Body>
           </Card>
         </Col>

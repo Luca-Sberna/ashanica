@@ -8,57 +8,71 @@ import {
   Row,
   Col,
   Card,
-  ButtonGroup,
   Offcanvas,
 } from "react-bootstrap";
+import borsamare from "../../assets/imgs/borsamare.jpg";
+import borsamare2 from "../../assets/imgs/borsabluy.jpg";
+import borsamare3 from "../../assets/imgs/borsanera.jpg";
+import borsabeige from "../../assets/imgs/borsabeige.jpg";
+import borsa2 from "../../assets/imgs/borsarossa.jpg";
 
 const mockProducts = [
   {
     id: 1,
     name: "Prodotto Esempio 1",
     price: 29.99,
-    category: "Elettronica",
-    image: "https://via.placeholder.com/100x100",
+    category: "Borsa",
+    subcategory: "Velluto",
+    image: borsamare,
     description: "Descrizione breve del prodotto 1",
   },
   {
     id: 2,
     name: "Prodotto Esempio 2",
     price: 2900.99,
-    category: "Casa",
-    image: "https://via.placeholder.com/100x100",
+    category: "Borsa",
+    subcategory: "Pelle",
+    image: borsamare2,
     description: "Descrizione breve del prodotto 3",
   },
   {
     id: 3,
     name: "Prodotto Esempio 3",
     price: 255.99,
-    category: "Elettronica",
-    image: "https://via.placeholder.com/100x100",
+    category: "Top",
+    subcategory: "Tessuto",
+    image: borsamare3,
     description: "Descrizione breve del prodotto 4",
   },
   {
     id: 4,
     name: "Prodotto Esempio 4",
     price: 2900.99,
-    category: "Casa",
-    image: "https://via.placeholder.com/100x100",
+    category: "Top",
+    subcategory: "Pelle",
+    image: borsabeige,
     description: "Descrizione breve del prodotto 3",
   },
   {
     id: 5,
     name: "Prodotto Esempio 5",
     price: 255.99,
-    category: "Elettronica",
-    image: "https://via.placeholder.com/100x100",
+    category: "Top",
+    subcategory: "Velluto",
+    image: borsa2,
     description: "Descrizione breve del prodotto 4",
   },
 ];
 
-const categories = ["Tutti", "Elettronica", "Casa", "Sport"];
+const categoriesWithSub = {
+  Tutti: [],
+  Borsa: ["Velluto", "Pelle", "Paillettes"],
+  Top: ["Tessuto", "Pelle", "Velluto"],
+};
 
 const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState("Tutti");
+  const [selectedSubcategory, setSelectedSubcategory] = useState("");
   const [search, setSearch] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [minPrice, setMinPrice] = useState("");
@@ -71,14 +85,23 @@ const Products = () => {
   let filteredProducts = mockProducts.filter((product) => {
     const matchesCategory =
       selectedCategory === "Tutti" || product.category === selectedCategory;
+    const matchesSubcategory =
+      !selectedSubcategory || product.subcategory === selectedSubcategory;
     const matchesSearch = product.name
       .toLowerCase()
       .includes(search.toLowerCase());
     const matchesPrice =
       (!minPrice || product.price >= parseFloat(minPrice)) &&
       (!maxPrice || product.price <= parseFloat(maxPrice));
-    const matchesSale = !onSale || product.price < 100; // es. sotto 100€ è "offerta"
-    return matchesCategory && matchesSearch && matchesPrice && matchesSale;
+    const matchesSale = !onSale || product.price < 100;
+
+    return (
+      matchesCategory &&
+      matchesSubcategory &&
+      matchesSearch &&
+      matchesPrice &&
+      matchesSale
+    );
   });
 
   if (sortOrder === "price-asc") {
@@ -97,24 +120,43 @@ const Products = () => {
       <h1 className="mb-4 text-center">Il nostro catalogo</h1>
 
       {/* Categorie */}
-      <div className="d-flex flex-wrap justify-content-center gap-2 mb-4">
-        {categories.map((cat) => (
+      {/* Categorie principali */}
+      <div className="d-flex flex-wrap justify-content-center gap-2 mb-2">
+        {Object.keys(categoriesWithSub).map((cat) => (
           <Button
             key={cat}
             variant={selectedCategory === cat ? "dark" : "outline-dark"}
-            onClick={() => setSelectedCategory(cat)}
+            onClick={() => {
+              setSelectedCategory(cat);
+              setSelectedSubcategory(""); // reset subcategoria al cambio
+            }}
           >
             {cat}
           </Button>
         ))}
-        <Button
-          variant="secondary"
-          className="d-md-none"
-          onClick={toggleFilters}
-        >
-          Filtri 🔍
-        </Button>
       </div>
+
+      {/* Sottocategorie dinamiche */}
+      {selectedCategory !== "Tutti" &&
+        categoriesWithSub[selectedCategory].length > 0 && (
+          <div className="d-flex flex-wrap justify-content-center gap-2 mb-4">
+            <Button
+              variant={!selectedSubcategory ? "dark" : "outline-dark"}
+              onClick={() => setSelectedSubcategory("")}
+            >
+              Tutti
+            </Button>
+            {categoriesWithSub[selectedCategory].map((sub) => (
+              <Button
+                key={sub}
+                variant={selectedSubcategory === sub ? "dark" : "outline-dark"}
+                onClick={() => setSelectedSubcategory(sub)}
+              >
+                {sub}
+              </Button>
+            ))}
+          </div>
+        )}
 
       <Row>
         {/* Sidebar filtri - desktop */}

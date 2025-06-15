@@ -11,6 +11,7 @@ import {
   Modal,
   Form,
 } from "react-bootstrap";
+import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const UserProfile = () => {
@@ -68,6 +69,11 @@ const UserProfile = () => {
 
   return (
     <Container className="my-5">
+      <div className="d-none d-md-flex justify-content-end p-1">
+        <Link to={"/"} className="">
+          <FaHome className="fs-5 menu-icon text-dark" />
+        </Link>
+      </div>
       <Card className="p-4 shadow" style={{ position: "relative" }}>
         <Row>
           <Col xs={12} md={9}>

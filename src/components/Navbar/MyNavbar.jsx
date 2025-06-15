@@ -14,6 +14,7 @@ import eng from "../../assets/imgs/engflag.png";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/userSlice";
+import FloatingCartButton from "../Cart/FloatingCartButton";
 
 const MyNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -127,9 +128,10 @@ const MyNavbar = () => {
           )}
 
           <div className="d-flex align-items-center">
+            <FloatingCartButton />
             <Button
               variant="outline-dark"
-              className="position-relative me-2 border-0"
+              className="position-relative me-2 border-0 d-md-none"
               href="/cart"
             >
               <Cart size={20} />

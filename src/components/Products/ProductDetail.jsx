@@ -2,12 +2,11 @@ import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import { FaHome } from "react-icons/fa";
+import mockProducts from "../../components/Mocks/MockProducts.jsx";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const product = useSelector((state) =>
-    state.products.items.find((p) => p.id === id),
-  );
+  const product = mockProducts.find((p) => p.id === parseInt(id));
 
   if (!product)
     return (

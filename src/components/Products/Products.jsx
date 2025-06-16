@@ -15,6 +15,7 @@ import borsamare2 from "../../assets/imgs/borsabluy.jpg";
 import borsamare3 from "../../assets/imgs/borsanera.jpg";
 import borsabeige from "../../assets/imgs/borsabeige.jpg";
 import borsa2 from "../../assets/imgs/borsarossa.jpg";
+import { Filter } from "react-bootstrap-icons";
 
 const mockProducts = [
   {
@@ -134,6 +135,9 @@ const Products = () => {
             {cat}
           </Button>
         ))}
+        <Button variant="dark" onClick={toggleFilters}>
+          <Filter size={20} />
+        </Button>
       </div>
 
       {/* Sottocategorie dinamiche */}

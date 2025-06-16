@@ -45,37 +45,48 @@ const Cart = () => {
               {cartItems.map((item) => (
                 <ListGroup.Item
                   key={item.id}
-                  className="d-flex justify-content-between align-items-center"
+                  className="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3"
                 >
-                  <div className="d-flex gap-3 align-items-center">
-                    <Image src={item.image} width="60" height="60" rounded />
-                    <div>
-                      <h6>{item.name}</h6>
-                      <Button
-                        variant="outline-danger"
-                        size="sm"
-                        className="mx-3"
-                        onClick={() => dispatch(decreaseQuantity(item.id))}
-                      >
-                        -
-                      </Button>
-                      <small>Quantità: {item.quantity}</small>
-                      <Button
-                        variant="outline-success"
-                        size="sm"
-                        className="mx-3"
-                        onClick={() => dispatch(addToCart(item))}
-                      >
-                        +
-                      </Button>
+                  <div className="d-flex flex-column flex-sm-row align-items-center gap-3 text-center text-sm-start w-100 w-md-75">
+                    <Image
+                      src={item.image}
+                      width="140"
+                      height="80"
+                      rounded
+                      className="flex-shrink-0"
+                    />
+                    <div className="flex-grow-1">
+                      <h6 className="mb-1">{item.name}</h6>
+                      <div className="d-flex justify-content-center justify-content-sm-start align-items-center gap-2 flex-wrap">
+                        <Button
+                          variant="outline-danger"
+                          size="sm"
+                          onClick={() => dispatch(decreaseQuantity(item.id))}
+                        >
+                          -
+                        </Button>
+                        <small className="px-1">
+                          Quantità: {item.quantity}
+                        </small>
+                        <Button
+                          variant="outline-success"
+                          size="sm"
+                          onClick={() => dispatch(addToCart(item))}
+                        >
+                          +
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                  <div className="d-flex gap-1">
-                    € {item.price.toFixed(2)} x {item.quantity}
+
+                  <div className="d-flex flex-column align-items-center align-items-md-end text-center text-md-end mt-2 mt-md-0">
+                    <span>
+                      € {item.price.toFixed(2)} x {item.quantity}
+                    </span>
                     <Button
                       variant="outline-danger"
                       size="sm"
-                      className=""
+                      className="mt-1"
                       onClick={() => dispatch(removeFromCart(item.id))}
                     >
                       Rimuovi

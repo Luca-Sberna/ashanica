@@ -68,7 +68,7 @@ const UserProfile = () => {
   };
 
   return (
-    <Container className="my-5">
+    <Container className="my-5 p-0">
       <div className="d-none d-md-flex justify-content-end p-1">
         <Link to={"/"} className="">
           <FaHome className="fs-5 menu-icon text-dark" />
@@ -78,25 +78,33 @@ const UserProfile = () => {
         <Row>
           <Col xs={12} md={9}>
             <h2 className="fw-bold">{user.fullName}</h2>
-            <div className="d-flex justify-content-between">
+            <div className="d-sm-flex justify-content-between">
               <p className="text-muted mb-1">{user.email}</p>
-              <Link to={"/"} className="text-link text-danger">
+              <Link to={"/"} className="text-link text-danger d-none d-sm-flex">
                 cambia e-mail
               </Link>
             </div>
-            <div className="d-flex justify-content-between">
-              <p className="text-secondary">
+            <div className="d-sm-flex justify-content-between">
+              <p className="text-secondary m-0">
                 {user.address}, {user.city}, {user.zip}, {user.country}
               </p>
-              <Link to={"/"} className="text-link text-danger">
-                cambia password
-              </Link>
+              <div className="d-flex justify-content-between py-3 py-sm-0">
+                <Link to={"/"} className="text-link text-danger">
+                  cambia password
+                </Link>
+                <Link
+                  to={"/"}
+                  className="text-link text-danger d-flex d-sm-none"
+                >
+                  cambia e-mail
+                </Link>
+              </div>
             </div>
           </Col>
           <Col
             xs={12}
             md={3}
-            className="d-flex justify-content-md-end justify-content-start align-items-start"
+            className="d-flex justify-content-md-end justify-content-start pt-2 align-items-start"
           >
             <Image
               src={user.profilePic}

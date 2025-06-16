@@ -1,7 +1,8 @@
 .about {
     background: #fff;
     min-height: 90vh;
-    padding: 3rem 1.5rem 6rem;
+    padding: 3rem .5rem 6rem;
+    padding-top: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #222;
     overflow-x: hidden;

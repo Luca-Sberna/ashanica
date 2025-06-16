@@ -12,8 +12,6 @@ import borsaverde from "../../assets/imgs/borsaverde.jpg";
 const About = () => {
   return (
     <div className={styles.about}>
-      <Header />
-
       <section className={styles.heroSection}>
         <div className={styles.textContent}>
           <h1>Chi sono</h1>

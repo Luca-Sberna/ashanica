@@ -1,11 +1,13 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import { FaHome } from "react-icons/fa";
 import mockProducts from "../../components/Mocks/MockProducts.jsx";
+import { ArrowLeft } from "react-bootstrap-icons";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const product = mockProducts.find((p) => p.id === parseInt(id));
+  const navigate = useNavigate();
 
   if (!product)
     return (
@@ -22,7 +24,18 @@ const ProductDetail = () => {
     );
 
   return (
-    <Container className="py-4">
+    <Container className="py-4 pt-0">
+      <div className="d-flex align-items-center justify-content-between py-2">
+        <Button variant="light" onClick={() => navigate(-1)}>
+          <ArrowLeft className="fs-4" />
+        </Button>
+        <Link
+          to={"/"}
+          className="menu-icon-link text-dark text-decoration-none"
+        >
+          <FaHome className="fs-5 menu-icon" />
+        </Link>
+      </div>
       <Row>
         <Col md={6}>
           <Image src={product.image} fluid rounded />

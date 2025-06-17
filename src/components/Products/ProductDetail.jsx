@@ -1,5 +1,4 @@
 import { Link, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import { FaHome } from "react-icons/fa";
 import mockProducts from "../../components/Mocks/MockProducts.jsx";

@@ -37,10 +37,16 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <Link to={"/"} className="text-decoration-none">
-        <h1 className="text-center pt-4 text-dark">Asknica</h1>
+        <h1 className="text-center pt-4 text-dark m-0">Asknica</h1>
+        <p
+          className={`${styles.slogan} text-center m-0 text-secondary border border-top-0 p-3`}
+        >
+          FEMMINILE PER NATURA, AUDACE PER SCELTA <br /> L'ELEGANZA CON
+          CARATTERE
+        </p>
       </Link>
       <Link />
-      <div className="d-none d-md-flex justify-content-center align-items-center gap-3 mt-5 border-bottom">
+      <div className="d-none d-md-flex justify-content-center align-items-center gap-3 mt-3 border-bottom">
         <Link to={"/"} className="text-decoration-none text-dark">
           <h5 className={styles["link-header"]}>{t("Home")}</h5>
         </Link>

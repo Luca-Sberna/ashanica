@@ -15,18 +15,28 @@ import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/userSlice";
 import FloatingCartButton from "../Cart/FloatingCartButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const MyNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-
+  const navigate = useNavigate();
   const toggleMenu = () => setShowMenu(!showMenu);
   const closeMenu = () => setShowMenu(false);
   const toggleSearch = () => setShowSearch((prev) => !prev);
   const [showBrand, setShowBrand] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const handleSearchSubmit = () => {
+    if (searchQuery.trim()) {
+      navigate("/products", {
+        state: { searchQuery: searchQuery.trim() }, // passiamo il valore alla pagina
+      });
+      setShowSearch(false); // chiudi search bar
+      setSearchQuery(""); // resetta input
+    }
+  };
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -74,12 +84,12 @@ const MyNavbar = () => {
   return (
     <>
       <Navbar bg="white" expand="md" sticky="top" className="py-2 shadow">
-        <Container className="position-relative d-flex justify-content-between align-items-center">
+        <Container className="px-0 position-relative d-flex justify-content-between align-items-center">
           {/* SINISTRA */}
           <div className="d-flex align-items-center">
             <Button
               variant="outline-dark"
-              className="d-md-none me-2 border-0"
+              className="d-md-none border-0"
               onClick={toggleMenu}
             >
               <List size={24} />
@@ -100,6 +110,7 @@ const MyNavbar = () => {
                   placeholder="Search..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleSearchSubmit()}
                   autoFocus
                   style={{ maxWidth: "100px" }}
                 />
@@ -134,7 +145,7 @@ const MyNavbar = () => {
             <FloatingCartButton />
             <Button
               variant="outline-dark"
-              className="position-relative me-2 border-0 d-md-none"
+              className="position-relative border-0 d-md-none"
               href="/cart"
             >
               <Cart size={20} />

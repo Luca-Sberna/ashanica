@@ -125,18 +125,28 @@ const Home = () => {
     <div className={styles.home}>
       <Header />
       {/* Hero Carousel */}
-      <Carousel className="mb-5">
+      <Carousel indicators={false} className="mb-5">
         {heroImages.map((slide) => (
           <Carousel.Item key={slide.id}>
-            <img
-              className={`d-block w-100 ${styles.heroImg}`}
-              src={slide.src}
-              alt={slide.alt}
-            />
+            <Link to={`/products/${slide.id}`}>
+              <img
+                className={`d-block w-100 ${styles.heroImg}`}
+                src={slide.src}
+                alt={slide.alt}
+              />
+            </Link>
             <Carousel.Caption className={styles.customCaption}>
-              <h3>{slide.caption}</h3>
-              <p className="m-1">{slide.description}</p>
-              <Button variant="warning">Scopri di più</Button>
+              <h3 className="m-0 bg-secondary bg-opacity-50 rounded-top p-1">
+                {slide.caption}
+              </h3>
+              <p className=" bg-secondary bg-opacity-50 rounded-bottom p-1">
+                {slide.description}
+              </p>
+              <Link to={`/products/${slide.id}`}>
+                <Button className="mb-2" variant="warning">
+                  Scopri di più
+                </Button>
+              </Link>
             </Carousel.Caption>
           </Carousel.Item>
         ))}
@@ -144,20 +154,27 @@ const Home = () => {
 
       <hr />
       {/* Sezione Prodotti in Evidenza */}
-      <Container className="mb-5">
+      <Container className="mb-5 p-md-0">
         <h2 className="text-center mb-4">Prodotti in Evidenza</h2>
         <Row>
           {featuredProducts.map((product) => (
             <Col key={product.id} lg={3} md={4} xs={6} sm={6} className="mb-4">
               <div className="card h-100">
-                <img
-                  src={product.image}
-                  className="card-img-top"
-                  style={{ height: "200px", objectFit: "cover" }}
-                  alt={product.name}
-                />
+                <Link to={`/products/${product.id}`}>
+                  <img
+                    src={product.image}
+                    className="card-img-top"
+                    style={{ height: "170px", objectFit: "cover" }}
+                    alt={product.name}
+                  />
+                </Link>
                 <div className="card-body d-flex flex-column">
-                  <h5 className="card-title">{product.name}</h5>
+                  <Link
+                    className="text-decoration-none text-dark"
+                    to={`/products/${product.id}`}
+                  >
+                    <h5 className="card-title">{product.name}</h5>
+                  </Link>
                   <p className="card-text">€ {product.price.toFixed(2)}</p>
                   <Link
                     to={`/products/${product.id}`}
@@ -172,9 +189,9 @@ const Home = () => {
         </Row>
         <hr className="py-3" />
         <Row>
-          <Col xs={5} sm={6} className="bg-light p-3">
-            <h4>Titolo</h4>
-            <p>
+          <Col xs={6} sm={6} className=" p-md-3">
+            <h4 className="bg-light m-0 p-2 rounded-top">BIRKIN</h4>
+            <p className="m-0 bg-light p-2 pt-0 rounded-bottom">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
               necessitatibus consectetur, ratione excepturi sequi voluptatem
               eius nam ipsam voluptatum accusamus eum! Odio nisi est distinctio
@@ -182,7 +199,7 @@ const Home = () => {
             </p>
           </Col>
 
-          <Col xs={7} sm={6}>
+          <Col xs={6} sm={6}>
             <img
               className={`img-fluid ${styles.titoloImg}`}
               src={borsa3}
@@ -190,18 +207,19 @@ const Home = () => {
             />
           </Col>
         </Row>
-        <hr className="" />
+        <hr />
         <Row>
           <Col xs={12} className="bg-light p-3">
             <h4 className="text-center pb-3">Su di noi</h4>
-            <p className="text-center px-5">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Voluptates repellendus adipisci beatae architecto suscipit
-              provident eaque, asperiores commodi omnis laboriosam vero
-              perferendis libero nihil reprehenderit, nemo voluptatem, expedita
-              temporibus similique?ssitatibus consectetur, ratione excepturi
-              sequi voluptatem eius nam ipsam voluptatum accusamus eum! Odio
-              nisi est distinctio ut impedit debitis, magnam velit.
+            <p className="text-center">
+              Italiana di origine, cittadina del mondo per ispirazione, ho
+              vissuto in luoghi che mi hanno plasmata: dai colori caldi e
+              speziati di
+              <strong> Marrakech</strong> all’energia urbana di{" "}
+              <strong>Londra</strong>, <strong>Milano</strong> e{" "}
+              <strong>New York</strong>. <br /> La moda è sempre stata il mio
+              linguaggio, il mio modo di esprimere <strong>bellezza</strong>,{" "}
+              <strong>emozione</strong> e <strong>identità</strong>.
             </p>
             <Link
               className="d-flex justify-content-center text-decoration-none"

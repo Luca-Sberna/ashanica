@@ -16,6 +16,7 @@ import borsamare3 from "../../assets/imgs/borsanera.jpg";
 import borsabeige from "../../assets/imgs/borsabeige.jpg";
 import borsa2 from "../../assets/imgs/borsarossa.jpg";
 import { Filter } from "react-bootstrap-icons";
+import { useLocation } from "react-router-dom";
 
 const mockProducts = [
   {
@@ -80,6 +81,8 @@ const Products = () => {
   const [maxPrice, setMaxPrice] = useState("");
   const [onSale, setOnSale] = useState(false);
   const [sortOrder, setSortOrder] = useState("");
+  const location = useLocation();
+  const searchQuery = location.state?.searchQuery || "";
 
   const toggleFilters = () => setShowFilters(!showFilters);
 
@@ -90,7 +93,7 @@ const Products = () => {
       !selectedSubcategory || product.subcategory === selectedSubcategory;
     const matchesSearch = product.name
       .toLowerCase()
-      .includes(search.toLowerCase());
+      .includes(search.toLowerCase() || searchQuery.toLowerCase());
     const matchesPrice =
       (!minPrice || product.price >= parseFloat(minPrice)) &&
       (!maxPrice || product.price <= parseFloat(maxPrice));
@@ -285,13 +288,13 @@ const Products = () => {
         </Offcanvas>
 
         {/* Griglia prodotti */}
-        <Col xs={12} md={9}>
+        <Col xs={12} md={9} className="p-0">
           <Row className="gy-4 gx-4 justify-content-center">
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product) => (
                 <Col
                   key={product.id}
-                  xs={10}
+                  xs={12}
                   sm={6}
                   md={6}
                   lg={4}

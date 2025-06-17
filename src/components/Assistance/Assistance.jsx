@@ -21,8 +21,8 @@ const Support = () => {
     <div className={styles.support}>
       <Header />
 
-      <div className={styles.container}>
-        <h1>Assistenza Clienti</h1>
+      <div className={`{styles.container} p-0`}>
+        <h2>Assistenza Clienti</h2>
         <p className={styles.intro}>
           Il nostro team è qui per supportarti in ogni fase del tuo acquisto.
           Consulta le sezioni seguenti o inviaci direttamente una richiesta.
@@ -90,7 +90,6 @@ const Support = () => {
             <button type="submit">Invia Richiesta</button>
           </form>
         </section>
-
         <section className={styles.section}>
           <h2>📄 Informazioni Legali</h2>
           <p>

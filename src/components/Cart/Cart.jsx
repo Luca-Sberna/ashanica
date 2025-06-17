@@ -49,15 +49,22 @@ const Cart = () => {
                 >
                   {/* Sinistra: immagine e info */}
                   <div className="d-flex flex-sm-row align-items-center gap-3 text-center text-sm-start w-100 w-md-75">
-                    <Image
-                      src={item.image}
-                      rounded
-                      width="80"
-                      height="80"
-                      className="flex-shrink-0"
-                    />
+                    <Link to={`/products/${item.id}`}>
+                      <Image
+                        src={item.image}
+                        rounded
+                        width="80"
+                        height="80"
+                        className="flex-shrink-0"
+                      />
+                    </Link>
                     <div>
-                      <h6 className="mb-3">{item.name}</h6>
+                      <Link
+                        className="text-decoration-none text-dark"
+                        to={`/products/${item.id}`}
+                      >
+                        <h6 className="mb-3">{item.name}</h6>
+                      </Link>
                       <div className="d-flex align-items-center justify-content-center justify-content-sm-start gap-2 flex-wrap">
                         <Button
                           variant="outline-danger"

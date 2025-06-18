@@ -1,50 +1,195 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { Container, Row, Col, Image, Button } from "react-bootstrap";
+import { useNavigate, useParams, Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  Container,
+  Row,
+  Col,
+  Image,
+  Button,
+  Carousel,
+  Badge,
+  Form,
+  Card,
+} from "react-bootstrap";
 import { FaHome } from "react-icons/fa";
-import mockProducts from "../../components/Mocks/MockProducts.jsx";
 import { ArrowLeft } from "react-bootstrap-icons";
+import mockProducts from "../../components/Mocks/MockProducts.jsx";
+import { useState, useEffect } from "react";
+import { addToCart } from "../../redux/cartSlice";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const product = mockProducts.find((p) => p.id === parseInt(id));
   const navigate = useNavigate();
+  const product = mockProducts.find((p) => p.id === parseInt(id));
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (product.colors?.length === 1) {
+      setSelectedColor(product.colors[0]);
+    }
+    if (product.sizes?.length === 1) {
+      setSelectedSize(product.sizes[0]);
+    }
+  }, [product]);
 
   if (!product)
     return (
-      <Container>
+      <Container className="py-4">
         <Link
-          to={"/"}
-          className="menu-icon-link text-dark text-decoration-none align-items-center justify-content-end d-none d-md-flex pt-4"
+          to={navigate(-1)}
+          className="text-dark text-decoration-none d-flex align-items-center mb-3"
         >
-          <p className="m-0 pe-2">torna al menù</p>
-          <FaHome className="fs-5 menu-icon" />
+          <ArrowLeft className="me-2" /> Torna indietro
         </Link>
         <p className="text-center">Prodotto non trovato</p>
       </Container>
     );
 
+  // Mock immagini multiple e opzioni colori/taglie
+  const images = [product.image, product.image, product.image]; // Mock: ripeti la stessa
+
   return (
-    <Container className="py-4 pt-0">
-      <div className="d-flex align-items-center justify-content-between py-2">
+    <Container className="py-4">
+      <div className="d-flex justify-content-between align-items-center mb-3">
         <Button variant="light" onClick={() => navigate(-1)}>
-          <ArrowLeft className="fs-4" />
+          <ArrowLeft className="fs-5" />
         </Button>
-        <Link
-          to={"/"}
-          className="menu-icon-link text-dark text-decoration-none"
-        >
-          <FaHome className="fs-5 menu-icon" />
-        </Link>
+        <Link to={"/"}>
+        <Button variant="light">
+          <FaHome className="fs-5" />
+        </Button></Link>
       </div>
-      <Row>
+
+      <Row className="gy-4">
         <Col md={6}>
-          <Image src={product.image} fluid rounded />
+          {/* Carosello immagini */}
+          <Carousel interval={null} className="shadow-sm rounded">
+            {images.map((img, idx) => (
+              <Carousel.Item key={idx}>
+                <Image
+                  src={img[0]}
+                  alt={`Product image ${idx + 1}`}
+                  fluid
+                  rounded
+                  className="w-100"
+                />
+              </Carousel.Item>
+            ))}
+          </Carousel>
         </Col>
+
         <Col md={6}>
-          <h2>{product.name}</h2>
-          <p>{product.description}</p>
-          <h4>€ {product.price}</h4>
-          <Button variant="primary">Aggiungi al carrello</Button>
+          <h2 className="fw-bold mb-3">{product.name}</h2>
+          <p className="text-muted">{product.description}</p>
+          <Badge className="bg-dark fw-semibold mb-4">€ {product.price}</Badge>
+
+          {/* Colori */}
+          <div className="mb-3">
+            <strong>Colore:</strong>
+            <div className="d-flex gap-2 mt-2">
+              {product.colors.map((color, idx) => (
+                <Button
+                  key={idx}
+                  variant="light"
+                  style={{
+                    backgroundColor: color,
+                    border:
+                      selectedColor === color
+                        ? "2px solid #000"
+                        : "1px solid #ccc",
+                    width: "32px",
+                    height: "32px",
+                    borderRadius: "50%",
+                  }}
+                  onClick={() => setSelectedColor(color)}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Taglie */}
+          <div className="mb-3">
+              <strong>Taglia:</strong>
+            <div className="d-flex gap-2 mt-2 flex-wrap">
+              {product.sizes.map((size) => (
+                <Button
+                  key={size}
+                  variant={selectedSize === size ? "dark" : "outline-dark"}
+                  size="sm"
+                  onClick={() => setSelectedSize(size)}
+                >
+                  {size}
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          <Button
+  onClick={() => {
+    if (product.colors?.length > 1 && !selectedColor) {
+      alert("Seleziona un colore prima di aggiungere al carrello.");
+      return;
+    }
+    if (product.sizes?.length > 1 && !selectedSize) {
+      alert("Seleziona una taglia prima di aggiungere al carrello.");
+      return;
+    }
+
+    dispatch(
+      addToCart({
+        id: product.id,
+        name: product.name,
+        image: product.image,
+        price: product.price,
+        color: selectedColor,
+        size: selectedSize,
+      })
+    );
+  }}
+  variant="dark"
+  size="lg"
+  className="mt-3"
+>
+  Aggiungi al carrello
+</Button>
+
+        </Col>
+      </Row>
+      <hr />
+      {/* Sezione commenti */}
+      <Row className="mt-5">
+        <Col>
+          <h4 className="mb-4">Commenti</h4>
+          {/* Mock commenti */}
+          {[1, 2].map((id) => (
+            <Card key={id} className="mb-3 shadow-sm">
+              <Card.Body>
+                <div className="d-flex justify-content-between">
+                  <strong>Utente{id}</strong>
+                  <Badge bg="secondary">★★★★★</Badge>
+                </div>
+                <p className="mt-2 mb-0">
+                  Prodotto eccellente, qualità top. Consigliato!
+                </p>
+              </Card.Body>
+            </Card>
+          ))}
+          <hr className="p-0" />
+          <Form className="mt-4">
+            <Form.Group controlId="comment">
+              <Form.Label>Lascia un commento</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="Scrivi qualcosa..."
+              />
+            </Form.Group>
+            <Button variant="dark" className="mt-3">
+              Invia
+            </Button>
+          </Form>
         </Col>
       </Row>
     </Container>

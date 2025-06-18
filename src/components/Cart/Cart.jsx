@@ -14,26 +14,32 @@ import {
   Card,
   Badge,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
+import { ArrowLeft } from "react-bootstrap-icons";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const total = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
-    0,
+    0
   );
 
   return (
     <Container className="py-4">
-      <Link
-        to="/"
-        className="d-none d-md-flex align-items-center justify-content-end text-dark text-decoration-none mb-3"
-      >
-        <FaHome />
-      </Link>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <Button variant="light" onClick={() => navigate(-1)}>
+          <ArrowLeft className="fs-5" />
+        </Button>
+        <Link to={"/"}>
+          <Button variant="light">
+            <FaHome className="fs-5" />
+          </Button>
+        </Link>
+      </div>
 
       <h2 className="mb-4">Il tuo carrello</h2>
       <Row>
@@ -51,7 +57,7 @@ const Cart = () => {
                   <div className="d-flex flex-sm-row align-items-center gap-3 text-center text-sm-start w-100 w-md-75">
                     <Link to={`/products/${item.id}`}>
                       <Image
-                        src={item.image}
+                        src={item.image[0]}
                         rounded
                         width="80"
                         height="80"
@@ -69,7 +75,7 @@ const Cart = () => {
                         <Button
                           variant="outline-danger"
                           size="sm"
-                          onClick={() => dispatch(decreaseQuantity(item.id))}
+                          onClick={() => dispatch(decreaseQuantity(item))}
                         >
                           -
                         </Button>
@@ -85,11 +91,33 @@ const Cart = () => {
                     </div>
                   </div>
 
+                  <div className="d-flex justify-content-center align-items-center gap-4">
+                    {item.color && (
+                      <div className="d-flex align-items-center gap-2">
+                        <Button
+                          variant="light"
+                          style={{
+                            backgroundColor: item.color,
+                            width: "32px",
+                            height: "32px",
+                            borderRadius: "50%",
+                            border: "1px solid #ccc",
+                          }}
+                        />
+                      </div>
+                    )}
+
+                    <strong>{item.size}</strong>
+                  </div>
+
                   {/* Destra: prezzo + rimuovi */}
                   <div className="d-flex justify-content-end flex-md-column align-items-center align-items-md-end text-end w-100 w-md-auto ms-auto">
                     <div>
                       <Badge bg="dark" className="me-1">
-                        € {item.price.toFixed(2)}
+                        €{" "}
+                        {typeof item.price === "number"
+                          ? `€ ${item.price.toFixed(2)}`
+                          : "Prezzo non disponibile"}
                       </Badge>
                       <span className="px-1">x {item.quantity}</span>
                     </div>
@@ -97,7 +125,7 @@ const Cart = () => {
                       variant="outline-danger"
                       size="sm"
                       className="mt-md-3"
-                      onClick={() => dispatch(removeFromCart(item.id))}
+                      onClick={() => dispatch(removeFromCart(item))}
                     >
                       Rimuovi
                     </Button>

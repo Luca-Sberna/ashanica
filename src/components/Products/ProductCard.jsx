@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
         <Card.Img
           style={{ height: "200px", objectFit: "cover" }}
           variant="top"
-          src={product.image}
+          src={product.image[0]}
         />
       </Link>
       <Card.Body>

@@ -1,8 +1,8 @@
 import borsamare from "../../assets/imgs/borsamare.jpg";
 import borsamare2 from "../../assets/imgs/borsabluy.jpg";
-import borsamare3 from "../../assets/imgs/borsanera.jpg";
 import borsabeige from "../../assets/imgs/borsabeige.jpg";
 import borsa2 from "../../assets/imgs/borsarossa.jpg";
+import top from "../../assets/imgs/top.png";
 
 const mockProducts = [
   {
@@ -12,6 +12,7 @@ const mockProducts = [
     category: "Borsa",
     subcategory: "Velluto",
     description: "Una borsa perfetta per l'estate.",
+    longDescription: "",
     image: [borsamare, borsabeige],
     sizes: [],
     colors: ["#000080", "#F5F5DC"],
@@ -24,6 +25,7 @@ const mockProducts = [
     category: "Borsa",
     subcategory: "Pelle",
     description: "Elegante borsa in vera pelle blu.",
+    longDescription: "",
     image: [borsamare2],
     sizes: [],
     colors: ["#003366"],
@@ -31,13 +33,15 @@ const mockProducts = [
   },
   {
     id: 3,
-    name: "Top Nero Tessuto",
-    price: 255.99,
+    name: "Rockbra in vera pelle",
+    price: 300,
     category: "Top",
-    subcategory: "Tessuto",
-    description: "Top in tessuto leggero, comodo e traspirante.",
-    image: [borsamare3],
-    sizes: ["XS", "S", "M", "L"],
+    subcategory: "Pelle",
+    description:
+      "Reggiseno sottogiacca in pelle nero, seducente, deciso e senza compromessi. Pensato per chi vuole osare con eleganza.",
+    longDescription: `Iconico, audace, inconfondibile: il RockBra è molto più di un reggiseno è una dichiarazione di stile. Realizzato in vera pelle di altissima qualità, unisce sartorialità e carattere con un design che celebra la femminilità più sicura e graffiante. Perfetto sotto una giacca strutturata o da solo, questo capo trasforma ogni outfit in un look d’impatto. Linee pulite, taglio deciso e comfort impeccabile per accompagnarti dal giorno alla notte con personalità e sicurezza.`,
+    image: [top, borsa2],
+    sizes: ["S", "M"],
     colors: ["#000"],
     isOnSale: false,
   },
@@ -48,6 +52,7 @@ const mockProducts = [
     category: "Top",
     subcategory: "Pelle",
     description: "Top in pelle beige di alta qualità.",
+    longDescription: "",
     image: [borsabeige],
     sizes: ["M", "L"],
     colors: ["#D2B48C"],
@@ -60,6 +65,7 @@ const mockProducts = [
     category: "Top",
     subcategory: "Velluto",
     description: "Top in velluto rosso brillante.",
+    longDescription: "",
     image: [borsa2],
     sizes: ["S", "M", "L"],
     colors: ["#c00"],

@@ -51,6 +51,9 @@ const productSlice = createSlice({
                 state.items = state.items.filter((i) => i.id !== action.payload);
             }
         },
+        setProducts: (state, action) => {
+            state.items = action.payload;
+          },
     },
 });
 
@@ -61,6 +64,7 @@ export const {
     toggleCarousel,
     updateProduct,
     decreaseQuantity,
+    setProducts,
 } = productSlice.actions;
 
 export default productSlice.reducer;

@@ -31,10 +31,11 @@ const ProductCard = ({ product }) => {
           </h5>
           <Button
             className="shadow"
-            onClick={() => dispatch(addToCart(product))}
-            variant="warning"
+            as={Link}
+            to={`/products/${product.id}`}
+            variant="outline-warning"
           >
-            Aggiungi
+            Visualizza
           </Button>
         </div>
       </Card.Body>

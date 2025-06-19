@@ -1,19 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   removeProduct,
+  setProducts,
   toggleFeatured,
   toggleCarousel,
 } from "../../redux/ProductSlice";
-import { Table, Button, Image, Container, Tabs, Tab } from "react-bootstrap";
+import {
+  Table,
+  Button,
+  Image,
+  Container,
+  Tabs,
+  Tab,
+  Modal,
+} from "react-bootstrap";
 import AdminForm from "./AdminForm";
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
+import mockProducts from "../Mocks/MockProducts";
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("prodotti");
   const products = useSelector((state) => state.products.items);
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState("");
+
+  useEffect(() => {
+    dispatch(setProducts(mockProducts));
+  }, [dispatch]);
 
   return (
     <Container className="py-4">
@@ -52,6 +68,7 @@ const AdminDashboard = () => {
                   <th>Nome</th>
                   <th>Prezzo</th>
                   <th>Descrizione</th>
+                  <th>Descrizione Approfondita</th>
                   <th>In Evidenza</th>
                   <th>Carosello</th>
                   <th>Azioni</th>
@@ -62,7 +79,7 @@ const AdminDashboard = () => {
                   <tr key={prod.id}>
                     <td>
                       <Image
-                        src={prod.image}
+                        src={prod.image[0]}
                         alt={prod.name}
                         width={60}
                         height={60}
@@ -71,7 +88,31 @@ const AdminDashboard = () => {
                     </td>
                     <td>{prod.name}</td>
                     <td>€ {prod.price.toFixed(2)}</td>
-                    <td>{prod.description}</td>
+
+                    <td
+                      style={{ cursor: "pointer", color: "#0d6efd" }}
+                      onClick={() => {
+                        setModalContent(prod.description);
+                        setShowModal(true);
+                      }}
+                    >
+                      {prod.description.length > 50
+                        ? prod.description.substring(0, 50) + "..."
+                        : prod.description}
+                    </td>
+
+                    <td
+                      style={{ cursor: "pointer", color: "#0d6efd" }}
+                      onClick={() => {
+                        setModalContent(prod.longDescription);
+                        setShowModal(true);
+                      }}
+                    >
+                      {prod.longDescription.length > 50
+                        ? prod.longDescription.substring(0, 50) + "..."
+                        : prod.longDescription}
+                    </td>
+
                     <td>
                       <Button
                         variant={
@@ -83,6 +124,7 @@ const AdminDashboard = () => {
                         {prod.featured ? "✓" : "No"}
                       </Button>
                     </td>
+
                     <td>
                       <Button
                         variant={
@@ -123,6 +165,12 @@ const AdminDashboard = () => {
           <p>📊 (dati delle vendite)</p>
         </>
       )}
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Descrizione Completa</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalContent}</Modal.Body>
+      </Modal>
     </Container>
   );
 };

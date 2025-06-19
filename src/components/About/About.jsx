@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./About.module.css";
-import viso from "../../assets/imgs/viso.jpg";
+import viso from "../../assets/imgs/viso.png";
 import borsar from "../../assets/imgs/borsarossa.jpg";
 import borsav from "../../assets/imgs/5913456804908616490_121.jpg";
 import borsamare from "../../assets/imgs/borsamare.jpg";

@@ -4,13 +4,7 @@ import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
 import Header from "../Header/Header";
 import { StarFill } from "react-bootstrap-icons";
-import borsamare from "../../assets/imgs/borsamare.jpg";
-import borsamare2 from "../../assets/imgs/borsabluy.jpg";
-import borsamare3 from "../../assets/imgs/borsanera.jpg";
-import borsabeige from "../../assets/imgs/borsabeige.jpg";
-import borsa2 from "../../assets/imgs/borsarossa.jpg";
-import borsa3 from "../../assets/imgs/borsaverde.jpg";
-import borsa4 from "../../assets/imgs/borsanera2.jpg";
+import mockProducts from "../../components/Mocks/MockProducts.jsx";
 
 const reviews = [
   {
@@ -40,82 +34,6 @@ const reviews = [
   },
 ];
 
-// Mock data per il carosello e i prodotti in evidenza
-const heroImages = [
-  {
-    id: 1,
-    src: borsabeige,
-    alt: "Offerta 1",
-    caption: "Sconti fino al 50% Happy Summer",
-    description: "la descrizione non dovrebbe essere tanto lunga",
-  },
-  {
-    id: 2,
-    src: borsamare2,
-    alt: "Offerta 2",
-    caption: "Sconti fino al 50% Happy Summer",
-    description: "la descrizione non dovrebbe essere tanto lunga",
-  },
-  {
-    id: 3,
-    src: borsamare3,
-    alt: "Offerta 3",
-    caption: "Sconti fino al 50% Happy Summer",
-    description: "la descrizione non dovrebbe essere tanto lunga",
-  },
-];
-
-const featuredProducts = [
-  {
-    id: 1,
-    name: "Prodotto 1",
-    price: 49.99,
-    image: borsamare,
-  },
-  {
-    id: 2,
-    name: "Prodotto 2",
-    price: 59.99,
-    image: borsamare2,
-  },
-  {
-    id: 3,
-    name: "Prodotto 3",
-    price: 39.99,
-    image: borsamare3,
-  },
-  {
-    id: 4,
-    name: "Prodotto 4",
-    price: 79.99,
-    image: borsa2,
-  },
-  {
-    id: 5,
-    name: "Prodotto 5",
-    price: 49.99,
-    image: borsa3,
-  },
-  {
-    id: 6,
-    name: "Prodotto 6",
-    price: 59.99,
-    image: borsa4,
-  },
-  {
-    id: 7,
-    name: "Prodotto 7",
-    price: 49.99,
-    image: borsa3,
-  },
-  {
-    id: 8,
-    name: "Prodotto 8",
-    price: 59.99,
-    image: borsa4,
-  },
-];
-
 const Home = () => {
   const groupedReviews = [];
   for (let i = 0; i < reviews.length; i += 2) {
@@ -126,25 +44,31 @@ const Home = () => {
       <Header />
       {/* Hero Carousel */}
       <Carousel indicators={false} className="mb-5">
-        {heroImages.map((slide) => (
+        {mockProducts.map((slide) => (
           <Carousel.Item key={slide.id}>
             <Link to={`/products/${slide.id}`}>
-              <img
+              <Image
                 className={`d-block w-100 ${styles.heroImg}`}
-                src={slide.src}
+                src={slide.image[0]}
                 alt={slide.alt}
               />
             </Link>
             <Carousel.Caption className={styles.customCaption}>
-              <h3 className="m-0 bg-secondary bg-opacity-50 rounded-top p-1">
-                {slide.caption}
-              </h3>
+              <h4 className="m-0 bg-secondary bg-opacity-50 rounded-top p-1">
+                {slide.name}
+              </h4>
               <p className=" bg-secondary bg-opacity-50 rounded-bottom p-1">
                 {slide.description}
               </p>
-              <Link to={`/products/${slide.id}`}>
-                <Button className="mb-2" variant="warning">
-                  Scopri di più
+              <Link
+                className="text-decoration-none"
+                to={`/products/${slide.id}`}
+              >
+                <Button
+                  className="mb-2 bg-light text-dark"
+                  variant="outline-warning"
+                >
+                  <strong>Scopri di più</strong>
                 </Button>
               </Link>
             </Carousel.Caption>
@@ -157,12 +81,12 @@ const Home = () => {
       <Container className="mb-5 p-md-0">
         <h2 className="text-center mb-4">Prodotti in Evidenza</h2>
         <Row>
-          {featuredProducts.map((product) => (
-            <Col key={product.id} lg={3} md={4} xs={6} sm={6} className="mb-4">
+          {mockProducts.map((product) => (
+            <Col key={product.id} lg={3} md={4} xs={6} sm={6} className="mb-4 ">
               <div className="card h-100">
                 <Link to={`/products/${product.id}`}>
                   <img
-                    src={product.image}
+                    src={product.image[0]}
                     className="card-img-top"
                     style={{ height: "170px", objectFit: "cover" }}
                     alt={product.name}
@@ -173,12 +97,12 @@ const Home = () => {
                     className="text-decoration-none text-dark"
                     to={`/products/${product.id}`}
                   >
-                    <h5 className="card-title">{product.name}</h5>
+                    <h6 className="card-title">{product.name}</h6>
                   </Link>
                   <p className="card-text">€ {product.price.toFixed(2)}</p>
                   <Link
                     to={`/products/${product.id}`}
-                    className="btn btn-warning mt-auto"
+                    className="btn btn-outline-warning mt-auto"
                   >
                     Dettagli
                   </Link>
@@ -190,22 +114,52 @@ const Home = () => {
         <hr className="py-3" />
         <Row>
           <Col xs={6} sm={6} className=" p-md-3">
-            <h4 className="bg-light m-0 p-2 rounded-top">BIRKIN</h4>
+            <h4 className="bg-light m-0 p-2 rounded-top">
+              {mockProducts[2].name}
+            </h4>
             <p className="m-0 bg-light p-2 pt-0 rounded-bottom">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
-              necessitatibus consectetur, ratione excepturi sequi voluptatem
-              eius nam ipsam voluptatum accusamus eum! Odio nisi est distinctio
-              ut impedit debitis, magnam velit.
+              {mockProducts[2].description}
+            </p>
+            <p className="m-0 bg-light p-2 pt-0 rounded-bottom d-none d-md-flex">
+              {mockProducts[2].longDescription}
             </p>
           </Col>
 
           <Col xs={6} sm={6}>
-            <img
-              className={`img-fluid ${styles.titoloImg}`}
-              src={borsa3}
-              alt="img"
-            />
+            <Link to={`/products/${mockProducts[2].id}`}>
+              <img
+                className={`img-fluid ${styles.titoloImg}`}
+                src={mockProducts[2].image[0]}
+                alt="img"
+              />
+            </Link>
           </Col>
+          <div className="pt-3 align-items-center">
+            <p className="text-center bg-light">
+              Scopri il <strong>RockBra</strong>, il capo che ridefinisce il
+              concetto di lingerie.
+              <br />
+              ✔ Vera pelle di altissima qualità
+              <br />
+              ✔ Design sartoriale con finiture pregiate
+              <br />
+              ✔ Comfort eccezionale per un uso day-to-night
+              <br />
+              ✔ Linee minimal e taglio deciso
+              <br />
+              ✔ Perfetto da solo o sotto una giacca
+              <br />
+              <strong>Un must-have per chi ama distinguersi con stile.</strong>
+            </p>
+            <Link
+              className="text-decoration-none"
+              to={`/products/${mockProducts[2].id}`}
+            >
+              <Button variant="outline-warning" className="d-block mx-auto">
+                Visualizza
+              </Button>
+            </Link>
+          </div>
         </Row>
         <hr />
         <Row>
@@ -215,17 +169,17 @@ const Home = () => {
               Italiana di origine, cittadina del mondo per ispirazione, ho
               vissuto in luoghi che mi hanno plasmata: dai colori caldi e
               speziati di
-              <strong> Marrakech</strong> all’energia urbana di{" "}
-              <strong>Londra</strong>, <strong>Milano</strong> e{" "}
+              <strong> Marrakech</strong> all’energia urbana di
+              <strong>Londra</strong>, <strong>Milano</strong> e
               <strong>New York</strong>. <br /> La moda è sempre stata il mio
-              linguaggio, il mio modo di esprimere <strong>bellezza</strong>,{" "}
+              linguaggio, il mio modo di esprimere <strong>bellezza</strong>,
               <strong>emozione</strong> e <strong>identità</strong>.
             </p>
             <Link
               className="d-flex justify-content-center text-decoration-none"
               to={"/about"}
             >
-              <Button className="" variant="warning">
+              <Button className="" variant="outline-warning">
                 Scopri di più
               </Button>
             </Link>

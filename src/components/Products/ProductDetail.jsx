@@ -47,8 +47,7 @@ const ProductDetail = () => {
       </Container>
     );
 
-  // Mock immagini multiple e opzioni colori/taglie
-  const images = [product.image, product.image, product.image]; // Mock: ripeti la stessa
+  const images = Array.isArray(product.image) ? product.image : [product.image];
 
   return (
     <Container className="py-4">
@@ -57,19 +56,19 @@ const ProductDetail = () => {
           <ArrowLeft className="fs-5" />
         </Button>
         <Link to={"/"}>
-        <Button variant="light">
-          <FaHome className="fs-5" />
-        </Button></Link>
+          <Button variant="light">
+            <FaHome className="fs-5" />
+          </Button>
+        </Link>
       </div>
 
       <Row className="gy-4">
         <Col md={6}>
-          {/* Carosello immagini */}
           <Carousel interval={null} className="shadow-sm rounded">
             {images.map((img, idx) => (
               <Carousel.Item key={idx}>
                 <Image
-                  src={img[0]}
+                  src={img}
                   alt={`Product image ${idx + 1}`}
                   fluid
                   rounded
@@ -111,7 +110,7 @@ const ProductDetail = () => {
 
           {/* Taglie */}
           <div className="mb-3">
-              <strong>Taglia:</strong>
+            <strong>Taglia:</strong>
             <div className="d-flex gap-2 mt-2 flex-wrap">
               {product.sizes.map((size) => (
                 <Button
@@ -127,36 +126,62 @@ const ProductDetail = () => {
           </div>
 
           <Button
-  onClick={() => {
-    if (product.colors?.length > 1 && !selectedColor) {
-      alert("Seleziona un colore prima di aggiungere al carrello.");
-      return;
-    }
-    if (product.sizes?.length > 1 && !selectedSize) {
-      alert("Seleziona una taglia prima di aggiungere al carrello.");
-      return;
-    }
+            onClick={() => {
+              if (product.colors?.length > 1 && !selectedColor) {
+                alert("Seleziona un colore prima di aggiungere al carrello.");
+                return;
+              }
+              if (product.sizes?.length > 1 && !selectedSize) {
+                alert("Seleziona una taglia prima di aggiungere al carrello.");
+                return;
+              }
 
-    dispatch(
-      addToCart({
-        id: product.id,
-        name: product.name,
-        image: product.image,
-        price: product.price,
-        color: selectedColor,
-        size: selectedSize,
-      })
-    );
-  }}
-  variant="dark"
-  size="lg"
-  className="mt-3"
->
-  Aggiungi al carrello
-</Button>
-
+              dispatch(
+                addToCart({
+                  id: product.id,
+                  name: product.name,
+                  image: product.image,
+                  price: product.price,
+                  color: selectedColor,
+                  size: selectedSize,
+                })
+              );
+            }}
+            variant="outline-dark"
+            size="lg"
+            className="mt-3"
+          >
+            Aggiungi al carrello
+          </Button>
         </Col>
       </Row>
+      <Row className="pt-5">
+        <Col
+          md={6}
+          className="mb-3 mb-md-0 d-flex justify-content-center align-items-start"
+        >
+          <Image
+            src={product.image[1]}
+            fluid
+            rounded
+            style={{
+              maxHeight: "400px",
+              objectFit: "cover",
+              width: "100%",
+            }}
+          />
+        </Col>
+
+        <Col md={6}>
+          <div className="bg-light p-4 rounded shadow-sm h-100 d-flex flex-column justify-content-center">
+            <h5 className="mb-3 fw-bold">{product.name}</h5>
+            <p className="mb-0" style={{ lineHeight: "1.7" }}>
+              {product.longDescription}
+            </p>
+          </div>
+        </Col>
+      </Row>
+
       <hr />
       {/* Sezione commenti */}
       <Row className="mt-5">

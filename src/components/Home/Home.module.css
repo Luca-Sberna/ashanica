@@ -47,6 +47,13 @@
     color: #fff;
 }
 
+.customCaption button{
+display: flex;
+justify-content: center;
+align-items: center;
+margin: auto;
+}
+
 .heroImg {
     height: 400px;
     /* o quello che preferisci */
@@ -72,7 +79,7 @@
 }
 
 .titoloImg {
-    max-height: 400px;
+    max-height: 700px;
     width: 100%;
     object-fit: cover;
 }

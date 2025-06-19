@@ -86,7 +86,7 @@ const Products = () => {
             {cat}
           </Button>
         ))}
-        <Button variant="dark" onClick={toggleFilters}>
+        <Button className="d-md-none" variant="dark" onClick={toggleFilters}>
           <Filter size={20} />
         </Button>
       </div>

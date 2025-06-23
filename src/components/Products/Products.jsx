@@ -16,8 +16,8 @@ import mockProducts from "../../components/Mocks/MockProducts.jsx";
 
 const categoriesWithSub = {
   Tutti: [],
-  Borsa: ["Velluto", "Pelle", "Paillettes"],
-  Top: ["Tessuto", "Pelle", "Velluto"],
+  Borsa: ["Velluto", "Pelle", "Clutch", "Raso"],
+  Top: ["Pelle"],
 };
 
 const Products = () => {

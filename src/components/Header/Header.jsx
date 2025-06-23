@@ -37,7 +37,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <Link to={"/"} className="text-decoration-none">
-        <h1 className="text-center pt-4 text-dark m-0">Asknica</h1>
+        <h1 className="text-center pt-4 text-dark m-0">ASKNICA</h1>
         <p
           className={`${styles.slogan} text-center m-0 text-secondary border border-top-0 p-3`}
         >

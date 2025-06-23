@@ -114,7 +114,6 @@ const Cart = () => {
                   <div className="d-flex justify-content-end flex-md-column align-items-center align-items-md-end text-end w-100 w-md-auto ms-auto">
                     <div>
                       <Badge bg="dark" className="me-1">
-                        €{" "}
                         {typeof item.price === "number"
                           ? `€ ${item.price.toFixed(2)}`
                           : "Prezzo non disponibile"}

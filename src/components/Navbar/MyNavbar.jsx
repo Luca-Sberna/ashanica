@@ -44,7 +44,7 @@ const MyNavbar = () => {
   const { user, isAuthenticated } = useSelector((state) => state.user);
 
   const cartCount = useSelector((state) =>
-    state.cart.items.reduce((acc, item) => acc + (item.quantity || 1), 0),
+    state.cart.items.reduce((acc, item) => acc + (item.quantity || 1), 0)
   );
 
   useEffect(() => {
@@ -136,7 +136,7 @@ const MyNavbar = () => {
                 opacity: 1,
               }}
             >
-              Asknica
+              ASKNICA
             </Link>
           )}
 

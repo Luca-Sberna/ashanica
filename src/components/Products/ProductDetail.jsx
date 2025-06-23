@@ -80,8 +80,12 @@ const ProductDetail = () => {
         </Col>
 
         <Col md={6}>
-          <h2 className="fw-bold mb-3">{product.name}</h2>
-          <p className="text-muted">{product.description}</p>
+          <h2 className="fw-bold bg-dark text-light rounded m-0 p-2">
+            {product.name}
+          </h2>
+          <p className="text-muted bg-light p-1 border border-top-0">
+            {product.description}
+          </p>
           <Badge className="bg-dark fw-semibold mb-4">€ {product.price}</Badge>
 
           {/* Colori */}

@@ -9,7 +9,7 @@ const Footer = () => {
         <Row>
           {/* Brand */}
           <Col md={3} className="mb-4">
-            <h5 className="mb-3 fw-bold">Grazie mille</h5>
+            <h5 className="mb-3 fw-bold">ASKNICA</h5>
             <p className="small text-muted">
               La tua soluzione per lo shopping online di qualità.
             </p>

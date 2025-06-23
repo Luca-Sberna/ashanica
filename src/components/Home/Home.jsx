@@ -75,7 +75,6 @@ const Home = () => {
           </Carousel.Item>
         ))}
       </Carousel>
-
       <hr />
       {/* Sezione Prodotti in Evidenza */}
       <Container className="mb-5 p-md-0">

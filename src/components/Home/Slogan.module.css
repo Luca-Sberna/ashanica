@@ -32,7 +32,7 @@
     opacity: 0.7;
     filter: brightness(0.8);
     position: absolute;
-    top: 0;
+    top: -1rem;
     left: 0;
 }
 
@@ -41,7 +41,8 @@
     opacity: 0.7;
     filter: brightness(0.8);
     position: absolute;
-    bottom: 0;
+    bottom: -1rem;
+    right: 0;
 }
 
 @media (max-width: 768px) {

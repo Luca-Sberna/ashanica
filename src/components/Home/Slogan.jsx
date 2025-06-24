@@ -38,7 +38,7 @@ const Slogan = () => {
           <img
             src={rightQuote}
             alt="Virgoletta destra"
-            className={`${styles.quoteImageDx} img-fluid `}
+            className={`${styles.quoteImageDx} img-fluid`}
           />
         </Col>
       </Row>

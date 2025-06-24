@@ -1,20 +1,51 @@
 import React, { useState } from "react";
+import emailjs from "emailjs-com";
 import styles from "./Assistance.module.css";
 import Header from "../Header/Header";
 
 const Support = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // qui puoi integrare l'invio via email API / form backend
-    alert("Richiesta inviata! Ti risponderemo al più presto.");
-    setForm({ name: "", email: "", message: "" });
+    setIsLoading(true);
+
+    try {
+      const response = await emailjs.send(
+        "service_70p8k7e",
+        "template_15ir34t",
+        {
+          to_email: "info@asknicamilano.it",
+          from_name: form.name,
+          from_email: form.email,
+          reply_to: form.email,
+          message: form.message,
+          date: new Date().toLocaleString("it-IT"),
+        },
+        "otzmIlCgDioaN6MLR"
+      );
+
+      console.log("SUCCESS!", response.status, response.text);
+      if (response.status === 200) {
+        alert("Messaggio inviato con successo!");
+        setForm({ name: "", email: "", message: "" });
+      }
+    } catch (error) {
+      console.error("FAILED...", error);
+      alert(
+        `Errore nell'invio: ${
+          error.text || "Controlla la console per i dettagli"
+        }`
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -87,7 +118,15 @@ const Support = () => {
               onChange={handleChange}
               required
             />
-            <button type="submit">Invia Richiesta</button>
+            <button type="submit" disabled={isLoading}>
+              {isLoading && (
+                <div className={styles.progressBarContainer}>
+                  <div className={styles.progressBar}></div>
+                  <p>Stiamo inviando la tua richiesta...</p>
+                </div>
+              )}{" "}
+              invia{" "}
+            </button>{" "}
           </form>
         </section>
         <section className={styles.section}>

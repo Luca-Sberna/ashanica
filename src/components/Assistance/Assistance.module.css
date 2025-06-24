@@ -80,3 +80,36 @@ a {
     color: #000;
     text-decoration: underline;
 }
+
+.progressBarContainer {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.progressBar {
+    height: 4px;
+    width: 100%;
+    background-color: #f0f0f0;
+    position: relative;
+    overflow: hidden;
+}
+
+.progressBar::after {
+    content: '';
+    position: absolute;
+    left: -50%;
+    height: 100%;
+    width: 40%;
+    background-color: #d4af37;
+    animation: loading 1.5s infinite ease-in-out;
+}
+
+@keyframes loading {
+    0% {
+        left: -40%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}

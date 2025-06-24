@@ -1,0 +1,64 @@
+.sloganContainer {
+    background-color: #f8f9fa;
+    font-family: 'Playfair Display', serif;
+}
+
+.sloganText {
+    color: #333;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 1.6;
+    padding: 0 10px;
+}
+
+.firstLine {
+    font-style: italic;
+    font-size: 1.8rem;
+}
+
+.secondLine {
+    font-weight: 600;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+.thirdLine {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.quoteImageSx {
+    max-height: 50px;
+    opacity: 0.7;
+    filter: brightness(0.8);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.quoteImageDx {
+    max-height: 50px;
+    opacity: 0.7;
+    filter: brightness(0.8);
+    position: absolute;
+    bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .firstLine {
+        font-size: 1.4rem;
+    }
+
+    .secondLine {
+        font-size: 1.6rem;
+    }
+
+    .thirdLine {
+        font-size: 1.2rem;
+    }
+
+    .quoteImageSx,
+    .quoteImageDx {
+        max-height: 40px;
+    }
+}

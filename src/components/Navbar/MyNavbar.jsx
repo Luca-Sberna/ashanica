@@ -272,46 +272,24 @@ const MyNavbar = () => {
 
             <Dropdown className="py-3">
               <Dropdown.Toggle
-                as={Nav.Link}
-                className="text-dark d-flex justify-content-between align-items-center p-0"
+                as={Button}
+                variant="outline-secondary"
+                size="sm"
               >
-                <span>
-                  Lingua
-                  <img
-                    src={i18n.language === "it" ? ita : eng}
-                    alt={i18n.language}
-                    width="22"
-                    height="22"
-                    className={`rounded-circle ms-2`}
-                  />
-                </span>
+                {i18n.language === "it" ? "IT" : "EN"}
               </Dropdown.Toggle>
               <Dropdown.Menu className="bg-light border-secondary">
                 <Dropdown.Item
                   onClick={() => changeLanguage("it")}
-                  className="text-dark py-2 d-flex justify-content-between"
+                  className="text-dark py-2"
                 >
-                  Italiano{" "}
-                  <img
-                    src={ita}
-                    alt="it"
-                    width="22"
-                    height="22"
-                    className="rounded-circle"
-                  />
+                  IT
                 </Dropdown.Item>
                 <Dropdown.Item
                   onClick={() => changeLanguage("en")}
-                  className="text-dark py-2 d-flex justify-content-between"
+                  className="text-dark py-2"
                 >
-                  Inglese{" "}
-                  <img
-                    src={eng}
-                    alt="en"
-                    width="22"
-                    height="22"
-                    className="rounded-circle"
-                  />
+                  EN
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

@@ -5,6 +5,7 @@ import styles from "./Home.module.css";
 import Header from "../Header/Header";
 import { StarFill } from "react-bootstrap-icons";
 import mockProducts from "../../components/Mocks/MockProducts.jsx";
+import Slogan from "./Slogan.jsx";
 
 const reviews = [
   {
@@ -75,6 +76,8 @@ const Home = () => {
           </Carousel.Item>
         ))}
       </Carousel>
+      <hr />
+      <Slogan />
       <hr />
       {/* Sezione Prodotti in Evidenza */}
       <Container className="mb-5 p-md-0">

@@ -21,14 +21,6 @@
   text-decoration: underline;
 }
 
-:root {
-  --primary: #ffffff;
-  --secondary: #080808;
-  --accent: #f1faee;
-  --text: #333;
-  --light: #d8daca;
-}
-
 .link-product:hover {
   text-decoration: underline;
 }

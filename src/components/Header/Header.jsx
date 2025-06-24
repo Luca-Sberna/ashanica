@@ -34,67 +34,65 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={styles.header}>
-      <Container className="d-flex justify-content-between align-items-center py-4">
-        <Col className="d-none d-md-flex"></Col>
-        {/* Titolo centrato */}
-        <Col className="flex-grow-1 text-center">
-          <Link to={"/"} className="text-decoration-none">
-            <h1 className="text-dark m-0">ASKNICA</h1>
+    <header
+      className={`${styles.header} d-flex justify-content-between align-items-center p-4 p-md-0`}
+    >
+      <Col className="d-none d-md-flex ">
+        <div className="d-flex justify-content-end text-primary">
+          <div ref={langRef} className={styles.langSelector}>
+            <Button
+              variant="outline-light"
+              size="sm"
+              onClick={toggleLangMenu}
+              className={styles.languageButton}
+            >
+              {i18n.language.toUpperCase()}
+            </Button>
+            {showLangMenu && (
+              <div className={styles.langMenu}>
+                {["it", "en"]
+                  .filter((lng) => lng !== i18n.language)
+                  .map((lng) => (
+                    <Button
+                      key={lng}
+                      variant="outline-light"
+                      size="sm"
+                      className={styles.languageButton}
+                      onClick={() => changeLanguage(lng)}
+                    >
+                      {lng.toUpperCase()}
+                    </Button>
+                  ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </Col>
+      {/* Titolo centrato */}
+      <Col className="flex-grow-1 text-center">
+        <Link to={"/"} className="text-decoration-none">
+          <h1 className="text-light m-0">ASKNICA</h1>
+        </Link>
+      </Col>
+
+      {/* Menu links a destra */}
+      <Col className="d-none d-md-flex flex-column align-items-end gap-2">
+        <div className="d-flex flex-column ">
+          <Link to={"/"} className="text-decoration-none text-light">
+            <h5 className={`${styles["link-header"]} text-end`}>{t("Home")}</h5>
           </Link>
-        </Col>
-
-        {/* Menu links a destra */}
-        <Col className="d-none d-md-flex flex-column align-items-end gap-2">
-          <div className="d-flex flex-column ">
-            <Link to={"/"} className="text-decoration-none text-dark">
-              <h5 className={`${styles["link-header"]} text-end`}>
-                {t("Home")}
-              </h5>
-            </Link>
-            <Link to={"/products"} className="text-decoration-none text-dark">
-              <h5 className={`${styles["link-header"]} text-end`}>
-                {t("Products")}
-              </h5>
-            </Link>
-            <Link to={"/about"} className="text-decoration-none text-dark">
-              <h5 className={`${styles["link-header"]} text-end`}>
-                {t("About Us")}
-              </h5>
-            </Link>
-          </div>
-
-          <div className="d-flex justify-content-end">
-            <div ref={langRef} className={styles.langSelector}>
-              <Button
-                variant="outline-secondary"
-                size="sm"
-                onClick={toggleLangMenu}
-                className={styles.languageButton}
-              >
-                {i18n.language.toUpperCase()}
-              </Button>
-              {showLangMenu && (
-                <div className={styles.langMenu}>
-                  {["it", "en"]
-                    .filter((lng) => lng !== i18n.language)
-                    .map((lng) => (
-                      <Button
-                        key={lng}
-                        variant="outline-secondary"
-                        size="sm"
-                        className={styles.languageButton}
-                        onClick={() => changeLanguage(lng)}
-                      >
-                        {lng.toUpperCase()}
-                      </Button>
-                    ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </Col>
-      </Container>
+          <Link to={"/products"} className="text-decoration-none text-light">
+            <h5 className={`${styles["link-header"]} text-end`}>
+              {t("Products")}
+            </h5>
+          </Link>
+          <Link to={"/about"} className="text-decoration-none text-light">
+            <h5 className={`${styles["link-header"]} text-end`}>
+              {t("About Us")}
+            </h5>
+          </Link>
+        </div>
+      </Col>
       <hr className="pb-4 m-0" />
     </header>
   );

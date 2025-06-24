@@ -83,7 +83,7 @@ const MyNavbar = () => {
 
   return (
     <>
-      <Navbar bg="white" expand="md" sticky="top" className="py-2 shadow">
+      <Navbar bg="warning" expand="md" sticky="top" className="py-2 shadow">
         <Container className="px-0 position-relative d-flex justify-content-between align-items-center">
           {/* SINISTRA */}
           <div className="d-flex align-items-center">

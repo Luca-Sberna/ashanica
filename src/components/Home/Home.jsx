@@ -172,10 +172,10 @@ const Home = () => {
               vissuto in luoghi che mi hanno plasmata: dai colori caldi e
               speziati di
               <strong> Marrakech</strong> all’energia urbana di
-              <strong>Londra</strong>, <strong>Milano</strong> e
-              <strong>New York</strong>. <br /> La moda è sempre stata il mio
+              <strong> Londra</strong>, <strong> Milano</strong> e
+              <strong> New York</strong>. <br /> La moda è sempre stata il mio
               linguaggio, il mio modo di esprimere <strong>bellezza</strong>,
-              <strong>emozione</strong> e <strong>identità</strong>.
+              <strong> emozione</strong> e <strong>identità</strong>.
             </p>
             <Link
               className="d-flex justify-content-center text-decoration-none"

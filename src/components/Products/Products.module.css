@@ -1,0 +1,135 @@
+.productsContainer {
+    background-color: var(--bg-dark);
+    min-height: 100vh;
+    color: var(--text-light);
+}
+
+.title {
+    color: var(--primary);
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.categoryButtons,
+.subcategoryButtons {
+    padding: 0.5rem 0;
+}
+
+.categoryButton,
+.subcategoryButton {
+    min-width: 100px;
+    text-transform: capitalize;
+    transition: all 0.3s ease;
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.filterButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.filterCard {
+    background-color: var(--bg-card);
+    border-color: var(--border-dark);
+    box-shadow: 0 2px 10px #0000001a;
+}
+
+.filterTitle {
+    color: var(--primary);
+    border-bottom: 1px solid var(--primary);
+    padding-bottom: 0.5rem;
+}
+
+.filterLabel {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.filterInput,
+.filterSelect {
+    background-color: var(--bg-secondary);
+    color: var(--text-light);
+    border-color: var(--border-dark);
+}
+
+.filterInput:focus,
+.filterSelect:focus {
+    background-color: var(--bg-secondary);
+    color: var(--text-light);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
+}
+
+.saleCheck {
+    color: var(--text-light);
+}
+
+.saleCheck .form-check-input {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-dark);
+}
+
+.saleCheck .form-check-input:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.mobileFilters {
+    background-color: var(--bg-card) !important;
+    color: var(--text-light) !important;
+}
+
+.offcanvasHeader {
+    border-bottom: 1px solid var(--border-dark);
+}
+
+.offcanvasTitle {
+    color: var(--primary);
+}
+
+.offcanvasBody {
+    padding: 1rem;
+}
+
+.productsGrid {
+    padding: 0 1rem;
+}
+
+.productCard {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.productCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.noProducts {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .productsContainer {
+        padding-bottom: 80px;
+        /* Spazio per il bottone mobile */
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+}

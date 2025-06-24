@@ -1,4 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=merriweather&display=swap');
+:root {
+  --bg-dark: #121212;
+  --secondary: #0000001a;
+  --bg-secondary: #1e1e1e;
+  --bg-card: #2a2a2a;
+  --primary: #d4af37;
+  /* Oro */
+  --primary-hover: #f8de7e;
+  --text-light: #f5f5f5;
+  --text-muted: #aaaaaa;
+  --border-dark: #333;
+}
+
+/* Sovrascrivi Bootstrap */
+body {
+  background-color: var(--bg-dark) !important;
+  color: var(--text-light) !important;
+}
+
+/* Aggiungi queste regole per sovrascrivere Bootstrap */
+.bg-dark,
+.bgDark {
+  background-color: var(--bg-dark) !important;
+}
+
+.secondary {
+  background-color: var(--secondary) !important;
+}
+
+.text-light,
+.textLight {
+  color: var(--text-light) !important;
+}
+
+.bg-secondary,
+.bgSecondary {
+  background-color: var(--bg-secondary) !important;
+}
+
+.bg-light,
+.bgLight {
+  background-color: var(--bg-card) !important;
+}
+
+.text-primary,
+.textPrimary {
+  color: var(--primary) !important;
+}
+
+.border-dark,
+.borderDark {
+  border-color: var(--border-dark) !important;
+}
 
 html,
 body {

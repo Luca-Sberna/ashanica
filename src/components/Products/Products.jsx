@@ -13,6 +13,7 @@ import {
 import { Filter } from "react-bootstrap-icons";
 import { useLocation } from "react-router-dom";
 import mockProducts from "../../components/Mocks/MockProducts.jsx";
+import styles from "./Products.module.css"; // Import del CSS module
 
 const categoriesWithSub = {
   Tutti: [],
@@ -67,36 +68,43 @@ const Products = () => {
   }
 
   return (
-    <Container className="py-4">
+    <Container fluid className={`${styles.productsContainer} py-4`}>
       <Header />
-      <h1 className="mb-4 text-center">Il nostro catalogo</h1>
-
       {/* Categorie */}
-      {/* Categorie principali */}
-      <div className="d-flex flex-wrap justify-content-center gap-2 mb-2">
+      <div
+        className={`${styles.categoryButtons} d-flex flex-wrap justify-content-center gap-2 mb-2`}
+      >
         {Object.keys(categoriesWithSub).map((cat) => (
           <Button
             key={cat}
-            variant={selectedCategory === cat ? "dark" : "outline-dark"}
+            variant={selectedCategory === cat ? "light" : "outline-light"}
+            className={styles.categoryButton}
             onClick={() => {
               setSelectedCategory(cat);
-              setSelectedSubcategory(""); // reset subcategoria al cambio
+              setSelectedSubcategory("");
             }}
           >
             {cat}
           </Button>
         ))}
-        <Button className="d-md-none" variant="dark" onClick={toggleFilters}>
+        <Button
+          className={`${styles.filterButton} d-md-none`}
+          variant="primary"
+          onClick={toggleFilters}
+        >
           <Filter size={20} />
         </Button>
       </div>
 
-      {/* Sottocategorie dinamiche */}
+      {/* Sottocategorie */}
       {selectedCategory !== "Tutti" &&
         categoriesWithSub[selectedCategory].length > 0 && (
-          <div className="d-flex flex-wrap justify-content-center gap-2 mb-4">
+          <div
+            className={`${styles.subcategoryButtons} d-flex flex-wrap justify-content-center gap-2 mb-4`}
+          >
             <Button
-              variant={!selectedSubcategory ? "dark" : "outline-dark"}
+              variant={!selectedSubcategory ? "light" : "outline-light"}
+              className={styles.subcategoryButton}
               onClick={() => setSelectedSubcategory("")}
             >
               Tutti
@@ -104,7 +112,10 @@ const Products = () => {
             {categoriesWithSub[selectedCategory].map((sub) => (
               <Button
                 key={sub}
-                variant={selectedSubcategory === sub ? "dark" : "outline-dark"}
+                variant={
+                  selectedSubcategory === sub ? "light" : "outline-light"
+                }
+                className={styles.subcategoryButton}
                 onClick={() => setSelectedSubcategory(sub)}
               >
                 {sub}
@@ -116,50 +127,62 @@ const Products = () => {
       <Row>
         {/* Sidebar filtri - desktop */}
         <Col md={3} className="d-none d-md-block">
-          <Card className="mb-4">
+          <Card className={`${styles.filterCard} mb-4`}>
             <Card.Body>
-              <h5>Filtri</h5>
+              <h5 className={styles.filterTitle}>Filtri</h5>
               <Form.Group className="mt-3">
-                <Form.Label>Cerca prodotto</Form.Label>
+                <Form.Label className={styles.filterLabel}>
+                  Cerca prodotto
+                </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Cerca..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
+                  className={styles.filterInput}
                 />
               </Form.Group>
 
               <Form.Group className="mt-3">
-                <Form.Label>Prezzo min (€)</Form.Label>
+                <Form.Label className={styles.filterLabel}>
+                  Prezzo min (€)
+                </Form.Label>
                 <Form.Control
                   type="number"
                   value={minPrice}
                   onChange={(e) => setMinPrice(e.target.value)}
+                  className={styles.filterInput}
                 />
               </Form.Group>
 
               <Form.Group className="mt-3">
-                <Form.Label>Prezzo max (€)</Form.Label>
+                <Form.Label className={styles.filterLabel}>
+                  Prezzo max (€)
+                </Form.Label>
                 <Form.Control
                   type="number"
                   value={maxPrice}
                   onChange={(e) => setMaxPrice(e.target.value)}
+                  className={styles.filterInput}
                 />
               </Form.Group>
 
               <Form.Check
                 type="checkbox"
                 label="In offerta"
-                className="mt-3"
+                className={`${styles.saleCheck} mt-3`}
                 checked={onSale}
                 onChange={(e) => setOnSale(e.target.checked)}
               />
 
               <Form.Group className="mt-3">
-                <Form.Label>Ordina per</Form.Label>
+                <Form.Label className={styles.filterLabel}>
+                  Ordina per
+                </Form.Label>
                 <Form.Select
                   value={sortOrder}
                   onChange={(e) => setSortOrder(e.target.value)}
+                  className={styles.filterSelect}
                 >
                   <option value="">-- Seleziona --</option>
                   <option value="price-asc">Prezzo: Crescente</option>
@@ -174,56 +197,67 @@ const Products = () => {
 
         {/* Offcanvas filtri - mobile */}
         <Offcanvas
-          className="d-md-none"
           show={showFilters}
           onHide={toggleFilters}
-          responsive="md"
+          className={styles.mobileFilters}
         >
-          <Offcanvas.Header closeButton>
-            <Offcanvas.Title>Filtri</Offcanvas.Title>
+          <Offcanvas.Header closeButton className={styles.offcanvasHeader}>
+            <Offcanvas.Title className={styles.offcanvasTitle}>
+              Filtri
+            </Offcanvas.Title>
           </Offcanvas.Header>
-          <Offcanvas.Body>
+          <Offcanvas.Body className={styles.offcanvasBody}>
             <Form.Group className="mb-3">
-              <Form.Label>Cerca prodotto</Form.Label>
+              <Form.Label className={styles.filterLabel}>
+                Cerca prodotto
+              </Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Cerca..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
+                className={styles.filterInput}
               />
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Prezzo minimo (€)</Form.Label>
+              <Form.Label className={styles.filterLabel}>
+                Prezzo minimo (€)
+              </Form.Label>
               <Form.Control
                 type="number"
                 value={minPrice}
                 onChange={(e) => setMinPrice(e.target.value)}
+                className={styles.filterInput}
               />
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Prezzo massimo (€)</Form.Label>
+              <Form.Label className={styles.filterLabel}>
+                Prezzo massimo (€)
+              </Form.Label>
               <Form.Control
                 type="number"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value)}
+                className={styles.filterInput}
               />
             </Form.Group>
 
             <Form.Check
               type="checkbox"
               label="In offerta"
-              className="mb-3"
+              className={`${styles.saleCheck} mb-3`}
               checked={onSale}
               onChange={(e) => setOnSale(e.target.checked)}
             />
 
             <Form.Group>
-              <Form.Label>Ordina per</Form.Label>
+              <Form.Label className={styles.filterLabel}>Ordina per</Form.Label>
               <Form.Select
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value)}
+                className={styles.filterSelect}
               >
                 <option value="">-- Seleziona --</option>
                 <option value="price-asc">Prezzo: Crescente</option>
@@ -236,7 +270,7 @@ const Products = () => {
         </Offcanvas>
 
         {/* Griglia prodotti */}
-        <Col xs={12} md={9} className="p-0">
+        <Col xs={12} md={9} className={styles.productsGrid}>
           <Row className="gy-4 gx-4 justify-content-center">
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product) => (
@@ -248,11 +282,15 @@ const Products = () => {
                   lg={4}
                   className="d-flex justify-content-center"
                 >
-                  <ProductCard key={product.id} product={product} />
+                  <ProductCard
+                    product={product}
+                    variant="dark"
+                    className={styles.productCard}
+                  />
                 </Col>
               ))
             ) : (
-              <Col>
+              <Col className={styles.noProducts}>
                 <p>Nessun prodotto trovato.</p>
               </Col>
             )}

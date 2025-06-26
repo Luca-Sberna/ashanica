@@ -40,7 +40,7 @@ const ProductDetail = () => {
     return (
       <Container className="py-4">
         <Button
-          className={`${styles.buttonStyleProfile}`}
+          className={`${styles.buttonProduct}`}
           onClick={() => navigate(-1)}
         >
           <ArrowLeft className="fs-5" />
@@ -55,13 +55,13 @@ const ProductDetail = () => {
     <Container className="py-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <Button
-          className={`${styles.buttonStyleProduct}`}
+          className={`${styles.buttonProduct}`}
           onClick={() => navigate(-1)}
         >
           <ArrowLeft className="fs-5" />
         </Button>
         <Link to={"/"}>
-          <Button className={`${styles.buttonStyleProduct}`}>
+          <Button className={`${styles.buttonProduct}`}>
             <FaHome className="fs-5" />
           </Button>
         </Link>

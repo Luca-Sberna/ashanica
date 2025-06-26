@@ -65,10 +65,10 @@ const MyNavbar = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      if (currentScrollY > 65 && currentScrollY > lastScrollY) {
+      if (currentScrollY > 75 && currentScrollY > lastScrollY) {
         // Scroll in giù oltre soglia
         setShowBrand(true);
-      } else if (currentScrollY <= 65 && currentScrollY < lastScrollY) {
+      } else if (currentScrollY <= 75 && currentScrollY < lastScrollY) {
         // Scroll in su sotto soglia
         setShowBrand(false);
       }

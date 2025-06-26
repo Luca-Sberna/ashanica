@@ -7,11 +7,12 @@ import { Button, Image, Carousel } from "react-bootstrap";
 const CarouselHero = () => {
   return (
     <Carousel indicators={false} className="mb-5">
+      Add commentMore actions
       {mockProducts.map((slide) => (
         <Carousel.Item key={slide.id}>
           <Link to={`/products/${slide.id}`}>
             <Image
-              className={`d-block w-100 ${styles.heroImg}`}
+              className={`w-100 ${styles.heroImg}`}
               src={slide.image[0]}
               alt={slide.alt}
             />
@@ -22,15 +23,15 @@ const CarouselHero = () => {
             </h4>
             <p className=" bg-secondary bg-opacity-50 rounded-bottom p-1">
               {slide.description}
-              <Link
-                className="text-decoration-none"
-                to={`/products/${slide.id}`}
-              >
-                <Button className="mb-2" variant="outline-warning my-2">
-                  <strong>Scopri di più</strong>
-                </Button>
-              </Link>
             </p>
+            <Link className="text-decoration-none" to={`/products/${slide.id}`}>
+              <Button
+                className="mb-2 bg-light text-dark"
+                variant="outline-warning"
+              >
+                <strong>Scopri di più</strong>
+              </Button>
+            </Link>
           </Carousel.Caption>
         </Carousel.Item>
       ))}

@@ -16,11 +16,13 @@
     margin: auto;
 }
 
-.heroImg {
-    height: 400px;
-    /* o quello che preferisci */
-    object-fit: cover;
+.heroBackground {
+    height: 650px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
 
 @media (min-width: 768px) {
     .heroImg {

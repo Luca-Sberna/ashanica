@@ -1,6 +1,6 @@
 .header {
     font-size: calc(10px + 2vmin);
-    padding-inline: .3rem;
+    margin-block: 2rem;
 }
 
 .header button {
@@ -74,4 +74,12 @@
         opacity: 1;
         transform: scale(1);
     }
+}
+
+.fixedLinks {
+    position: fixed;
+    top: 2.5rem;
+    z-index: 1000;
+    padding: 1rem;
+    background-color: #121212;
 }

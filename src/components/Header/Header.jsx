@@ -76,20 +76,18 @@ const Header = () => {
       </Col>
 
       {/* Menu links a destra */}
-      <Col className="d-none d-md-flex flex-column align-items-end gap-2">
-        <div className="d-flex flex-column ">
+      <Col className={`d-none d-md-flex flex-column align-items-end gap-2`}>
+        <div
+          className={`rounded-start d-none d-md-flex flex-column gap-2 ${styles.fixedLinks}`}
+        >
           <Link to={"/"} className="text-decoration-none text-light">
-            <h5 className={`${styles["link-header"]} text-end`}>{t("Home")}</h5>
+            <h5 className={styles["link-header"]}>{t("Home")}</h5>
           </Link>
           <Link to={"/products"} className="text-decoration-none text-light">
-            <h5 className={`${styles["link-header"]} text-end`}>
-              {t("Products")}
-            </h5>
+            <h5 className={styles["link-header"]}>{t("Products")}</h5>
           </Link>
           <Link to={"/about"} className="text-decoration-none text-light">
-            <h5 className={`${styles["link-header"]} text-end`}>
-              {t("About Us")}
-            </h5>
+            <h5 className={styles["link-header"]}>{t("About Us")}</h5>
           </Link>
         </div>
       </Col>

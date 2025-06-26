@@ -1,11 +1,13 @@
 import React from "react";
-import { Container, Row, Col, Button, Carousel, Image } from "react-bootstrap";
+import { Container, Row, Col, Button, Image, Carousel } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
 import Header from "../Header/Header";
 import { StarFill } from "react-bootstrap-icons";
 import mockProducts from "../../components/Mocks/MockProducts.jsx";
 import Slogan from "./Slogan.jsx";
+import ProductCard from "../Products/ProductCard.jsx";
+import CarouselHero from "./CarouselHero.jsx";
 
 const reviews = [
   {
@@ -41,88 +43,39 @@ const Home = () => {
     groupedReviews.push(reviews.slice(i, i + 2));
   }
   return (
-    <div className={styles.home}>
-      <Header />
-      {/* Hero Carousel */}
-      <Carousel indicators={false} className="mb-5">
-        {mockProducts.map((slide) => (
-          <Carousel.Item key={slide.id}>
-            <Link to={`/products/${slide.id}`}>
-              <Image
-                className={`d-block w-100 ${styles.heroImg}`}
-                src={slide.image[0]}
-                alt={slide.alt}
-              />
-            </Link>
-            <Carousel.Caption className={styles.customCaption}>
-              <h4 className="m-0 bg-secondary bg-opacity-50 rounded-top p-1">
-                {slide.name}
-              </h4>
-              <p className=" bg-secondary bg-opacity-50 rounded-bottom p-1">
-                {slide.description}
-              </p>
-              <Link
-                className="text-decoration-none"
-                to={`/products/${slide.id}`}
-              >
-                <Button
-                  className="mb-2 bg-light text-dark"
-                  variant="outline-warning"
-                >
-                  <strong>Scopri di più</strong>
-                </Button>
-              </Link>
-            </Carousel.Caption>
-          </Carousel.Item>
-        ))}
-      </Carousel>
-      <hr />
+    <div className={`${styles.home} `}>
+      <div className=" ps-2">
+        <Header />
+      </div>
+      <CarouselHero />
+      <hr className="text-warning" />
       <Slogan />
-      <hr />
+      <hr className="text-warning" />
       {/* Sezione Prodotti in Evidenza */}
       <Container className="mb-5 p-md-0">
         <h2 className="text-center mb-4">Prodotti in Evidenza</h2>
         <Row>
           {mockProducts.map((product) => (
-            <Col key={product.id} lg={3} md={4} xs={6} sm={6} className="mb-4 ">
-              <div className="card h-100">
-                <Link to={`/products/${product.id}`}>
-                  <img
-                    src={product.image[0]}
-                    className="card-img-top"
-                    style={{ height: "170px", objectFit: "cover" }}
-                    alt={product.name}
-                  />
-                </Link>
-                <div className="card-body d-flex flex-column">
-                  <Link
-                    className="text-decoration-none text-dark"
-                    to={`/products/${product.id}`}
-                  >
-                    <h6 className="card-title">{product.name}</h6>
-                  </Link>
-                  <p className="card-text">€ {product.price.toFixed(2)}</p>
-                  <Link
-                    to={`/products/${product.id}`}
-                    className="btn btn-outline-warning mt-auto"
-                  >
-                    Dettagli
-                  </Link>
-                </div>
-              </div>
+            <Col
+              key={mockProducts.id}
+              lg={3}
+              md={4}
+              xs={6}
+              sm={6}
+              className="mb-4 "
+            >
+              <ProductCard product={product} />
             </Col>
           ))}
         </Row>
-        <hr className="py-3" />
+        <hr className="py-3 text-warning" />
         <Row>
           <Col xs={6} sm={6} className=" p-md-3">
-            <h4 className="bg-light m-0 p-2 rounded-top">
-              {mockProducts[2].name}
-            </h4>
-            <p className="m-0 bg-light p-2 pt-0 rounded-bottom">
+            <h4 className="m-0 p-2 rounded-top">{mockProducts[2].name}</h4>
+            <p className="m-0 p-2 pt-0 rounded-bottom">
               {mockProducts[2].description}
             </p>
-            <p className="m-0 bg-light p-2 pt-0 rounded-bottom d-none d-md-flex">
+            <p className="m-0 p-2 pt-0 rounded-bottom d-none d-md-flex">
               {mockProducts[2].longDescription}
             </p>
           </Col>
@@ -137,7 +90,7 @@ const Home = () => {
             </Link>
           </Col>
           <div className="pt-3 align-items-center">
-            <p className="text-center bg-light">
+            <p className="text-center ">
               Scopri il <strong>RockBra</strong>, il capo che ridefinisce il
               concetto di lingerie.
               <br />
@@ -163,9 +116,9 @@ const Home = () => {
             </Link>
           </div>
         </Row>
-        <hr />
+        <hr className="text-warning" />
         <Row>
-          <Col xs={12} className="bg-light p-3">
+          <Col xs={12} className=" p-3">
             <h4 className="text-center pb-3">Su di noi</h4>
             <p className="text-center">
               Italiana di origine, cittadina del mondo per ispirazione, ho
@@ -187,7 +140,7 @@ const Home = () => {
             </Link>
           </Col>
         </Row>
-        <hr />
+        <hr className="text-warning" />
         <Row className="justify-content-center pb-3">
           <Col md={10}>
             <Carousel
@@ -201,7 +154,7 @@ const Home = () => {
                   <Row className="g-4 justify-content-center">
                     {group.map((review, i) => (
                       <Col key={i} md={6}>
-                        <div className="p-3 border rounded h-100 d-flex flex-column align-items-start justify-content-between bg-light">
+                        <div className="p-3 border rounded h-100 d-flex flex-column align-items-start justify-content-between ">
                           <div className="d-flex align-items-center mb-2">
                             <Image
                               src={review.avatar}

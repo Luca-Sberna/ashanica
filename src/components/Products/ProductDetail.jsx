@@ -16,6 +16,7 @@ import { ArrowLeft } from "react-bootstrap-icons";
 import mockProducts from "../../components/Mocks/MockProducts.jsx";
 import { useState, useEffect } from "react";
 import { addToCart } from "../../redux/cartSlice";
+import styles from "./ProductDetail.module.css";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -24,6 +25,7 @@ const ProductDetail = () => {
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     if (product.colors?.length === 1) {
@@ -37,12 +39,12 @@ const ProductDetail = () => {
   if (!product)
     return (
       <Container className="py-4">
-        <Link
-          to={navigate(-1)}
-          className="text-dark text-decoration-none d-flex align-items-center mb-3"
+        <Button
+          className={`${styles.buttonStyleProfile}`}
+          onClick={() => navigate(-1)}
         >
-          <ArrowLeft className="me-2" /> Torna indietro
-        </Link>
+          <ArrowLeft className="fs-5" />
+        </Button>
         <p className="text-center">Prodotto non trovato</p>
       </Container>
     );
@@ -52,11 +54,14 @@ const ProductDetail = () => {
   return (
     <Container className="py-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <Button variant="light" onClick={() => navigate(-1)}>
+        <Button
+          className={`${styles.buttonStyleProduct}`}
+          onClick={() => navigate(-1)}
+        >
           <ArrowLeft className="fs-5" />
         </Button>
         <Link to={"/"}>
-          <Button variant="light">
+          <Button className={`${styles.buttonStyleProduct}`}>
             <FaHome className="fs-5" />
           </Button>
         </Link>
@@ -80,11 +85,15 @@ const ProductDetail = () => {
         </Col>
 
         <Col md={6}>
-          <h2 className="fw-bold bg-light text-dark rounded m-0 p-2">
+          <h2 className="fw-bold text-light border border-warning border-bottom-0 bg-transparent rounded-top m-0 p-2">
             {product.name}
           </h2>
-          <p className="text-muted bg-light p-1 ">{product.description}</p>
-          <Badge className="bg-dark fw-semibold mb-4">€ {product.price}</Badge>
+          <p className="text-light bg-transparent p-1 border border-warning border-top-0 rounded-bottom">
+            {product.description}
+          </p>
+          <Badge className="bg-transparent text-light fw-bold fw-semibold mb-4 border border-warning">
+            € {product.price}
+          </Badge>
 
           {/* Colori */}
           <div className="mb-3">
@@ -98,7 +107,7 @@ const ProductDetail = () => {
                     backgroundColor: color,
                     border:
                       selectedColor === color
-                        ? "2px solid #000"
+                        ? "2px solid #A3862D"
                         : "1px solid #ccc",
                     width: "32px",
                     height: "32px",
@@ -117,7 +126,7 @@ const ProductDetail = () => {
               {product.sizes.map((size) => (
                 <Button
                   key={size}
-                  variant={selectedSize === size ? "dark" : "outline-dark"}
+                  variant={selectedSize === size ? "light" : "outline-light"}
                   size="sm"
                   onClick={() => setSelectedSize(size)}
                 >
@@ -149,7 +158,7 @@ const ProductDetail = () => {
                 })
               );
             }}
-            variant="outline-dark"
+            variant="outline-light"
             size="lg"
             className="mt-3"
           >
@@ -175,7 +184,7 @@ const ProductDetail = () => {
         </Col>
 
         <Col md={6}>
-          <div className="bg-light p-4 rounded shadow-sm h-100 d-flex flex-column justify-content-center">
+          <div className="bg-transparent border border-warning p-4 rounded shadow-sm h-100 d-flex flex-column justify-content-center">
             <h5 className="mb-3 fw-bold">{product.name}</h5>
             <p className="mb-0" style={{ lineHeight: "1.7" }}>
               {product.longDescription}
@@ -191,32 +200,55 @@ const ProductDetail = () => {
           <h4 className="mb-4">Commenti</h4>
           {/* Mock commenti */}
           {[1, 2].map((id) => (
-            <Card key={id} className="mb-3 shadow-sm">
+            <Card
+              key={id}
+              className="border border-warning bg-transparent mb-3 shadow-sm"
+            >
               <Card.Body>
                 <div className="d-flex justify-content-between">
-                  <strong>Utente{id}</strong>
-                  <Badge bg="secondary">★★★★★</Badge>
+                  <strong className="text-light">Utente{id}</strong>
+                  <Badge bg="dark">★★★★★</Badge>
                 </div>
-                <p className="mt-2 mb-0">
+                <p className="mt-2 mb-0 text-light">
                   Prodotto eccellente, qualità top. Consigliato!
                 </p>
               </Card.Body>
             </Card>
           ))}
           <hr className="p-0" />
-          <Form className="mt-4">
-            <Form.Group controlId="comment">
-              <Form.Label>Lascia un commento</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                placeholder="Scrivi qualcosa..."
-              />
-            </Form.Group>
-            <Button variant="dark" className="mt-3">
-              Invia
-            </Button>
-          </Form>
+
+          <hr className="p-0" />
+
+          {user ? (
+            <Form className="mt-4">
+              <Form.Group controlId="comment">
+                <Form.Label className="text-light">
+                  Lascia un commento
+                </Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  placeholder="Scrivi qualcosa..."
+                  className="bg-dark text-white border-warning"
+                />
+              </Form.Group>
+              <Button variant="outline-light" className="mt-3">
+                Invia
+              </Button>
+            </Form>
+          ) : (
+            <div className="mt-4 bg-dark text-light p-3 rounded border border-warning">
+              Per lasciare un commento,{" "}
+              <Link to="/login" className="text-warning">
+                accedi
+              </Link>{" "}
+              o{" "}
+              <Link to="/register" className="text-warning">
+                registrati
+              </Link>
+              .
+            </div>
+          )}
         </Col>
       </Row>
     </Container>

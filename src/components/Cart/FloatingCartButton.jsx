@@ -82,7 +82,7 @@ const FloatingCartButton = () => {
         width: "45px",
         height: "45px",
         borderRadius: "50%",
-        backgroundColor: "rgba(0, 0, 0, 0.58)",
+        backgroundColor: "rgba(242, 199, 72, 0.58)",
         cursor: "grab",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.57)",
         color: "white",

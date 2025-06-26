@@ -1,13 +1,41 @@
-.text-link {
+.textLink {
     text-decoration: none;
     cursor: pointer;
-    color: inherit;
-    /* mantiene il colore del testo */
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: .2rem;
+    padding: .1rem;
+    color: rgb(220, 216, 216);
 }
 
-.text-link:hover,
-.text-link:focus {
+.textLink:hover,
+.textLink:focus {
     text-decoration: underline !important;
     /* forziamo underline */
-    color: inherit;
+    color: red;
+    border-color: red;
+    transition: all .3s ease-in-out;
+}
+
+.buttonStyle {
+    background-color: rgb(173, 141, 44);
+    border-color: black;
+
+}
+
+.buttonStyle:hover {
+    background-color: rgb(0, 0, 0);
+    border-color: rgb(173, 141, 44);
+    transition: all .3s ease-in-out;
+}
+
+.cardProfile {
+    background-color: rgb(173, 141, 44);
+    border: 2px solid rgb(255, 255, 255);
+}
+
+.modifyButton:hover {
+    background-color: rgb(0, 0, 0);
+    color: rgb(173, 141, 44);
+    font-weight: bold;
+    transition: all .4s ease-in-out;
 }

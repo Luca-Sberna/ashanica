@@ -11,10 +11,12 @@ import Header from "../Header/Header";
 const About = () => {
   return (
     <div className={styles.about}>
-      <Header />
+      <div className="px-2">
+        <Header />
+      </div>
       <section className={styles.heroSection}>
         <div className={styles.textContent}>
-          <h1>Chi sono</h1>
+          <h1 className="text-warning">Chi sono</h1>
           <p>
             Italiana di origine, cittadina del mondo per ispirazione, ho vissuto
             in luoghi che mi hanno plasmata: dai colori caldi e speziati di
@@ -67,7 +69,7 @@ const About = () => {
           />
         </div>
         <div className={styles.textContent}>
-          <h1>La Nascita di ASKNIKA</h1>
+          <h1 className="text-warning">La Nascita di ASKNIKA</h1>
           <p>
             <strong>ASKNIKA</strong>: <strong>“Ask”</strong> come amore, come
             desiderio di connessione profonda. <strong>“Nika”</strong> è il

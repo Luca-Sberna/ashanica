@@ -9,13 +9,12 @@ import {
 } from "react-bootstrap";
 import { Search, PersonCircle, Cart, List, X } from "react-bootstrap-icons";
 import i18n from "../../i18n";
-import ita from "../../assets/imgs/itaflag.png";
-import eng from "../../assets/imgs/engflag.png";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/userSlice";
 import FloatingCartButton from "../Cart/FloatingCartButton";
 import { Link, useNavigate } from "react-router-dom";
+import styles from "./MyNavbar.module.css";
 
 const MyNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -83,7 +82,11 @@ const MyNavbar = () => {
 
   return (
     <>
-      <Navbar bg="warning" expand="md" sticky="top" className="py-2 shadow">
+      <Navbar
+        expand="md"
+        sticky="top"
+        className={`${styles.myNav} py-2 shadow`}
+      >
         <Container className="px-0 position-relative d-flex justify-content-between align-items-center">
           {/* SINISTRA */}
           <div className="d-flex align-items-center">

@@ -2,3 +2,7 @@
     transition: width 0.3s ease;
     width: 180px;
 }
+
+.myNav {
+    background-color: rgb(173, 141, 44)
+}

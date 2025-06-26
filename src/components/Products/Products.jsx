@@ -68,8 +68,10 @@ const Products = () => {
   }
 
   return (
-    <Container fluid className={`${styles.productsContainer} py-4`}>
-      <Header />
+    <Container fluid className={`${styles.productsContainer} overflow-hidden`}>
+      <div className="px-2">
+        <Header />
+      </div>
       {/* Categorie */}
       <div
         className={`${styles.categoryButtons} d-flex flex-wrap justify-content-center gap-2 mb-2`}
@@ -89,7 +91,6 @@ const Products = () => {
         ))}
         <Button
           className={`${styles.filterButton} d-md-none`}
-          variant="primary"
           onClick={toggleFilters}
         >
           <Filter size={20} />
@@ -124,7 +125,7 @@ const Products = () => {
           </div>
         )}
 
-      <Row>
+      <Row className="pb-4 px-2">
         {/* Sidebar filtri - desktop */}
         <Col md={3} className="d-none d-md-block">
           <Card className={`${styles.filterCard} mb-4`}>
@@ -270,22 +271,15 @@ const Products = () => {
         </Offcanvas>
 
         {/* Griglia prodotti */}
-        <Col xs={12} md={9} className={styles.productsGrid}>
-          <Row className="gy-4 gx-4 justify-content-center">
+        <Col xs={12} md={9} className={`${styles.productsGrid}`}>
+          <Row className="g-3 justify-content-center">
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product) => (
-                <Col
-                  key={product.id}
-                  xs={12}
-                  sm={6}
-                  md={6}
-                  lg={4}
-                  className="d-flex justify-content-center"
-                >
+                <Col key={product.id} xs={6} sm={4} md={4} lg={4} xl={3}>
                   <ProductCard
                     product={product}
                     variant="dark"
-                    className={styles.productCard}
+                    className={`${styles.productCard}`}
                   />
                 </Col>
               ))

@@ -11,10 +11,14 @@ import {
   Modal,
   Form,
 } from "react-bootstrap";
+import { ArrowLeft } from "react-bootstrap-icons";
 import { FaHome } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import styles from "../User/UserDetail.module.css";
 
 const UserProfile = () => {
+  const navigate = useNavigate();
+
   // Stato dati utente
   const [user, setUser] = useState({
     fullName: "Mario Rossi",
@@ -68,33 +72,47 @@ const UserProfile = () => {
   };
 
   return (
-    <Container className="my-5 p-0">
-      <div className="d-none d-md-flex justify-content-end p-1">
-        <Link to={"/"} className="">
-          <FaHome className="fs-5 menu-icon text-dark" />
+    <Container className="mb-5 p-0">
+      <div className="d-flex justify-content-between py-3 mx-2">
+        <Button
+          className={`${styles.buttonStyle}`}
+          onClick={() => navigate(-1)}
+        >
+          <ArrowLeft className="fs-5" />
+        </Button>
+        <Link to={"/"}>
+          <Button className={`${styles.buttonStyle}`}>
+            <FaHome className="fs-5" />
+          </Button>
         </Link>
       </div>
-      <Card className="p-4 shadow" style={{ position: "relative" }}>
+      <Card
+        className={`${styles.cardProfile} p-4 shadow`}
+        style={{ position: "relative" }}
+      >
         <Row>
           <Col xs={12} md={9}>
-            <h2 className="fw-bold">{user.fullName}</h2>
+            <h2 className="fw-bold ">{user.fullName}</h2>
             <div className="d-sm-flex justify-content-between">
               <p className="text-muted mb-1">{user.email}</p>
-              <Link to={"/"} className="text-link text-danger d-none d-sm-flex">
+              <Link
+                to={"/"}
+                className={`${styles.textLink} mb-1 d-none d-sm-flex`}
+              >
                 cambia e-mail
               </Link>
             </div>
             <div className="d-sm-flex justify-content-between">
-              <p className="text-secondary m-0">
+              <p className="text-muted m-0">
                 {user.address}, {user.city}, {user.zip}, {user.country}
               </p>
               <div className="d-flex justify-content-between py-3 py-sm-0">
-                <Link to={"/"} className="text-link text-danger">
+                <Link to={"/"} className={`${styles.textLink}`}>
                   cambia password
                 </Link>
                 <Link
                   to={"/"}
-                  className="text-link text-danger d-flex d-sm-none"
+                  className={`${styles.textLink} d-flex d-sm-none`}
                 >
                   cambia e-mail
                 </Link>
@@ -118,7 +136,7 @@ const UserProfile = () => {
 
         <Button
           variant="outline-dark"
-          className="my-3"
+          className={`${styles.modifyButton} my-3`}
           onClick={handleOpenModal}
         >
           Modifica Profilo

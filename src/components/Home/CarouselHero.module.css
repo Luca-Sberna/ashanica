@@ -1,0 +1,41 @@
+.customCaption {
+    position: absolute;
+    bottom: -1rem;
+    left: 0px;
+    text-align: left;
+    /* Optional: semi-transparent background */
+    padding: 1rem;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.customCaption button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.heroImg {
+    height: 400px;
+    /* o quello che preferisci */
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .heroImg {
+        height: 500px;
+    }
+}
+
+@media (min-width: 900px) {
+    .heroImg {
+        height: 600px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .heroImg {
+        height: 650px;
+    }
+}

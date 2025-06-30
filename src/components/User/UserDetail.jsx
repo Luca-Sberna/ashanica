@@ -18,6 +18,7 @@ import styles from "../User/UserDetail.module.css";
 
 const UserProfile = () => {
   const navigate = useNavigate();
+  const [activeKey, setActiveKey] = useState("orders");
 
   // Stato dati utente
   const [user, setUser] = useState({
@@ -39,6 +40,10 @@ const UserProfile = () => {
     email: user.email,
     password: "",
     profilePic: user.profilePic,
+    address: user.address,
+    city: user.city,
+    zip: user.zip,
+    country: user.country,
   });
 
   const handleEditChange = (e) => {
@@ -52,6 +57,10 @@ const UserProfile = () => {
       email: user.email,
       password: "",
       profilePic: user.profilePic,
+      address: user.address,
+      city: user.city,
+      zip: user.zip,
+      country: user.country,
     });
     setShowEditModal(true);
   };
@@ -90,11 +99,11 @@ const UserProfile = () => {
         className={`${styles.cardProfile} p-4 shadow`}
         style={{ position: "relative" }}
       >
-        <Row>
+        <Row className="text-white">
           <Col xs={12} md={9}>
             <h2 className="fw-bold ">{user.fullName}</h2>
             <div className="d-sm-flex justify-content-between">
-              <p className="text-muted mb-1">{user.email}</p>
+              <p className="mb-1">{user.email}</p>
               <Link
                 to={"/"}
                 className={`${styles.textLink} mb-1 d-none d-sm-flex`}
@@ -103,7 +112,7 @@ const UserProfile = () => {
               </Link>
             </div>
             <div className="d-sm-flex justify-content-between">
-              <p className="text-muted m-0">
+              <p className="m-0">
                 {user.address}, {user.city}, {user.zip}, {user.country}
               </p>
               <div className="d-flex justify-content-between py-3 py-sm-0">
@@ -135,7 +144,7 @@ const UserProfile = () => {
         </Row>
 
         <Button
-          variant="outline-dark"
+          variant="outline-light"
           className={`${styles.modifyButton} my-3`}
           onClick={handleOpenModal}
         >
@@ -143,20 +152,33 @@ const UserProfile = () => {
         </Button>
 
         <Tab.Container defaultActiveKey="orders" className="mt-4">
-          <Nav variant="tabs" className="justify-content-center">
+          <Nav
+            activeKey={activeKey}
+            onSelect={(selectedKey) => {
+              setActiveKey(selectedKey);
+            }}
+            variant="tabs"
+            className="justify-content-center"
+          >
             <Nav.Item>
-              <Nav.Link className="text-dark" eventKey="orders">
+              <Nav.Link
+                className={activeKey === "orders" ? "text-dark" : "text-light"}
+                eventKey="orders"
+              >
                 I miei ordini
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link className="text-dark" eventKey="reviews">
+              <Nav.Link
+                className={activeKey === "reviews" ? "text-dark" : "text-light"}
+                eventKey="reviews"
+              >
                 Le mie recensioni
               </Nav.Link>
             </Nav.Item>
           </Nav>
 
-          <Tab.Content className="mt-3">
+          <Tab.Content className="mt-3 text-white">
             <Tab.Pane eventKey="orders">
               <p>Qui verranno mostrati i tuoi ordini recenti...</p>
             </Tab.Pane>

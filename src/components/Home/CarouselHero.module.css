@@ -23,21 +23,32 @@
     background-repeat: no-repeat;
 }
 
+.heroImg {
+    height: 300px;
+}
 
 @media (min-width: 768px) {
     .heroImg {
-        height: 500px;
+        height: 330px;
+        max-width: 720px;
     }
 }
 
 @media (min-width: 900px) {
     .heroImg {
-        height: 600px;
+        height: 350px;
+        max-width: 900px;
     }
 }
 
 @media (min-width: 1200px) {
     .heroImg {
-        height: 650px;
+        height: 400px;
+        max-width: 1100px;
+
     }
+}
+
+.textShadow {
+    text-shadow: 1px 1px 2px #DA70D6;
 }

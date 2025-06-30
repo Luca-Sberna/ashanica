@@ -71,7 +71,7 @@ const Header = () => {
       {/* Titolo centrato */}
       <Col className="flex-grow-1 text-center">
         <Link to={"/"} className="text-decoration-none">
-          <h1 className="text-light m-0">ASKNICA</h1>
+          <h1 className={`${styles.textShadow} text-light m-0`}>ASKNICA</h1>
         </Link>
       </Col>
 
@@ -80,13 +80,22 @@ const Header = () => {
         <div
           className={`rounded-start d-none d-md-flex flex-column gap-2 ${styles.fixedLinks}`}
         >
-          <Link to={"/"} className="text-decoration-none text-light">
+          <Link
+            to={"/"}
+            className={`${styles.textShadow} text-decoration-none text-light`}
+          >
             <h5 className={styles["link-header"]}>{t("Home")}</h5>
           </Link>
-          <Link to={"/products"} className="text-decoration-none text-light">
+          <Link
+            to={"/products"}
+            className={`${styles.textShadow} text-decoration-none text-light`}
+          >
             <h5 className={styles["link-header"]}>{t("Products")}</h5>
           </Link>
-          <Link to={"/about"} className="text-decoration-none text-light">
+          <Link
+            to={"/about"}
+            className={`${styles.textShadow} text-decoration-none text-light`}
+          >
             <h5 className={styles["link-header"]}>{t("About Us")}</h5>
           </Link>
         </div>

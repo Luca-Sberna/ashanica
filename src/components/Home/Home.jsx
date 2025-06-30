@@ -8,6 +8,7 @@ import mockProducts from "../../components/Mocks/MockProducts.jsx";
 import Slogan from "./Slogan.jsx";
 import ProductCard from "../Products/ProductCard.jsx";
 import CarouselHero from "./CarouselHero.jsx";
+import { style } from "framer-motion/client";
 
 const reviews = [
   {
@@ -48,12 +49,14 @@ const Home = () => {
         <Header />
       </div>
       <CarouselHero />
-      <hr className="text-warning" />
+      <hr />
       <Slogan />
-      <hr className="text-warning" />
+      <hr />
       {/* Sezione Prodotti in Evidenza */}
       <Container className="mb-5 p-md-0">
-        <h2 className="text-center mb-4">Prodotti in Evidenza</h2>
+        <h2 className={`${styles.textShadow} text-center mb-4`}>
+          Prodotti in Evidenza
+        </h2>
         <Row>
           {mockProducts.map((product) => (
             <Col
@@ -68,10 +71,12 @@ const Home = () => {
             </Col>
           ))}
         </Row>
-        <hr className="py-3 text-warning" />
+        <hr />
         <Row>
           <Col xs={6} sm={6} className=" p-md-3">
-            <h4 className="m-0 p-2 rounded-top">{mockProducts[2].name}</h4>
+            <h4 className={`${styles.textShadow} m-0 p-2 rounded-top`}>
+              {mockProducts[2].name}
+            </h4>
             <p className="m-0 p-2 pt-0 rounded-bottom">
               {mockProducts[2].description}
             </p>
@@ -110,16 +115,21 @@ const Home = () => {
               className="text-decoration-none"
               to={`/products/${mockProducts[2].id}`}
             >
-              <Button variant="outline-warning" className="d-block mx-auto">
+              <Button
+                variant="outline-light"
+                className={`${styles.buttonStyle} d-block mx-auto`}
+              >
                 Visualizza
               </Button>
             </Link>
           </div>
         </Row>
-        <hr className="text-warning" />
+        <hr />
         <Row>
           <Col xs={12} className=" p-3">
-            <h4 className="text-center pb-3">Su di noi</h4>
+            <h4 className={`${styles.textShadow} text-center pb-3`}>
+              Su di noi
+            </h4>
             <p className="text-center">
               Italiana di origine, cittadina del mondo per ispirazione, ho
               vissuto in luoghi che mi hanno plasmata: dai colori caldi e
@@ -134,13 +144,16 @@ const Home = () => {
               className="d-flex justify-content-center text-decoration-none"
               to={"/about"}
             >
-              <Button className="" variant="outline-warning">
+              <Button
+                className={`${styles.buttonStyle}`}
+                variant="outline-light"
+              >
                 Scopri di più
               </Button>
             </Link>
           </Col>
         </Row>
-        <hr className="text-warning" />
+        <hr />
         <Row className="justify-content-center pb-3">
           <Col md={10}>
             <Carousel

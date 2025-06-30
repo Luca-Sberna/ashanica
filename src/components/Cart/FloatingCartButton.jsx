@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 const FloatingCartButton = () => {
   const cartCount = useSelector((state) =>
-    state.cart.items.reduce((acc, item) => acc + (item.quantity || 1), 0),
+    state.cart.items.reduce((acc, item) => acc + (item.quantity || 1), 0)
   );
 
   const navigate = useNavigate();
@@ -82,7 +82,7 @@ const FloatingCartButton = () => {
         width: "45px",
         height: "45px",
         borderRadius: "50%",
-        backgroundColor: "rgba(242, 199, 72, 0.58)",
+        backgroundColor: "#8A2BE2",
         cursor: "grab",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.57)",
         color: "white",

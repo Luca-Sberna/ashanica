@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container, Card, Button, Alert, Modal, Form } from "react-bootstrap";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import styles from "./Checkout.module.css";
+import { ArrowLeft } from "react-bootstrap-icons";
+import { FaHome } from "react-icons/fa";
 
 // Mock dati utente (iniziali)
 const mockUser = {
@@ -18,7 +21,7 @@ const Checkout = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [shippingAddress, setShippingAddress] = useState(
-    mockUser.shippingAddress,
+    mockUser.shippingAddress
   );
 
   const handleApprove = (data, actions) => {
@@ -40,12 +43,24 @@ const Checkout = () => {
   const hasShipping = !!shippingAddress;
 
   return (
-    <Container className="mt-5">
-      <h1 className="mb-4">Checkout</h1>
+    <Container className="mt-3">
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <Button variant="outline-light" onClick={() => navigate(-1)}>
+          <ArrowLeft className="fs-5" />
+        </Button>
+        <Link to={"/"}>
+          <Button variant="outline-light">
+            <FaHome className="fs-5" />
+          </Button>
+        </Link>
+      </div>
+      <h1 className={`${styles.textShadow} mb-4`}>Checkout</h1>
 
       {/* Sezione Dati di Spedizione */}
-      <Card className="mb-4">
-        <Card.Header as="h5">Dati di spedizione</Card.Header>
+      <Card className={`${styles.borderShadow} text-light mb-4`}>
+        <Card.Header as={`${styles.textShadow}`}>
+          <p className={`${styles.textShadow} fw-bold`}>Dati di spedizione</p>
+        </Card.Header>
         <Card.Body>
           {hasShipping ? (
             <>
@@ -60,6 +75,7 @@ const Checkout = () => {
               <Button
                 variant="outline-secondary"
                 onClick={() => setShowModal(true)}
+                className={`${styles.buttonStyle} text-light`}
               >
                 Modifica indirizzo
               </Button>
@@ -74,7 +90,9 @@ const Checkout = () => {
 
       {/* Sezione PayPal */}
       {hasShipping ? (
-        <Card className="mb-4">
+        <Card
+          className={`${styles.borderShadow} ${styles.textShadow} text-light mb-4`}
+        >
           <Card.Header as="h5">Pagamento</Card.Header>
           <Card.Body>
             <PayPalScriptProvider

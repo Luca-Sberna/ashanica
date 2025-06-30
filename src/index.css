@@ -56,11 +56,11 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Merriweather', serif;
+  font-family: 'Special Elite', monospace;
   background-color: #fff;
   color: #111;
 }
 
 * {
-  font-family: inherit;
+  font-family: 'Special Elite', monospace;
 }

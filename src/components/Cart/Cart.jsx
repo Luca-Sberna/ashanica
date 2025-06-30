@@ -17,6 +17,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { ArrowLeft } from "react-bootstrap-icons";
+import styles from "./Cart.module.css";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -31,17 +32,17 @@ const Cart = () => {
   return (
     <Container className="py-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <Button variant="light" onClick={() => navigate(-1)}>
+        <Button variant="outline-light" onClick={() => navigate(-1)}>
           <ArrowLeft className="fs-5" />
         </Button>
         <Link to={"/"}>
-          <Button variant="light">
+          <Button variant="outline-light">
             <FaHome className="fs-5" />
           </Button>
         </Link>
       </div>
 
-      <h2 className="mb-4">Il tuo carrello</h2>
+      <h2 className={`${styles.textShadow} mb-4`}>Il tuo carrello</h2>
       <Row>
         <Col md={12} className="mb-4">
           {cartItems.length === 0 ? (
@@ -51,7 +52,7 @@ const Cart = () => {
               {cartItems.map((item) => (
                 <ListGroup.Item
                   key={item.id}
-                  className="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3"
+                  className="d-flex bg-transparent border border-light rounded text-light flex-column flex-md-row align-items-center justify-content-between gap-3"
                 >
                   {/* Sinistra: immagine e info */}
                   <div className="d-flex flex-sm-row align-items-center gap-3 text-center text-sm-start w-100 w-md-75">
@@ -69,7 +70,7 @@ const Cart = () => {
                         className="text-decoration-none text-dark"
                         to={`/products/${item.id}`}
                       >
-                        <h6 className="mb-3">{item.name}</h6>
+                        <h6 className="mb-3 text-light">{item.name}</h6>
                       </Link>
                       <div className="d-flex align-items-center justify-content-center justify-content-sm-start gap-2 flex-wrap">
                         <Button
@@ -113,7 +114,10 @@ const Cart = () => {
                   {/* Destra: prezzo + rimuovi */}
                   <div className="d-flex justify-content-end flex-md-column align-items-center align-items-md-end text-end w-100 w-md-auto ms-auto">
                     <div>
-                      <Badge bg="dark" className="me-1">
+                      <Badge
+                        bg="outline-light"
+                        className="me-1 border border-light"
+                      >
                         {typeof item.price === "number"
                           ? `€ ${item.price.toFixed(2)}`
                           : "Prezzo non disponibile"}
@@ -137,16 +141,19 @@ const Cart = () => {
 
         {/* Totale */}
         <Col>
-          <Card className="shadow-sm">
+          <Card className="shadow-sm bg-transparent border border-white text-light">
             <Card.Body>
               <h5>Totale</h5>
               <hr />
               <div className="d-flex justify-content-between align-items-center">
                 <h4>€ {total.toFixed(2)}</h4>
-                <small className="text-muted">esclusa IVA</small>
+                <small className="text-light">esclusa IVA</small>
               </div>
               <Link to="/checkout">
-                <Button variant="dark" className="w-100 mt-3">
+                <Button
+                  variant="dark"
+                  className={`${styles.buttonStyle} w-100 mt-3`}
+                >
                   Procedi al pagamento
                 </Button>
               </Link>

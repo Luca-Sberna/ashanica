@@ -169,3 +169,7 @@
         height: 45%;
     }
 }
+
+.textShadow {
+    text-shadow: 1px 1px 2px #DA70D6;
+}

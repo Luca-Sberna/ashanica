@@ -39,10 +39,7 @@ const ProductDetail = () => {
   if (!product)
     return (
       <Container className="py-4">
-        <Button
-          className={`${styles.buttonProduct}`}
-          onClick={() => navigate(-1)}
-        >
+        <Button variant="outline-light" onClick={() => navigate(-1)}>
           <ArrowLeft className="fs-5" />
         </Button>
         <p className="text-center">Prodotto non trovato</p>
@@ -54,14 +51,11 @@ const ProductDetail = () => {
   return (
     <Container className="py-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <Button
-          className={`${styles.buttonProduct}`}
-          onClick={() => navigate(-1)}
-        >
+        <Button variant="outline-light" onClick={() => navigate(-1)}>
           <ArrowLeft className="fs-5" />
         </Button>
         <Link to={"/"}>
-          <Button className={`${styles.buttonProduct}`}>
+          <Button variant="outline-light">
             <FaHome className="fs-5" />
           </Button>
         </Link>
@@ -85,19 +79,22 @@ const ProductDetail = () => {
         </Col>
 
         <Col md={6}>
-          <h2 className="fw-bold text-light border border-warning border-bottom-0 bg-transparent rounded-top m-0 p-2">
+          <h2
+            className={`${styles.textShadow} border fw-bold text-light border-bottom-0 bg-transparent rounded-top m-0 p-2`}
+          >
             {product.name}
           </h2>
-          <p className="text-light bg-transparent p-1 border border-warning border-top-0 rounded-bottom">
+          <p
+            className={`${styles.borderShadow} text-light border bg-transparent p-1 border-top-0 rounded-bottom`}
+          >
             {product.description}
           </p>
-          <Badge className="bg-transparent text-light fw-bold fw-semibold mb-4 border border-warning">
-            € {product.price}
-          </Badge>
 
           {/* Colori */}
-          <div className="mb-3">
-            <strong>Colore:</strong>
+          <div
+            className={`fw-bold text-light border-bottom-0 bg-transparent rounded-top m-0 p-2 mb-3`}
+          >
+            <strong className={`${styles.textShadow}`}>Colore:</strong>
             <div className="d-flex gap-2 mt-2">
               {product.colors.map((color, idx) => (
                 <Button
@@ -107,7 +104,7 @@ const ProductDetail = () => {
                     backgroundColor: color,
                     border:
                       selectedColor === color
-                        ? "2px solid #A3862D"
+                        ? "2px solid #8A2BE2"
                         : "1px solid #ccc",
                     width: "32px",
                     height: "32px",
@@ -121,7 +118,7 @@ const ProductDetail = () => {
 
           {/* Taglie */}
           <div className="mb-3">
-            <strong>Taglia:</strong>
+            <strong className={`${styles.textShadow} p-2`}>Taglia:</strong>
             <div className="d-flex gap-2 mt-2 flex-wrap">
               {product.sizes.map((size) => (
                 <Button
@@ -133,6 +130,12 @@ const ProductDetail = () => {
                   {size}
                 </Button>
               ))}
+            </div>
+            <hr />
+            <div className="d-flex justify-content-end align-items-center">
+              <Badge className="bg-transparent border border-white text-light fw-bold fw-semibold mb-4">
+                € {product.price}
+              </Badge>
             </div>
           </div>
 
@@ -160,7 +163,7 @@ const ProductDetail = () => {
             }}
             variant="outline-light"
             size="lg"
-            className="mt-3"
+            className={`${styles.buttonStyle} mt-3`}
           >
             Aggiungi al carrello
           </Button>
@@ -184,8 +187,12 @@ const ProductDetail = () => {
         </Col>
 
         <Col md={6}>
-          <div className="bg-transparent border border-warning p-4 rounded shadow-sm h-100 d-flex flex-column justify-content-center">
-            <h5 className="mb-3 fw-bold">{product.name}</h5>
+          <div
+            className={`${styles.borderShadow} bg-transparent border p-4 rounded h-100 d-flex flex-column justify-content-center`}
+          >
+            <h5 className={`${styles.textShadow} mb-3 fw-bold`}>
+              {product.name}
+            </h5>
             <p className="mb-0" style={{ lineHeight: "1.7" }}>
               {product.longDescription}
             </p>
@@ -197,16 +204,15 @@ const ProductDetail = () => {
       {/* Sezione commenti */}
       <Row className="mt-5">
         <Col>
-          <h4 className="mb-4">Commenti</h4>
+          <h4 className={`${styles.textShadow} mb-4`}>Commenti</h4>
           {/* Mock commenti */}
           {[1, 2].map((id) => (
-            <Card
-              key={id}
-              className="border border-warning bg-transparent mb-3 shadow-sm"
-            >
+            <Card key={id} className="border bg-transparent mb-3 shadow-sm">
               <Card.Body>
                 <div className="d-flex justify-content-between">
-                  <strong className="text-light">Utente{id}</strong>
+                  <strong className={`${styles.textShadow} text-light`}>
+                    Utente{id}
+                  </strong>
                   <Badge bg="dark">★★★★★</Badge>
                 </div>
                 <p className="mt-2 mb-0 text-light">
@@ -229,10 +235,13 @@ const ProductDetail = () => {
                   as="textarea"
                   rows={3}
                   placeholder="Scrivi qualcosa..."
-                  className="bg-dark text-white border-warning"
+                  className="bg-dark text-white "
                 />
               </Form.Group>
-              <Button variant="outline-light" className="mt-3">
+              <Button
+                variant="outline-light"
+                className={`${styles.buttonStyle} mt-3`}
+              >
                 Invia
               </Button>
             </Form>

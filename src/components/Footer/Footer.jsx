@@ -1,6 +1,8 @@
 import React from "react";
 import { Container, Row, Col, Nav } from "react-bootstrap";
 import { Facebook, Twitter, Instagram, Linkedin } from "react-bootstrap-icons";
+import styles from "./Footer.module.css";
+import { style } from "framer-motion/client";
 
 const Footer = () => {
   return (
@@ -18,17 +20,29 @@ const Footer = () => {
           {/* Link Utili */}
           <Col md={3} className="mb-4">
             <h6 className="text-uppercase mb-3">Link Utili</h6>
-            <Nav className="flex-column">
-              <Nav.Link href="/about" className="text-dark px-0">
+            <Nav className={`flex-column`}>
+              <Nav.Link
+                href="/about"
+                className={`${styles.footerLink} text-dark px-0`}
+              >
                 Chi Siamo
               </Nav.Link>
-              <Nav.Link href="/about" className="text-dark px-0">
+              <Nav.Link
+                href="/about"
+                className={`${styles.footerLink} text-dark px-0`}
+              >
                 Contatti
               </Nav.Link>
-              <Nav.Link href="/policies" className="text-dark px-0">
+              <Nav.Link
+                href="/policies"
+                className={`${styles.footerLink} text-dark px-0`}
+              >
                 Privacy Policy
               </Nav.Link>
-              <Nav.Link href="/conditions" className="text-dark px-0">
+              <Nav.Link
+                href="/conditions"
+                className={`${styles.footerLink} text-dark px-0`}
+              >
                 Termini e Condizioni
               </Nav.Link>
             </Nav>

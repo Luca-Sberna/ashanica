@@ -29,8 +29,8 @@
 }
 
 .cardProfile {
-    background-color: rgb(173, 141, 44);
-    border: 2px solid rgb(255, 255, 255);
+    background-color: rgba(179, 179, 177, 0);
+    border: 2px solid rgb(173, 141, 44);
 }
 
 .modifyButton:hover {

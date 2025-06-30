@@ -1,0 +1,10 @@
+.footerLink {
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.footerLink:hover {
+    text-decoration: underline;
+    color: #DA70D6 !important;
+    /* Orchid o colore a tua scelta */
+}

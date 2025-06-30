@@ -61,3 +61,22 @@
         max-height: 40px;
     }
 }
+
+@media (min-width: 768px) {
+    .firstLine {
+        font-size: .6rem;
+    }
+
+    .secondLine {
+        font-size: .8rem;
+    }
+
+    .thirdLine {
+        font-size: .7rem;
+    }
+
+    .quoteImageSx,
+    .quoteImageDx {
+        max-height: 40px;
+    }
+}

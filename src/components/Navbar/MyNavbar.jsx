@@ -6,6 +6,7 @@ import {
   Button,
   Dropdown,
   Offcanvas,
+  Image,
 } from "react-bootstrap";
 import { Search, PersonCircle, Cart, List, X } from "react-bootstrap-icons";
 import i18n from "../../i18n";
@@ -15,6 +16,7 @@ import { logout } from "../../redux/userSlice";
 import FloatingCartButton from "../Cart/FloatingCartButton";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./MyNavbar.module.css";
+import logoNav from "../../assets/imgs/logoNav.jpg";
 
 const MyNavbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -134,7 +136,7 @@ const MyNavbar = () => {
                 opacity: 1,
               }}
             >
-              ASKNICA
+              <Image src={logoNav} className="" width={100} />
             </Link>
           )}
 

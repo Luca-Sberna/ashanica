@@ -3,7 +3,8 @@ import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import i18n from "../../i18n";
-import { Button, Col, Container } from "react-bootstrap";
+import { Button, Col, Container, Image } from "react-bootstrap";
+import logo from "../../assets/imgs/logo.jpg";
 
 const Header = () => {
   const [showLangMenu, setShowLangMenu] = useState(false);
@@ -71,7 +72,10 @@ const Header = () => {
       {/* Titolo centrato */}
       <Col className="flex-grow-1 text-center">
         <Link to={"/"} className="text-decoration-none">
-          <h1 className={`${styles.textShadow} text-light m-0`}>ASKNICA</h1>
+          <h1 className={`${styles.textShadow} text-light m-0`}>
+            {" "}
+            <Image src={logo} className="" width={250} />
+          </h1>
         </Link>
       </Col>
 

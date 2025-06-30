@@ -141,7 +141,7 @@ const Cart = () => {
 
         {/* Totale */}
         <Col>
-          <Card className="shadow-sm bg-transparent border border-white text-light">
+          <Card className="shadow-sm bg-transparent text-light">
             <Card.Body>
               <h5>Totale</h5>
               <hr />
@@ -150,10 +150,7 @@ const Cart = () => {
                 <small className="text-light">esclusa IVA</small>
               </div>
               <Link to="/checkout">
-                <Button
-                  variant="dark"
-                  className={`${styles.buttonStyle} w-100 mt-3`}
-                >
+                <Button variant="outline-light" className={` w-100 mt-3`}>
                   Procedi al pagamento
                 </Button>
               </Link>

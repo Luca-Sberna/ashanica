@@ -98,6 +98,7 @@
     border-radius: 0.5rem 0 0 0.5rem;
     transition: transform 0.3s ease, opacity 0.3s ease;
     max-width: 200px;
+    height: 170px;
 }
 
 .fixedLinksWrapper.hidden {

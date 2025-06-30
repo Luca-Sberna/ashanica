@@ -80,13 +80,11 @@ const ProductDetail = () => {
 
         <Col md={6}>
           <h2
-            className={`${styles.textShadow} border fw-bold text-light border-bottom-0 bg-transparent rounded-top m-0 p-2`}
+            className={`${styles.textShadow} fw-bold text-light bg-transparent rounded-top m-0 p-2`}
           >
             {product.name}
           </h2>
-          <p
-            className={`${styles.borderShadow} text-light border bg-transparent p-1 border-top-0 rounded-bottom`}
-          >
+          <p className={` text-light bg-transparent p-1`}>
             {product.description}
           </p>
 
@@ -163,7 +161,7 @@ const ProductDetail = () => {
             }}
             variant="outline-light"
             size="lg"
-            className={`${styles.buttonStyle} mt-3`}
+            className={`mt-3`}
           >
             Aggiungi al carrello
           </Button>
@@ -188,7 +186,7 @@ const ProductDetail = () => {
 
         <Col md={6}>
           <div
-            className={`${styles.borderShadow} bg-transparent border p-4 rounded h-100 d-flex flex-column justify-content-center`}
+            className={` bg-transparent p-4 rounded h-100 d-flex flex-column justify-content-center`}
           >
             <h5 className={`${styles.textShadow} mb-3 fw-bold`}>
               {product.name}
@@ -238,10 +236,7 @@ const ProductDetail = () => {
                   className="bg-dark text-white "
                 />
               </Form.Group>
-              <Button
-                variant="outline-light"
-                className={`${styles.buttonStyle} mt-3`}
-              >
+              <Button variant="outline-light" className={`mt-3`}>
                 Invia
               </Button>
             </Form>

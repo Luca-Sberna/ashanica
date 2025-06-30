@@ -106,7 +106,7 @@ const Header = () => {
             className="position-fixed top-25 end-0 z-3 text-light"
             onClick={() => setShowLinks(true)}
           >
-            ☰
+            ⬅
           </Button>
         ) : (
           ""
@@ -116,7 +116,7 @@ const Header = () => {
         <div
           className={`${styles.fixedLinksWrapper} ${
             showLinks ? "" : styles.hidden
-          } rounded-start d-none d-md-flex flex-column gap-2 ${
+          } rounded-start d-none d-md-flex flex-column gap-1 ${
             styles.fixedLinks
           }`}
         >
@@ -146,7 +146,7 @@ const Header = () => {
               className="p-0 text-light"
               onClick={() => setShowLinks(false)}
             >
-              ⬆
+              x
             </Button>
           )}
         </div>

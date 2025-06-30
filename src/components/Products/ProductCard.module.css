@@ -1,12 +1,10 @@
 .bgCard {
     background-color: transparent;
-    border-color: #fcfcfc;
 }
 
 .textShadow {
     text-shadow: 1px 1px 2px #DA70D6;
 }
-
 
 .buttonStyle {
     background-color: transparent;

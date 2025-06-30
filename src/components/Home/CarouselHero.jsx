@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./CarouselHero.module.css";
 import mockProducts from "../Mocks/MockProducts.jsx";
 import { Link } from "react-router-dom";
-import { Button, Image, Carousel } from "react-bootstrap";
+import { Image, Carousel } from "react-bootstrap";
 
 const CarouselHero = () => {
   return (

@@ -10,25 +10,25 @@ const ProductCard = ({ product }) => {
       <Link to={`/products/${product.id}`}>
         <img
           src={product.image?.[0]}
-          className="card-img-top"
+          className="card-img-top rounded-top-0"
           style={{ height: "170px", objectFit: "cover" }}
           alt={product.name}
         />
       </Link>
-      <div className="card-body d-flex flex-column p-0">
+      <div className="card-body d-flex flex-column p-0 px-3 pt-1">
         <Link
           className="text-decoration-none text-light"
           to={`/products/${product.id}`}
         >
-          <h6 className={`${styles.textShadow} card-title p-2`}>
+          <h6 className={`${styles.textShadow} card-title m-0`}>
             {product.name}
           </h6>
         </Link>
-        <p className="card-text text-light mb-2">
+        <div className="card-text text-light mb-2 text-end">
           <Badge className="bg-transparent text-light ">
             <p className="m-0"> € {product.price?.toFixed(2)}</p>
           </Badge>
-        </p>
+        </div>
       </div>
     </div>
   );

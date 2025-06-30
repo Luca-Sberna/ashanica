@@ -53,8 +53,8 @@ const Home = () => {
       <Slogan />
       <hr className="mt-1" />
       {/* Sezione Prodotti in Evidenza */}
-      <Container className="mb-5 p-md-0">
-        <h2 className={`${styles.textShadow} text-center mb-4`}>In Evidenza</h2>
+      <Container className="mb-5 p-0">
+        <h2 className={`${styles.textShadow} text-center`}>In Evidenza</h2>
         <Row>
           {mockProducts.map((product) => (
             <Col
@@ -63,7 +63,7 @@ const Home = () => {
               md={4}
               xs={6}
               sm={6}
-              className="mb-4 "
+              className="p-0"
             >
               <ProductCard product={product} />
             </Col>
@@ -71,11 +71,11 @@ const Home = () => {
         </Row>
         <hr />
         <Row>
-          <Col xs={6} sm={6} className=" p-md-3">
+          <Col xs={6} sm={6} className="p-md-3 pe-0">
             <h4 className={`${styles.textShadow} m-0 p-2 rounded-top`}>
               {mockProducts[2].name}
             </h4>
-            <p className="m-0 p-2 pt-0 rounded-bottom">
+            <p className="m-0 p-2 pe-0 pt-0 rounded-bottom">
               {mockProducts[2].description}
             </p>
             <p className="m-0 p-2 pt-0 rounded-bottom d-none d-md-flex">
@@ -92,31 +92,27 @@ const Home = () => {
               />
             </Link>
           </Col>
-          <div className="pt-3 align-items-center">
-            <p className="text-center ">
+          <div className="pt-3 ms-1 align-items-center justify-content-center">
+            <p>
               Scopri il <strong>RockBra</strong>, il capo che ridefinisce il
               concetto di lingerie.
-              <br />
-              ✔ Vera pelle di altissima qualità
-              <br />
-              ✔ Design sartoriale con finiture pregiate
-              <br />
-              ✔ Comfort eccezionale per un uso day-to-night
-              <br />
-              ✔ Linee minimal e taglio deciso
-              <br />
-              ✔ Perfetto da solo o sotto una giacca
-              <br />
+            </p>
+            <ul className="list-unstyled">
+              <li>✔ Vera pelle di altissima qualità</li>
+              <li>✔ Design sartoriale</li>
+              <li>✔ Finiture pregiate</li>
+              <li>✔ Comfort eccezionale</li>
+              <li>✔ Linee minimal e taglio deciso</li>
+              <li>✔ Perfetto da solo o sotto una giacca</li>
+            </ul>
+            <p>
               <strong>Un must-have per chi ama distinguersi con stile.</strong>
             </p>
             <Link
               className="text-decoration-none"
               to={`/products/${mockProducts[2].id}`}
             >
-              <Button
-                variant="outline-light"
-                className={`${styles.buttonStyle} d-block mx-auto`}
-              >
+              <Button variant="outline-light" className="d-block mx-auto">
                 Visualizza
               </Button>
             </Link>
@@ -142,12 +138,7 @@ const Home = () => {
               className="d-flex justify-content-center text-decoration-none"
               to={"/about"}
             >
-              <Button
-                className={`${styles.buttonStyle}`}
-                variant="outline-light"
-              >
-                Scopri di più
-              </Button>
+              <Button variant="outline-light">Scopri di più</Button>
             </Link>
           </Col>
         </Row>

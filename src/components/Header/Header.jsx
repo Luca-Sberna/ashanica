@@ -9,6 +9,9 @@ import logo from "../../assets/imgs/logo.jpg";
 const Header = () => {
   const [showLangMenu, setShowLangMenu] = useState(false);
   const langRef = useRef();
+  const [showLinks, setShowLinks] = useState(true);
+  const [showCloseButton, setShowCloseButton] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(window.scrollY);
 
   const toggleLangMenu = () => {
     setShowLangMenu((prev) => !prev);
@@ -21,6 +24,22 @@ const Header = () => {
   };
 
   const { t } = useTranslation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY > lastScrollY && currentY > 80) {
+        // scroll verso il basso
+        setShowCloseButton(true);
+      } else {
+        setShowCloseButton(false);
+      }
+      setLastScrollY(currentY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -78,11 +97,28 @@ const Header = () => {
           </h1>
         </Link>
       </Col>
-
       {/* Menu links a destra */}
       <Col className={`d-none d-md-flex flex-column align-items-end gap-2`}>
+        {/* BOTTONE SEMPRE VISIBILE SOPRA TUTTO */}
+        {!showLinks ? (
+          <Button
+            variant="none"
+            className="position-fixed top-25 end-0 z-3 text-light"
+            onClick={() => setShowLinks(true)}
+          >
+            ☰
+          </Button>
+        ) : (
+          ""
+        )}
+
+        {/* MENU LINKS */}
         <div
-          className={`rounded-start d-none d-md-flex flex-column gap-2 ${styles.fixedLinks}`}
+          className={`${styles.fixedLinksWrapper} ${
+            showLinks ? "" : styles.hidden
+          } rounded-start d-none d-md-flex flex-column gap-2 ${
+            styles.fixedLinks
+          }`}
         >
           <Link
             to={"/"}
@@ -102,6 +138,17 @@ const Header = () => {
           >
             <h5 className={styles["link-header"]}>{t("About Us")}</h5>
           </Link>
+
+          {showCloseButton && (
+            <Button
+              variant="none"
+              size="sm"
+              className="p-0 text-light"
+              onClick={() => setShowLinks(false)}
+            >
+              ⬆
+            </Button>
+          )}
         </div>
       </Col>
       <hr className="pb-4 m-0" />

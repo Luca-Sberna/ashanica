@@ -49,14 +49,12 @@ const Home = () => {
         <Header />
       </div>
       <CarouselHero />
-      <hr />
+      <hr className="m-0 pb-1" />
       <Slogan />
-      <hr />
+      <hr className="mt-1" />
       {/* Sezione Prodotti in Evidenza */}
       <Container className="mb-5 p-md-0">
-        <h2 className={`${styles.textShadow} text-center mb-4`}>
-          Prodotti in Evidenza
-        </h2>
+        <h2 className={`${styles.textShadow} text-center mb-4`}>In Evidenza</h2>
         <Row>
           {mockProducts.map((product) => (
             <Col

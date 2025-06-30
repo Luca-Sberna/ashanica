@@ -35,7 +35,7 @@ const Header = () => {
 
   return (
     <header
-      className={`${styles.header} d-flex justify-content-between align-items-center p-4 p-md-0`}
+      className={`${styles.header} d-none d-md-flex justify-content-between align-items-center p-4 p-md-0`}
     >
       <Col className="d-none d-md-flex ">
         <div className="d-flex justify-content-end text-primary">

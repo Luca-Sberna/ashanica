@@ -8,18 +8,16 @@ const Slogan = () => {
   return (
     <Container
       fluid
-      className={`${styles.sloganContainer} py-5 position-relative overflow-hidden`}
+      className={`${styles.sloganContainer} position-relative overflow-hidden`}
     >
       <Row className="justify-content-center align-items-cente position-relative">
         {/* Testo centrale */}
         <Col xs={10} md={10} className="text-center px-0">
-          <h2 className={`${styles.sloganText} mb-0`}>
+          <h2 className={`${styles.sloganText} mb-0 d-flex flex-column gap-2`}>
             <span className={styles.firstLine}>
               ASKNICA FEMMINILE PER NATURA
             </span>
-            <br />
             <span className={styles.secondLine}>...AUDACE PER SCELTA...</span>
-            <br />
             <span className={styles.thirdLine}>L'ELEGANZA CON CARATTERE</span>
           </h2>
         </Col>

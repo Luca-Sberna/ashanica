@@ -26,6 +26,7 @@ const MyNavbar = () => {
   const toggleSearch = () => setShowSearch((prev) => !prev);
   const [showBrand, setShowBrand] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
 
   const handleSearchSubmit = () => {
     if (searchQuery.trim()) {
@@ -65,14 +66,8 @@ const MyNavbar = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      if (currentScrollY > 75 && currentScrollY > lastScrollY) {
-        // Scroll in giù oltre soglia
-        setShowBrand(true);
-      } else if (currentScrollY <= 75 && currentScrollY < lastScrollY) {
-        // Scroll in su sotto soglia
-        setShowBrand(false);
-      }
-
+      setScrolled(currentScrollY > 50); // soglia per cambiare sfondo
+      setShowBrand(currentScrollY > 75 && currentScrollY > lastScrollY);
       setLastScrollY(currentScrollY);
     };
 
@@ -85,13 +80,13 @@ const MyNavbar = () => {
       <Navbar
         expand="md"
         sticky="top"
-        className={`${styles.myNav} py-2 shadow`}
+        className={`${styles.myNav} ${scrolled ? styles.scrolled : ""} py-2`}
       >
         <Container className="px-0 position-relative d-flex justify-content-between align-items-center">
           {/* SINISTRA */}
           <div className="d-flex align-items-center">
             <Button
-              variant="outline-dark"
+              variant={scrolled ? "outline-dark" : "outline-light"}
               className="d-md-none border-0"
               onClick={toggleMenu}
             >
@@ -99,7 +94,7 @@ const MyNavbar = () => {
             </Button>
             {!showSearch ? (
               <Button
-                variant="outline-dark"
+                variant={scrolled ? "outline-dark" : "outline-light"}
                 className="border-0"
                 onClick={toggleSearch}
               >
@@ -118,7 +113,7 @@ const MyNavbar = () => {
                   style={{ maxWidth: "100px" }}
                 />
                 <Button
-                  variant="outline-dark"
+                  variant={scrolled ? "outline-dark" : "outline-light"}
                   className="border-0"
                   onClick={toggleSearch}
                 >
@@ -147,7 +142,7 @@ const MyNavbar = () => {
           <div className="d-flex align-items-center">
             <FloatingCartButton />
             <Button
-              variant="outline-dark"
+              variant={scrolled ? "outline-dark" : "outline-light"}
               className="position-relative border-0 d-md-none"
               href="/cart"
             >
@@ -160,7 +155,10 @@ const MyNavbar = () => {
             </Button>
 
             <Dropdown align="end">
-              <Dropdown.Toggle variant="outline-dark" className="border-0">
+              <Dropdown.Toggle
+                variant={scrolled ? "outline-dark" : "outline-light"}
+                className="border-0"
+              >
                 <PersonCircle size={20} />
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu-end mt-2">

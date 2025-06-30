@@ -15,24 +15,20 @@ const ProductCard = ({ product }) => {
           alt={product.name}
         />
       </Link>
-      <div className="card-body d-flex flex-column">
+      <div className="card-body d-flex flex-column p-0">
         <Link
           className="text-decoration-none text-light"
           to={`/products/${product.id}`}
         >
-          <h6 className={`${styles.textShadow} card-title`}>{product.name}</h6>
+          <h6 className={`${styles.textShadow} card-title p-2`}>
+            {product.name}
+          </h6>
         </Link>
         <p className="card-text text-light mb-2">
-          <Badge className="bg-transparent border text-light">
-            € {product.price?.toFixed(2)}
+          <Badge className="bg-transparent text-light ">
+            <p className="m-0"> € {product.price?.toFixed(2)}</p>
           </Badge>
         </p>
-        <Link
-          to={`/products/${product.id}`}
-          className={`${styles.buttonStyle} btn btn-outline-light mt-auto`}
-        >
-          Dettagli
-        </Link>
       </div>
     </div>
   );

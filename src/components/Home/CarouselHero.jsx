@@ -6,7 +6,7 @@ import { Button, Image, Carousel } from "react-bootstrap";
 
 const CarouselHero = () => {
   return (
-    <Carousel indicators={false} className="mb-5">
+    <Carousel indicators={false} className="">
       {mockProducts.map((slide) => (
         <Carousel.Item key={slide.id}>
           <Link
@@ -19,20 +19,6 @@ const CarouselHero = () => {
               alt={slide.alt}
             />
           </Link>
-          <Carousel.Caption
-            className={`${styles.customCaption} d-flex justify-content-center flex-column align-items-center`}
-          >
-            <h4
-              className={`${styles.textShadow} fw-bold m-0 bg-dark bg-opacity-50 rounded-top p-1`}
-            >
-              {slide.name}
-            </h4>
-            <p
-              className={`${styles.textShadow} bg-dark bg-opacity-50 rounded-bottom p-1`}
-            >
-              {slide.description}
-            </p>
-          </Carousel.Caption>
         </Carousel.Item>
       ))}
     </Carousel>

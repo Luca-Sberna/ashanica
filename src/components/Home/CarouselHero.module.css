@@ -1,19 +1,11 @@
 .customCaption {
     position: absolute;
     bottom: -1rem;
-    left: 0px;
-    text-align: left;
+    text-align: center;
     /* Optional: semi-transparent background */
     padding: 1rem;
     border-radius: 8px;
     color: #fff;
-}
-
-.customCaption button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
 }
 
 .heroBackground {

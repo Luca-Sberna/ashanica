@@ -20,14 +20,16 @@ const CarouselHero = () => {
             />
           </Link>
           <Carousel.Caption
-            className={`${styles.customCaption} d-flex justify-content-center flex-column`}
+            className={`${styles.customCaption} d-flex justify-content-center flex-column align-items-center`}
           >
             <h4
-              className={`${styles.textShadow} m-0 bg-secondary bg-opacity-50 rounded-top p-1`}
+              className={`${styles.textShadow} fw-bold m-0 bg-dark bg-opacity-75 rounded-top p-1`}
             >
               {slide.name}
             </h4>
-            <p className=" bg-secondary bg-opacity-50 rounded-bottom p-1">
+            <p
+              className={`${styles.textShadow} bg-dark bg-opacity-75 rounded-bottom p-1`}
+            >
               {slide.description}
             </p>
           </Carousel.Caption>

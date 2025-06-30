@@ -1,64 +1,87 @@
-// pages/Condizioni.js (o CondizioniGenerali.js)
 import React from "react";
 import Header from "../Header/Header";
-import Container from "react-bootstrap/Container";
+import { Container, Row, Col } from "react-bootstrap";
+import "./Assistance.module.css";
 
 const GeneralCondition = () => {
   return (
-    <div>
+    <>
       <Header />
-      <Container className="py-3">
-        <h1>Condizioni Generali di Vendita</h1>
-        <p>
-          Le presenti Condizioni Generali regolano l’acquisto di prodotti
-          effettuato sul sito [NomeBrand.it] da parte di utenti finali.
-        </p>
+      <Container className="py-5">
+        <Row className="mb-4">
+          <Col>
+            <h1 className="mb-3 text-light">Condizioni Generali di Vendita</h1>
+            <p className="lead">
+              Le presenti Condizioni Generali regolano l’acquisto di prodotti
+              effettuato sul sito [NomeBrand.it] da parte di utenti finali.
+            </p>
+          </Col>
+        </Row>
 
-        <h3>1. Oggetto</h3>
-        <p>
-          La vendita è disciplinata dal D.Lgs. 206/2005 (Codice del Consumo).
-          L'acquisto sul sito implica l'accettazione totale delle presenti
-          condizioni.
-        </p>
+        <Row>
+          <Col md={10} lg={8}>
+            <section className="mb-4">
+              <h4>1. Oggetto</h4>
+              <p>
+                La vendita è disciplinata dal D.Lgs. 206/2005 (Codice del
+                Consumo). L'acquisto sul sito implica l'accettazione totale
+                delle presenti condizioni.
+              </p>
+            </section>
 
-        <h3>2. Prodotti e disponibilità</h3>
-        <p>
-          Le immagini dei prodotti sono illustrative. La disponibilità può
-          variare e non è garantita fino alla conferma d’ordine.
-        </p>
+            <section className="mb-4">
+              <h4>2. Prodotti e disponibilità</h4>
+              <p>
+                Le immagini dei prodotti sono illustrative. La disponibilità può
+                variare e non è garantita fino alla conferma d’ordine.
+              </p>
+            </section>
 
-        <h3>3. Prezzi e modalità di pagamento</h3>
-        <p>
-          I prezzi sono espressi in Euro e comprensivi di IVA. I metodi di
-          pagamento accettati sono indicati durante il checkout.
-        </p>
+            <section className="mb-4">
+              <h4>3. Prezzi e modalità di pagamento</h4>
+              <p>
+                I prezzi sono espressi in Euro e comprensivi di IVA. I metodi di
+                pagamento accettati sono indicati durante il checkout.
+              </p>
+            </section>
 
-        <h3>4. Consegna</h3>
-        <p>
-          I tempi di consegna stimati sono di 3-7 giorni lavorativi. I tempi
-          possono variare per cause indipendenti dalla nostra volontà.
-        </p>
+            <section className="mb-4">
+              <h4>4. Consegna</h4>
+              <p>
+                I tempi di consegna stimati sono di 3-7 giorni lavorativi. I
+                tempi possono variare per cause indipendenti dalla nostra
+                volontà.
+              </p>
+            </section>
 
-        <h3>5. Diritto di recesso</h3>
-        <p>
-          Il cliente ha 14 giorni per esercitare il diritto di recesso, come
-          previsto dal Codice del Consumo. Il reso è accettato solo se il
-          prodotto è integro e non utilizzato.
-        </p>
+            <section className="mb-4">
+              <h4>5. Diritto di recesso</h4>
+              <p>
+                Il cliente ha 14 giorni per esercitare il diritto di recesso,
+                come previsto dal Codice del Consumo. Il reso è accettato solo
+                se il prodotto è integro e non utilizzato.
+              </p>
+            </section>
 
-        <h3>6. Garanzia legale</h3>
-        <p>
-          Tutti i prodotti godono della garanzia legale di conformità prevista
-          dal Codice del Consumo (24 mesi).
-        </p>
+            <section className="mb-4">
+              <h4>6. Garanzia legale</h4>
+              <p>
+                Tutti i prodotti godono della garanzia legale di conformità
+                prevista dal Codice del Consumo (24 mesi).
+              </p>
+            </section>
 
-        <h3>7. Limitazione di responsabilità</h3>
-        <p>
-          Il venditore non è responsabile per danni indiretti derivanti dall’uso
-          dei prodotti acquistati.
-        </p>
+            <section className="mb-4">
+              <h4>7. Limitazione di responsabilità</h4>
+              <p>
+                Il venditore non è responsabile per danni indiretti derivanti
+                dall’uso dei prodotti acquistati.
+              </p>
+            </section>
+          </Col>
+        </Row>
       </Container>
-    </div>
+    </>
   );
 };
 

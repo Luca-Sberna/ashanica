@@ -1,11 +1,22 @@
 import React, { useState } from "react";
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  Button,
+  Spinner,
+  Alert,
+} from "react-bootstrap";
 import emailjs from "emailjs-com";
-import styles from "./Assistance.module.css";
 import Header from "../Header/Header";
+import "./Assistance.module.css";
 
 const Support = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,6 +26,8 @@ const Support = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    setSuccessMsg(null);
+    setErrorMsg(null);
 
     try {
       const response = await emailjs.send(
@@ -31,116 +44,143 @@ const Support = () => {
         "otzmIlCgDioaN6MLR"
       );
 
-      console.log("SUCCESS!", response.status, response.text);
       if (response.status === 200) {
-        alert("Messaggio inviato con successo!");
+        setSuccessMsg("Messaggio inviato con successo!");
         setForm({ name: "", email: "", message: "" });
+      } else {
+        setErrorMsg("Errore nell'invio. Riprova più tardi.");
       }
     } catch (error) {
-      console.error("FAILED...", error);
-      alert(
-        `Errore nell'invio: ${
-          error.text || "Controlla la console per i dettagli"
-        }`
-      );
+      console.error("Email invio fallito:", error);
+      setErrorMsg("Errore imprevisto. Controlla la console per i dettagli.");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className={styles.support}>
+    <>
       <Header />
-
-      <div className={`{styles.container} p-0`}>
-        <h2>Assistenza Clienti</h2>
-        <p className={styles.intro}>
+      <Container className="py-5">
+        <h2 className="mb-4">Assistenza Clienti</h2>
+        <p>
           Il nostro team è qui per supportarti in ogni fase del tuo acquisto.
           Consulta le sezioni seguenti o inviaci direttamente una richiesta.
         </p>
 
-        <section className={styles.section}>
-          <h2>📦 Tempistiche di Consegna</h2>
-          <p>
-            Le spedizioni avvengono entro 24/48h lavorative. I tempi di consegna
-            variano da 2 a 5 giorni lavorativi, a seconda della destinazione.
-            Riceverai un codice di tracciamento via email appena il pacco sarà
-            spedito.
-          </p>
-        </section>
+        <hr />
 
-        <section className={styles.section}>
-          <h2>↩️ Resi & Rimborsi</h2>
-          <p>
-            Hai 14 giorni di tempo dalla ricezione per restituire il prodotto.
-            Il rimborso verrà effettuato entro 7 giorni dalla ricezione del
-            reso. Il prodotto deve essere integro e nella confezione originale.
-          </p>
-        </section>
+        <Row className="mb-4">
+          <Col>
+            <h4>📦 Tempistiche di Consegna</h4>
+            <p>
+              Le spedizioni avvengono entro 24/48h lavorative. I tempi di
+              consegna variano da 2 a 5 giorni lavorativi, a seconda della
+              destinazione.
+            </p>
+          </Col>
+        </Row>
 
-        <section className={styles.section}>
-          <h2>📋 Termini & Condizioni</h2>
-          <ul>
-            <li>
-              Gli articoli devono essere restituiti in condizioni originali.
-            </li>
-            <li>Non si accettano resi su prodotti personalizzati.</li>
-            <li>
-              I costi di spedizione per il reso sono a carico del cliente.
-            </li>
-          </ul>
-        </section>
+        <Row className="mb-4">
+          <Col>
+            <h4>↩️ Resi & Rimborsi</h4>
+            <p>
+              Hai 14 giorni di tempo dalla ricezione per restituire il prodotto.
+              Il rimborso verrà effettuato entro 7 giorni. Il prodotto deve
+              essere integro e nella confezione originale.
+            </p>
+          </Col>
+        </Row>
 
-        <section className={styles.section}>
-          <h2>📨 Contattaci</h2>
-          <form onSubmit={handleSubmit} className={styles.form}>
-            <input
-              type="text"
-              name="name"
-              placeholder="Il tuo nome"
-              value={form.name}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="La tua email"
-              value={form.email}
-              onChange={handleChange}
-              required
-            />
-            <textarea
-              name="message"
-              placeholder="Scrivi il tuo messaggio..."
-              rows={6}
-              value={form.message}
-              onChange={handleChange}
-              required
-            />
-            <button type="submit" disabled={isLoading}>
-              {isLoading && (
-                <div className={styles.progressBarContainer}>
-                  <div className={styles.progressBar}></div>
-                  <p>Stiamo inviando la tua richiesta...</p>
-                </div>
-              )}{" "}
-              invia{" "}
-            </button>{" "}
-          </form>
-        </section>
-        <section className={styles.section}>
-          <h2>📄 Informazioni Legali</h2>
-          <p>
-            Ai sensi del Regolamento UE 2016/679 (GDPR), garantiamo il
-            trattamento dei dati personali in maniera conforme alla normativa
-            vigente. Per maggiori dettagli consulta la nostra{" "}
-            <a href="/policies">Privacy Policy</a> e le
-            <a href="/conditions">Condizioni Generali</a>.
-          </p>
-        </section>
-      </div>
-    </div>
+        <Row className="mb-4">
+          <Col>
+            <h4>📋 Termini & Condizioni</h4>
+            <ul>
+              <li>Articoli restituiti in condizioni originali</li>
+              <li>Non si accettano resi su prodotti personalizzati</li>
+              <li>Spese di spedizione per il reso a carico del cliente</li>
+            </ul>
+          </Col>
+        </Row>
+
+        <Row className="mb-5">
+          <Col md={8}>
+            <h4>📨 Contattaci</h4>
+
+            {successMsg && <Alert variant="success">{successMsg}</Alert>}
+            {errorMsg && <Alert variant="danger">{errorMsg}</Alert>}
+
+            <Form onSubmit={handleSubmit}>
+              <Form.Group className="mb-3" controlId="formName">
+                <Form.Label>Il tuo nome</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="name"
+                  placeholder="Mario Rossi"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formEmail">
+                <Form.Label>La tua email</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  placeholder="mario@example.com"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formMessage">
+                <Form.Label>Messaggio</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={5}
+                  name="message"
+                  placeholder="Scrivi il tuo messaggio..."
+                  value={form.message}
+                  onChange={handleChange}
+                  required
+                />
+              </Form.Group>
+
+              <Button variant="dark" type="submit" disabled={isLoading}>
+                {isLoading ? (
+                  <>
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                    />{" "}
+                    Invio in corso...
+                  </>
+                ) : (
+                  "Invia"
+                )}
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <h4>📄 Informazioni Legali</h4>
+            <p>
+              Ai sensi del Regolamento UE 2016/679 (GDPR), garantiamo il
+              trattamento dei dati personali secondo normativa. Consulta la
+              nostra <a href="/policies">Privacy Policy</a> e le{" "}
+              <a href="/conditions">Condizioni Generali</a>.
+            </p>
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 };
 

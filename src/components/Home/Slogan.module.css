@@ -32,7 +32,7 @@
     filter: brightness(0.8);
     position: absolute;
     top: -1rem;
-    left: 1rem;
+    left: 0;
 }
 
 .quoteImageDx {

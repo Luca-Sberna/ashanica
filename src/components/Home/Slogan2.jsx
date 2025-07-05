@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Slogan.module.css";
 import { Container, Row, Col } from "react-bootstrap";
 
-const Slogan = () => {
+const Slogan2 = () => {
   return (
     <Container
       fluid
@@ -12,9 +12,7 @@ const Slogan = () => {
         {/* Testo centrale */}
         <Col xs={10} md={10} className="text-center px-0">
           <h2 className={`${styles.sloganText} mb-0 d-flex flex-column gap-2`}>
-            <span className={styles.firstLine}>
-              ASKNICA FEMMINILE PER NATURA
-            </span>
+            <span className={styles.firstLine}>AUDACE PER SCELTA</span>
           </h2>
         </Col>
       </Row>
@@ -22,4 +20,4 @@ const Slogan = () => {
   );
 };
 
-export default Slogan;
+export default Slogan2;

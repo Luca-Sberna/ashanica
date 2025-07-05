@@ -8,6 +8,8 @@ import mockProducts from "../../components/Mocks/MockProducts.jsx";
 import Slogan from "./Slogan.jsx";
 import ProductCard from "../Products/ProductCard.jsx";
 import CarouselHero from "./CarouselHero.jsx";
+import Slogan2 from "./Slogan2.jsx";
+import Slogan3 from "./Slogan3.jsx";
 
 const reviews = [
   {
@@ -51,8 +53,8 @@ const Home = () => {
       <hr className="m-0 pb-1" />
       <Slogan />
       <hr className="m-0 mt-1" />
-      {/* Sezione Prodotti in Evidenza */}
       <Container className="mb-5 p-0 overflow-hidden">
+        {/* Sezione Prodotti in Evidenza */}
         <Row>
           {mockProducts.map((product) => (
             <Col
@@ -67,7 +69,9 @@ const Home = () => {
             </Col>
           ))}
         </Row>
-        <hr className="m-0" />
+        <hr className="m-0 pb-1" />
+        <Slogan2 />
+        <hr className="m-0 mt-1" />
         <Row>
           <Col xs={6} sm={6} className="p-md-3 pe-0">
             <h4 className={`${styles.textShadow} m-0 p-2 rounded-top`}>
@@ -90,7 +94,7 @@ const Home = () => {
               />
             </Link>
           </Col>
-          <div className="pt-3 ms-1 align-items-center justify-content-center">
+          <div className="py-3 ms-1 align-items-center justify-content-center">
             <p>
               Scopri il <strong>RockBra</strong>, il capo che ridefinisce il
               concetto di lingerie.
@@ -116,7 +120,9 @@ const Home = () => {
             </Link>
           </div>
         </Row>
-        <hr />
+        <hr className="m-0 pb-1" />
+        <Slogan3 />
+        <hr className="m-0 mt-1" />{" "}
         <Row>
           <Col xs={12} className=" p-3">
             <h4 className={`${styles.textShadow} text-center pb-3`}>

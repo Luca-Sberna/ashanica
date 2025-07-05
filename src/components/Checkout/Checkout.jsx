@@ -30,6 +30,11 @@ const Checkout = () => {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+
+  const vatRate = 0.22;
+  const vatAmount = total * vatRate;
+  const totalWithVat = total + vatAmount;
+
   const handleApprove = (data, actions) => {
     return actions.order.capture().then((details) => {
       alert(`Ordine confermato da ${details.payer.name.given_name}`);
@@ -60,12 +65,10 @@ const Checkout = () => {
           </Button>
         </Link>
       </div>
-      <h1 className={`${styles.textShadow} mb-4`}>Checkout</h1>
+      <h1 className={`${styles.textShadow}`}>Checkout</h1>
       {/* Sezione Dati di Spedizione */}
       <Card className={`${styles.borderShadow} text-light`}>
-        <Card.Header as={`${styles.textShadow}`}>
-          <p className={`${styles.textShadow} fw-bold`}>Dati di spedizione</p>
-        </Card.Header>
+        <Card.Header as={`${styles.textShadow}`}></Card.Header>
         <Card.Body>
           {hasShipping ? (
             <>
@@ -97,35 +100,41 @@ const Checkout = () => {
         <Card
           className={`${styles.borderShadow} ${styles.textShadow} text-light`}
         >
-          <Card.Header as="h5">Pagamento</Card.Header>
-          <Card.Body>
-            <PayPalScriptProvider
-              options={{ "client-id": "sb", currency: "EUR" }}
-            >
-              <PayPalButtons
-                style={{ layout: "vertical" }}
-                createOrder={(data, actions) =>
-                  actions.order.create({
-                    purchase_units: [
-                      {
-                        amount: {
-                          value: "49.99",
-                        },
-                      },
-                    ],
-                  })
-                }
-                onApprove={handleApprove}
-                onError={(err) => {
-                  console.error("Errore PayPal:", err);
-                  alert("Si è verificato un errore con PayPal.");
-                }}
-              />
-            </PayPalScriptProvider>
-          </Card.Body>
-          <h5>Totale</h5>
-          <div className="d-flex justify-content-end align-items-center">
-            <h4>€ {total.toFixed(2)}</h4>
+          <div className="d-md-flex justify-content-between align-items-center">
+            <div>
+              <Card.Header as="h5">Modalità di pagamento</Card.Header>
+              <Card.Body>
+                <PayPalScriptProvider
+                  options={{ "client-id": "sb", currency: "EUR" }}
+                >
+                  <PayPalButtons
+                    style={{ layout: "vertical" }}
+                    createOrder={(data, actions) =>
+                      actions.order.create({
+                        purchase_units: [
+                          {
+                            amount: {
+                              value: "49.99",
+                            },
+                          },
+                        ],
+                      })
+                    }
+                    onApprove={handleApprove}
+                    onError={(err) => {
+                      console.error("Errore PayPal:", err);
+                      alert("Si è verificato un errore con PayPal.");
+                    }}
+                  />
+                </PayPalScriptProvider>
+              </Card.Body>
+            </div>
+            <div>
+              <h5>Totale (IVA inclusa)</h5>
+              <div className="d-flex justify-content-end align-items-center gap-1 pb-3">
+                <h4 className="m-0">€ {totalWithVat.toFixed(2)}</h4>
+              </div>
+            </div>
           </div>
         </Card>
       ) : (

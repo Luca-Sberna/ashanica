@@ -1,11 +1,26 @@
 import React from "react";
 import Header from "../Header/Header";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import "./Assistance.module.css";
+import { ArrowLeft } from "react-bootstrap-icons";
+import { Link, useNavigate } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 
 const GeneralCondition = () => {
+  const navigate = useNavigate();
+
   return (
     <>
+      <div className="d-flex d-md-none justify-content-between align-items-center mx-1">
+        <Button variant="outline-light" onClick={() => navigate(-1)}>
+          <ArrowLeft className="fs-5" />
+        </Button>
+        <Link to={"/"}>
+          <Button variant="outline-light">
+            <FaHome className="fs-5" />
+          </Button>
+        </Link>
+      </div>
       <Header />
       <Container className="py-5">
         <Row className="mb-4">

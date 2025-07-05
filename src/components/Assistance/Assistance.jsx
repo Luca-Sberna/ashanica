@@ -11,12 +11,16 @@ import {
 import emailjs from "emailjs-com";
 import Header from "../Header/Header";
 import "./Assistance.module.css";
+import { Link, useNavigate } from "react-router-dom";
+import { ArrowLeft } from "react-bootstrap-icons";
+import { FaHome } from "react-icons/fa";
 
 const Support = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -61,6 +65,16 @@ const Support = () => {
   return (
     <>
       <Header />
+      <div className="d-flex d-md-none justify-content-between align-items-center mx-1">
+        <Button variant="outline-light" onClick={() => navigate(-1)}>
+          <ArrowLeft className="fs-5" />
+        </Button>
+        <Link to={"/"}>
+          <Button variant="outline-light">
+            <FaHome className="fs-5" />
+          </Button>
+        </Link>
+      </div>
       <Container className="py-5">
         <h2 className="mb-4">Assistenza Clienti</h2>
         <p>
@@ -148,7 +162,11 @@ const Support = () => {
                 />
               </Form.Group>
 
-              <Button variant="dark" type="submit" disabled={isLoading}>
+              <Button
+                variant="outline-light"
+                type="submit"
+                disabled={isLoading}
+              >
                 {isLoading ? (
                   <>
                     <Spinner
@@ -157,7 +175,7 @@ const Support = () => {
                       size="sm"
                       role="status"
                       aria-hidden="true"
-                    />{" "}
+                    />
                     Invio in corso...
                   </>
                 ) : (
@@ -174,8 +192,15 @@ const Support = () => {
             <p>
               Ai sensi del Regolamento UE 2016/679 (GDPR), garantiamo il
               trattamento dei dati personali secondo normativa. Consulta la
-              nostra <a href="/policies">Privacy Policy</a> e le{" "}
-              <a href="/conditions">Condizioni Generali</a>.
+              nostra{" "}
+              <Link className="text-light" to="/policies">
+                Privacy Policy
+              </Link>{" "}
+              e le{" "}
+              <Link className="text-light" to="/conditions">
+                Condizioni Generali
+              </Link>
+              .
             </p>
           </Col>
         </Row>

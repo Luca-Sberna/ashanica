@@ -16,21 +16,8 @@
     transition: all .3s ease-in-out;
 }
 
-.buttonStyle {
-    background-color: rgb(173, 141, 44);
-    border-color: black;
-
-}
-
-.buttonStyle:hover {
-    background-color: rgb(0, 0, 0);
-    border-color: rgb(173, 141, 44);
-    transition: all .3s ease-in-out;
-}
-
 .cardProfile {
     background-color: rgba(179, 179, 177, 0);
-    border: 2px solid rgb(173, 141, 44);
 }
 
 .modifyButton:hover {

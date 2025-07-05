@@ -84,13 +84,14 @@ const UserProfile = () => {
     <Container className="mb-5 p-0">
       <div className="d-flex justify-content-between py-3 mx-2">
         <Button
+          variant="outline-light"
           className={`${styles.buttonStyle}`}
           onClick={() => navigate(-1)}
         >
           <ArrowLeft className="fs-5" />
         </Button>
         <Link to={"/"}>
-          <Button className={`${styles.buttonStyle}`}>
+          <Button variant="outline-light" className={`${styles.buttonStyle}`}>
             <FaHome className="fs-5" />
           </Button>
         </Link>

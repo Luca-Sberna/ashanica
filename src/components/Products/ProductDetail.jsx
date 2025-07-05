@@ -172,19 +172,6 @@ const ProductDetail = () => {
           md={6}
           className="mb-3 mb-md-0 d-flex justify-content-center align-items-start"
         >
-          <Image
-            src={product.image[1]}
-            fluid
-            rounded
-            style={{
-              maxHeight: "400px",
-              objectFit: "cover",
-              width: "100%",
-            }}
-          />
-        </Col>
-
-        <Col md={6}>
           <div
             className={` bg-transparent p-4 rounded h-100 d-flex flex-column justify-content-center`}
           >
@@ -196,11 +183,70 @@ const ProductDetail = () => {
             </p>
           </div>
         </Col>
+
+        <Col md={6}>
+          <Image
+            src={product.image[1]}
+            fluid
+            rounded
+            style={{
+              maxHeight: "400px",
+              objectFit: "cover",
+              width: "100%",
+            }}
+          />
+        </Col>
+      </Row>
+      <hr />
+      <Row
+        className="g-3 flex-nowrap overflow-auto pb-2 px-1"
+        style={{ whiteSpace: "nowrap" }}
+      >
+        {mockProducts
+          .filter((p) => p.id !== product.id)
+          .slice(0, 4)
+          .map((product) => (
+            <Col
+              key={product.id}
+              xs={10}
+              sm={6}
+              md={3}
+              lg={3}
+              className="d-inline-block"
+            >
+              <Card className="h-100 bg-dark text-light border border-secondary">
+                <Link
+                  to={`/products/${product.id}`}
+                  className="text-decoration-none"
+                >
+                  <Card.Img
+                    variant="top"
+                    src={
+                      Array.isArray(product.image)
+                        ? product.image[0]
+                        : product.image
+                    }
+                    style={{ height: "150px", objectFit: "cover" }}
+                    className="rounded-top"
+                  />
+                  <Card.Body>
+                    <Card.Title className="fs-6 text-light text-truncate">
+                      {product.name}
+                    </Card.Title>
+                    <Card.Text className="text-light">
+                      € {product.price}
+                    </Card.Text>
+                  </Card.Body>
+                </Link>
+              </Card>
+            </Col>
+          ))}
       </Row>
 
       <hr />
+
       {/* Sezione commenti */}
-      <Row className="mt-5">
+      <Row className="mt-4">
         <Col>
           <h4 className={`${styles.textShadow} mb-4`}>Commenti</h4>
           {/* Mock commenti */}

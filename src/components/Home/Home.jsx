@@ -51,10 +51,9 @@ const Home = () => {
       <CarouselHero />
       <hr className="m-0 pb-1" />
       <Slogan />
-      <hr className="mt-1" />
+      <hr className="m-0 mt-1" />
       {/* Sezione Prodotti in Evidenza */}
-      <Container className="mb-5 p-0">
-        <h2 className={`${styles.textShadow} text-center`}>In Evidenza</h2>
+      <Container className="mb-5 p-0 overflow-hidden">
         <Row>
           {mockProducts.map((product) => (
             <Col

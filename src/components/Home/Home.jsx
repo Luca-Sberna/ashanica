@@ -8,7 +8,6 @@ import mockProducts from "../../components/Mocks/MockProducts.jsx";
 import Slogan from "./Slogan.jsx";
 import ProductCard from "../Products/ProductCard.jsx";
 import CarouselHero from "./CarouselHero.jsx";
-import { style } from "framer-motion/client";
 
 const reviews = [
   {
@@ -68,7 +67,7 @@ const Home = () => {
             </Col>
           ))}
         </Row>
-        <hr />
+        <hr className="m-0" />
         <Row>
           <Col xs={6} sm={6} className="p-md-3 pe-0">
             <h4 className={`${styles.textShadow} m-0 p-2 rounded-top`}>
@@ -84,7 +83,7 @@ const Home = () => {
 
           <Col xs={6} sm={6}>
             <Link to={`/products/${mockProducts[2].id}`}>
-              <img
+              <Image
                 className={`img-fluid ${styles.titoloImg}`}
                 src={mockProducts[2].image[0]}
                 alt="img"

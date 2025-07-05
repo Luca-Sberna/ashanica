@@ -5,6 +5,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import styles from "./Checkout.module.css";
 import { ArrowLeft } from "react-bootstrap-icons";
 import { FaHome } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
 
 // Mock dati utente (iniziali)
 const mockUser = {
@@ -23,7 +24,12 @@ const Checkout = () => {
   const [shippingAddress, setShippingAddress] = useState(
     mockUser.shippingAddress
   );
+  const cartItems = useSelector((state) => state.cart.items);
 
+  const total = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
   const handleApprove = (data, actions) => {
     return actions.order.capture().then((details) => {
       alert(`Ordine confermato da ${details.payer.name.given_name}`);
@@ -55,9 +61,8 @@ const Checkout = () => {
         </Link>
       </div>
       <h1 className={`${styles.textShadow} mb-4`}>Checkout</h1>
-
       {/* Sezione Dati di Spedizione */}
-      <Card className={`${styles.borderShadow} text-light mb-4`}>
+      <Card className={`${styles.borderShadow} text-light`}>
         <Card.Header as={`${styles.textShadow}`}>
           <p className={`${styles.textShadow} fw-bold`}>Dati di spedizione</p>
         </Card.Header>
@@ -73,9 +78,8 @@ const Checkout = () => {
               </p>
               <p>{shippingAddress.country}</p>
               <Button
-                variant="outline-secondary"
+                variant="outline-light"
                 onClick={() => setShowModal(true)}
-                className={`${styles.buttonStyle} text-light`}
               >
                 Modifica indirizzo
               </Button>
@@ -87,11 +91,11 @@ const Checkout = () => {
           )}
         </Card.Body>
       </Card>
-
+      <hr />
       {/* Sezione PayPal */}
       {hasShipping ? (
         <Card
-          className={`${styles.borderShadow} ${styles.textShadow} text-light mb-4`}
+          className={`${styles.borderShadow} ${styles.textShadow} text-light`}
         >
           <Card.Header as="h5">Pagamento</Card.Header>
           <Card.Body>
@@ -119,6 +123,10 @@ const Checkout = () => {
               />
             </PayPalScriptProvider>
           </Card.Body>
+          <h5>Totale</h5>
+          <div className="d-flex justify-content-end align-items-center">
+            <h4>€ {total.toFixed(2)}</h4>
+          </div>
         </Card>
       ) : (
         <Alert variant="warning">

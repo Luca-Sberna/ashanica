@@ -1,8 +1,6 @@
 import React from "react";
 import styles from "./Slogan.module.css";
 import { Container, Row, Col } from "react-bootstrap";
-import leftQuote from "../../assets/imgs/leftquote.png"; // Sostituisci con il tuo percorso
-import rightQuote from "../../assets/imgs/rightquote.png"; // Sostituisci con il tuo percorso
 
 const Slogan = () => {
   return (

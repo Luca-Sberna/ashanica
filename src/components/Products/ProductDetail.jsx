@@ -186,7 +186,7 @@ const ProductDetail = () => {
 
         <Col md={6}>
           <Image
-            src={product.image[1]}
+            src={product.bigImage}
             fluid
             rounded
             style={{

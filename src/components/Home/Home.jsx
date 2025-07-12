@@ -40,6 +40,7 @@ const reviews = [
 ];
 
 const Home = () => {
+  const rockBraFinded = mockProducts.find((p) => p.id === "4" || p.id === 4);
   const groupedReviews = [];
   for (let i = 0; i < reviews.length; i += 2) {
     groupedReviews.push(reviews.slice(i, i + 2));
@@ -61,22 +62,22 @@ const Home = () => {
         <Row>
           <Col xs={6} sm={6} className="p-md-3 pe-0">
             <h4 className={`${styles.textShadow} m-0 p-2 rounded-top`}>
-              {mockProducts[2].name}
+              {rockBraFinded.name}
             </h4>
             <p className="m-0 p-2 pe-0 pt-0 rounded-bottom">
-              {mockProducts[2].description}
+              {rockBraFinded.description}
             </p>
             <p className="m-0 p-2 pt-0 rounded-bottom d-none d-md-flex">
-              {mockProducts[2].longDescription}
+              {rockBraFinded.longDescription}
             </p>
           </Col>
 
           <Col xs={6} sm={6}>
-            <Link to={`/products/${mockProducts[2].id}`}>
+            <Link to={`/products/${rockBraFinded.id}`}>
               <Image
                 className={`img-fluid ${styles.titoloImg}`}
-                src={mockProducts[2].image[0]}
-                alt="img"
+                src={rockBraFinded.image[0]}
+                alt={rockBraFinded.name}
               />
             </Link>
           </Col>
@@ -96,14 +97,6 @@ const Home = () => {
             <p>
               <strong>Un must-have per chi ama distinguersi con stile.</strong>
             </p>
-            <Link
-              className="text-decoration-none"
-              to={`/products/${mockProducts[2].id}`}
-            >
-              <Button variant="outline-light" className="d-block mx-auto">
-                Visualizza
-              </Button>
-            </Link>
           </div>
         </Row>
         <hr className={`m-0 pb-1`} />

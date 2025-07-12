@@ -76,6 +76,29 @@ const mockProducts = [
   },
   {
     id: 3,
+    name: "AndreClutch Swarovsky",
+    price: 2900.99,
+    category: "Borsa",
+    subcategory: "Raso",
+    description: "Realizzata in raso e impreziosita da swarovsky e borchie",
+    longDescription:
+      "La clutch collection è pensata per chi desidera un accessorio sofisticato, ricercato e ricco di personalità. Morbida nella forma e senza manico, questa borsa a mano diventa un dettaglio prezioso da tenere con sè nelle occasioni speciali.",
+    image: [verdeShow, rossa, bluShow, nera, borsabeige, borsa],
+    bigImage: [verdeShow],
+    sizes: [],
+    colors: [
+      "#C0C0C0", // Argento
+      "#000000", // Nero
+      "#FF0000", // Rosso
+      "#008000", // Verde
+      "#FFD700", // Oro
+      "#FF00FF", // Fucsia
+      "#0D3B66", // Blu China
+    ],
+    isOnSale: false,
+  },
+  {
+    id: 4,
     name: "Rockbra",
     price: 300,
     category: "Top",
@@ -90,7 +113,33 @@ const mockProducts = [
     isOnSale: false,
   },
   {
-    id: 4,
+    id: 5,
+    name: "AzulClutch Raso Diamanti",
+    price: 290.99,
+    category: "Borsa",
+    subcategory: "Raso",
+    description:
+      "Proposta in raso o velluto, è arricchita da applicazioni di diamanti, per un effetto gioiello che cattura lo sguardo.",
+    longDescription:
+      "La clutch collection è pensata per chi desidera un accessorio sofisticato, ricercato e ricco di personalità. Morbida nella forma e senza manico, questa borsa a mano diventa un dettaglio prezioso da tenere con sè nelle occasioni speciali.",
+    image: [azulRaso, rasoV],
+    bigImage: [borsaNera],
+    sizes: [],
+    colors: [
+      "#C8A2C8", // Glicine
+      "#FFFFFF", // Bianco
+      "#FF00FF", // Fucsia
+      "#FFFDD0", // Crema
+      "#000000", // Nero
+      "#FF7F50", // Corallo
+      "#800080", // Porpora
+      "#D8A7B1", // Rosa antico
+      "#003366", // Blu china
+    ],
+    isOnSale: true,
+  },
+  {
+    id: 6,
     name: "AzulClutch Raso Diamanti",
     price: 290.99,
     category: "Borsa",
@@ -116,7 +165,7 @@ const mockProducts = [
     isOnSale: true,
   },
   {
-    id: 5,
+    id: 7,
     name: "AzulClutch Velluto Diamanti",
     price: 255.99,
     category: "Borsa",
@@ -126,6 +175,26 @@ const mockProducts = [
     longDescription:
       "La clutch collection è pensata per chi desidera un accessorio sofisticato, ricercato e ricco di personalità. Morbida nella forma e senza manico, questa borsa a mano diventa un dettaglio prezioso da tenere con sè nelle occasioni speciali.",
     image: [borsamare2, velluto, vellutoB, vellutoV, vellutoZoom],
+    bigImage: [borsamare3],
+    sizes: [],
+    colors: [
+      "#0000FF", // Blu
+      "#FF0000", // Rosso
+      "#D8A7B1", // Rosa antico
+    ],
+    isOnSale: false,
+  },
+  {
+    id: 8,
+    name: "AzulClutch Velluto Diamanti",
+    price: 255.99,
+    category: "Borsa",
+    subcategory: "Velluto",
+    description:
+      "Proposta in raso o velluto, è arricchita da applicazioni di diamanti, per un effetto gioiello che cattura lo sguardo.",
+    longDescription:
+      "La clutch collection è pensata per chi desidera un accessorio sofisticato, ricercato e ricco di personalità. Morbida nella forma e senza manico, questa borsa a mano diventa un dettaglio prezioso da tenere con sè nelle occasioni speciali.",
+    image: [velluto, vellutoB, vellutoV, vellutoZoom, borsamare2],
     bigImage: [borsamare3],
     sizes: [],
     colors: [

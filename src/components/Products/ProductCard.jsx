@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "../Products/ProductCard.module.css";
 import { Badge } from "react-bootstrap";
-import { style } from "framer-motion/client";
 const ProductCard = ({ product }) => {
   if (!product) return "Prodotto non trovato";
 

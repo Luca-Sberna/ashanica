@@ -6,10 +6,10 @@ import Header from "../Header/Header";
 import { StarFill } from "react-bootstrap-icons";
 import mockProducts from "../../components/Mocks/MockProducts.jsx";
 import Slogan from "./Slogan.jsx";
-import ProductCard from "../Products/ProductCard.jsx";
 import CarouselHero from "./CarouselHero.jsx";
 import Slogan2 from "./Slogan2.jsx";
 import Slogan3 from "./Slogan3.jsx";
+import SectionProduct from "./SectionProduct.jsx";
 
 const reviews = [
   {
@@ -53,22 +53,8 @@ const Home = () => {
       <hr className="m-0 pb-1" />
       <Slogan />
       <hr className="m-0 mt-1" />
-      <Container className="mb-5 p-0 overflow-hidden">
-        {/* Sezione Prodotti in Evidenza */}
-        <Row>
-          {mockProducts.map((product) => (
-            <Col
-              key={mockProducts.id}
-              lg={3}
-              md={4}
-              xs={6}
-              sm={6}
-              className="p-0"
-            >
-              <ProductCard product={product} />
-            </Col>
-          ))}
-        </Row>
+      <div className={`${styles.homeSections} mb-5 p-0 overflow-hidden`}>
+        <SectionProduct />
         <hr className="m-0 pb-1" />
         <Slogan2 />
         <hr className="m-0 mt-1" />
@@ -120,9 +106,9 @@ const Home = () => {
             </Link>
           </div>
         </Row>
-        <hr className="m-0 pb-1" />
+        <hr className={`m-0 pb-1`} />
         <Slogan3 />
-        <hr className="m-0 mt-1" />{" "}
+        <hr className={`${styles.hrWidth} m-0 mt-1`} />
         <Row>
           <Col xs={12} className=" p-3">
             <h4 className={`${styles.textShadow} text-center pb-3`}>
@@ -189,7 +175,7 @@ const Home = () => {
             </Carousel>
           </Col>
         </Row>
-      </Container>
+      </div>
     </div>
   );
 };

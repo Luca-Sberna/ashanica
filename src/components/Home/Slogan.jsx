@@ -12,7 +12,7 @@ const Slogan = () => {
         {/* Testo centrale */}
         <Col xs={10} md={10} className="text-center px-0">
           <h2 className={`${styles.sloganText} mb-0 d-flex flex-column gap-2`}>
-            <span className={styles.firstLine}>
+            <span className={`${styles.firstLine} py-1 w-100`}>
               ASKNICA FEMMINILE PER NATURA
             </span>
           </h2>

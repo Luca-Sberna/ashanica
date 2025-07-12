@@ -12,7 +12,9 @@ const Slogan2 = () => {
         {/* Testo centrale */}
         <Col xs={10} md={10} className="text-center px-0">
           <h2 className={`${styles.sloganText} mb-0 d-flex flex-column gap-2`}>
-            <span className={styles.firstLine}>AUDACE PER SCELTA</span>
+            <span className={`${styles.firstLine} py-1 w-100`}>
+              AUDACE PER SCELTA
+            </span>
           </h2>
         </Col>
       </Row>

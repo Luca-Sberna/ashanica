@@ -90,15 +90,15 @@
 
 .fixedLinksWrapper {
     position: fixed;
-    top: 2.5rem;
+    top: 3.3rem;
     right: 0;
     z-index: 1000;
     padding: 1rem;
     background-color: #121212;
-    border-radius: 0.5rem 0 0 0.5rem;
     transition: transform 0.3s ease, opacity 0.3s ease;
     max-width: 200px;
-    height: 170px;
+    height: 165px;
+    border-radius: 0 0 0 .3rem;
 }
 
 .fixedLinksWrapper.hidden {

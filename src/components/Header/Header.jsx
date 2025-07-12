@@ -93,7 +93,7 @@ const Header = () => {
         <Link to={"/"} className="text-decoration-none">
           <h1 className={`${styles.textShadow} text-light m-0`}>
             {" "}
-            <Image src={logo} className="" width={250} />
+            <Image src={logo} className="" width={200} />
           </h1>
         </Link>
       </Col>
@@ -116,9 +116,7 @@ const Header = () => {
         <div
           className={`${styles.fixedLinksWrapper} ${
             showLinks ? "" : styles.hidden
-          } rounded-start d-none d-md-flex flex-column gap-1 ${
-            styles.fixedLinks
-          }`}
+          } d-none d-md-flex flex-column gap-1 ${styles.fixedLinks}`}
         >
           <Link
             to={"/"}

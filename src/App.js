@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/Admin/ProtectedRoute.jsx";
 import CookieConsent from "react-cookie-consent";
 import ScrollToTop from "./scrollToTop/ScrollToTop.jsx";
 import { useSelector } from "react-redux";
+import "./App.css";
 
 const Home = lazy(() => import("./components/Home/Home.jsx"));
 const About = lazy(() => import("./components/About/About.jsx"));

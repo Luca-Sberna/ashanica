@@ -75,7 +75,7 @@ const Home = () => {
           <Col xs={6} sm={6}>
             <Link to={`/products/${rockBraFinded.id}`}>
               <Image
-                className={`img-fluid ${styles.titoloImg}`}
+                className={`img-fluid hover-effect ${styles.titoloImg}`}
                 src={rockBraFinded.image[0]}
                 alt={rockBraFinded.name}
               />

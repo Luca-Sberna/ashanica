@@ -9,7 +9,7 @@ const ProductCard = ({ product }) => {
       <Link to={`/products/${product.id}`}>
         <img
           src={product.image?.[0]}
-          className="card-img-top rounded-top-0"
+          className="card-img-top rounded-top-0 hover-effect"
           style={{ height: "170px", objectFit: "cover" }}
           alt={product.name}
         />

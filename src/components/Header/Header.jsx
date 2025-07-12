@@ -141,7 +141,7 @@ const Header = () => {
             <Button
               variant="none"
               size="sm"
-              className="p-0 text-light"
+              className="p-0 text-light bg-light w-25 mx-auto text-dark "
               onClick={() => setShowLinks(false)}
             >
               x

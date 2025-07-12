@@ -6,7 +6,7 @@ import { Image, Carousel } from "react-bootstrap";
 
 const CarouselHero = () => {
   return (
-    <Carousel indicators={false} className="">
+    <Carousel indicators={false}>
       {mockProducts.map((slide) => (
         <Carousel.Item key={slide.id}>
           <Link
@@ -14,7 +14,7 @@ const CarouselHero = () => {
             to={`/products/${slide.id}`}
           >
             <Image
-              className={`w-100 ${styles.heroImg}`}
+              className={`w-100 hover-effect ${styles.heroImg}`}
               src={slide.image[0]}
               alt={slide.alt}
             />

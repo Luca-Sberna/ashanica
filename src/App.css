@@ -1,37 +1,9 @@
-.app {
-  text-align: center;
-  min-height: 100vh;
-  background-color: #282c34;
-  color: white;
+.hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.nav {
-  padding: 20px;
-  background-color: #20232a;
-}
-
-.link {
-  color: #61dafb;
-  margin: 0 10px;
-  text-decoration: none;
-  font-size: 1.2rem;
-}
-
-.link:hover {
-  text-decoration: underline;
-}
-
-.link-product:hover {
-  text-decoration: underline;
-}
-
-#AdminTabs .nav-pills .nav-link {
-  color: #555;
-  background-color: #e9ecef;
-}
-
-.nav-pills .nav-link.active {
-  color: #fff;
-  background-color: #28a745;
-  /* verde */
+.hover-effect:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }

@@ -118,17 +118,22 @@ const ProductDetail = () => {
           <div className="mb-3">
             <strong className={`${styles.textShadow} p-2`}>Taglia:</strong>
             <div className="d-flex gap-2 mt-2 flex-wrap">
-              {product.sizes.map((size) => (
-                <Button
-                  key={size}
-                  variant={selectedSize === size ? "light" : "outline-light"}
-                  size="sm"
-                  onClick={() => setSelectedSize(size)}
-                >
-                  {size}
-                </Button>
-              ))}
+              {product.sizes && product.sizes.length > 0 ? (
+                product.sizes.map((size) => (
+                  <Button
+                    key={size}
+                    variant={selectedSize === size ? "light" : "outline-light"}
+                    size="sm"
+                    onClick={() => setSelectedSize(size)}
+                  >
+                    {size}
+                  </Button>
+                ))
+              ) : (
+                <span className="text-light fst-italic">Taglia unica</span>
+              )}
             </div>
+
             <hr />
             <div className="d-flex justify-content-end align-items-center">
               <Badge className="bg-transparent border border-white text-light fw-bold fw-semibold mb-4">

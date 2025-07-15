@@ -12,7 +12,7 @@ import {
   Card,
 } from "react-bootstrap";
 import { FaHome } from "react-icons/fa";
-import { ArrowLeft } from "react-bootstrap-icons";
+import { ArrowLeft, StarFill } from "react-bootstrap-icons";
 import mockProducts from "../../components/Mocks/MockProducts.jsx";
 import { useState, useEffect } from "react";
 import { addToCart } from "../../redux/cartSlice";
@@ -262,7 +262,15 @@ const ProductDetail = () => {
                   <strong className={`${styles.textShadow} text-light`}>
                     Utente{id}
                   </strong>
-                  <Badge bg="dark">★★★★★</Badge>
+                  <Badge bg="transparent ">
+                    <div className="text-warning ">
+                      {Array(5)
+                        .fill()
+                        .map((_, i) => (
+                          <StarFill key={i} size={16} className="" />
+                        ))}
+                    </div>
+                  </Badge>
                 </div>
                 <p className="mt-2 mb-0 text-light">
                   Prodotto eccellente, qualità top. Consigliato!

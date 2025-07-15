@@ -1,27 +1,13 @@
-import { useSelector, useDispatch } from "react-redux";
-import {
-  removeFromCart,
-  decreaseQuantity,
-  addToCart,
-} from "../../redux/cartSlice";
-import {
-  Container,
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  Button,
-  Card,
-  Badge,
-} from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { ArrowLeft } from "react-bootstrap-icons";
 import styles from "./Cart.module.css";
+import CardsCart from "./CardsCart";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const total = cartItems.reduce(
@@ -44,100 +30,7 @@ const Cart = () => {
 
       <h2 className={`${styles.textShadow} mb-4`}>Il tuo carrello</h2>
       <Row>
-        <Col md={12} className="mb-4">
-          {cartItems.length === 0 ? (
-            <p>Il carrello è vuoto</p>
-          ) : (
-            <ListGroup variant="flush">
-              {cartItems.map((item) => (
-                <ListGroup.Item
-                  key={item.id}
-                  className="d-flex bg-transparent border border-light rounded text-light flex-column flex-md-row align-items-center justify-content-between gap-3"
-                >
-                  {/* Sinistra: immagine e info */}
-                  <div className="d-flex flex-sm-row align-items-center gap-3 text-center text-sm-start w-100 w-md-75">
-                    <Link to={`/products/${item.id}`}>
-                      <Image
-                        src={item.image[0]}
-                        rounded
-                        width="80"
-                        height="80"
-                        className="flex-shrink-0"
-                      />
-                    </Link>
-                    <div>
-                      <Link
-                        className="text-decoration-none text-dark"
-                        to={`/products/${item.id}`}
-                      >
-                        <h6 className="mb-3 text-light">{item.name}</h6>
-                      </Link>
-                      <div className="d-flex align-items-center justify-content-center justify-content-sm-start gap-2 flex-wrap">
-                        <Button
-                          variant="outline-danger"
-                          size="sm"
-                          onClick={() => dispatch(decreaseQuantity(item))}
-                        >
-                          -
-                        </Button>
-                        <span>Quantità: {item.quantity}</span>
-                        <Button
-                          variant="outline-success"
-                          size="sm"
-                          onClick={() => dispatch(addToCart(item))}
-                        >
-                          +
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="d-flex justify-content-center align-items-center gap-4">
-                    {item.color && (
-                      <div className="d-flex align-items-center gap-2">
-                        <Button
-                          variant="light"
-                          style={{
-                            backgroundColor: item.color,
-                            width: "32px",
-                            height: "32px",
-                            borderRadius: "50%",
-                            border: "1px solid #ccc",
-                          }}
-                        />
-                      </div>
-                    )}
-
-                    <strong>{item.size}</strong>
-                  </div>
-
-                  {/* Destra: prezzo + rimuovi */}
-                  <div className="d-flex justify-content-end flex-md-column align-items-center align-items-md-end text-end w-100 w-md-auto ms-auto">
-                    <div>
-                      <Badge
-                        bg="outline-light"
-                        className="me-1 border border-light"
-                      >
-                        {typeof item.price === "number"
-                          ? `€ ${item.price.toFixed(2)}`
-                          : "Prezzo non disponibile"}
-                      </Badge>
-                      <span className="px-1">x {item.quantity}</span>
-                    </div>
-                    <Button
-                      variant="outline-danger"
-                      size="sm"
-                      className="mt-md-3"
-                      onClick={() => dispatch(removeFromCart(item))}
-                    >
-                      Rimuovi
-                    </Button>
-                  </div>
-                </ListGroup.Item>
-              ))}
-            </ListGroup>
-          )}
-        </Col>
+        <CardsCart />
 
         {/* Totale */}
         <Col>

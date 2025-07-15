@@ -129,10 +129,19 @@ const Checkout = () => {
                 </PayPalScriptProvider>
               </Card.Body>
             </div>
-            <div>
-              <h5>Totale (IVA inclusa)</h5>
-              <div className="d-flex justify-content-end align-items-center gap-1 pb-3">
-                <h4 className="m-0">€ {totalWithVat.toFixed(2)}</h4>
+            <div className="text-end">
+              <div className="d-flex justify-content-between">
+                <span>Subtotale :</span>
+                <span>€ {total.toFixed(2)}</span>
+              </div>
+              <div className="d-flex justify-content-between">
+                <span>IVA (22%):</span>
+                <span>€ {vatAmount.toFixed(2)}</span>
+              </div>
+              <hr />
+              <div className="d-flex justify-content-between fw-bold">
+                <span className="pe-2">Totale (IVA inclusa):</span>
+                <span>€ {totalWithVat.toFixed(2)}</span>
               </div>
             </div>
           </div>

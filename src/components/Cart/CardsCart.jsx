@@ -25,15 +25,36 @@ const CardsCart = () => {
             >
               {/* Sinistra: immagine e info */}
               <div className="d-flex flex-sm-row align-items-center gap-3 text-center text-sm-start w-100 w-md-75 position-relative">
-                <Link to={`/products/${item.id}`}>
-                  <Image
-                    src={item.image[0]}
-                    rounded
-                    width="80"
-                    height="80"
-                    className="flex-shrink-0"
-                  />
-                </Link>
+                <div
+                  className="position-relative"
+                  style={{ width: "80px", height: "80px", overflow: "hidden" }}
+                >
+                  <Link to={`/products/${item.id}`}>
+                    <Image
+                      src={item.image[0]}
+                      rounded
+                      width="80"
+                      height="80"
+                      className="flex-shrink-0"
+                    />
+                  </Link>
+                  {item.color && (
+                    <div
+                      className="position-absolute d-md-none"
+                      style={{
+                        backgroundColor: item.color,
+                        width: "18px",
+                        height: "18px",
+                        borderRadius: "50%",
+                        bottom: "0px",
+                        left: "0px",
+                        border: "1px solid white",
+                        boxShadow: "0 0 3px rgba(0,0,0,0.4)",
+                      }}
+                    ></div>
+                  )}
+                </div>
+
                 <div>
                   <Link
                     className="text-decoration-none text-dark"
@@ -64,7 +85,7 @@ const CardsCart = () => {
               <div className="d-flex justify-content-center align-items-center gap-3">
                 {item.color && (
                   <div
-                    className="position-absolute"
+                    className="position-absolute d-none d-md-flex"
                     style={{
                       backgroundColor: item.color,
                       width: "18px",
@@ -77,9 +98,11 @@ const CardsCart = () => {
                     }}
                   ></div>
                 )}
-                <div className="d-flex align-items-center flex-nowrap">
+                <div className="d-flex flex-nowrap text-start">
                   {item.size && item.size.length > 0 ? (
-                    <small className="text-nowrap">{item.size}</small>
+                    <small className="text-nowrap text-start">
+                      {item.size}
+                    </small>
                   ) : (
                     "Taglia Unica"
                   )}

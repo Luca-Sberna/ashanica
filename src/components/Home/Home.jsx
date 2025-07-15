@@ -72,32 +72,42 @@ const Home = () => {
             </p>
           </Col>
 
-          <Col xs={6} sm={6}>
-            <Link to={`/products/${rockBraFinded.id}`}>
-              <Image
-                className={`img-fluid hover-effect ${styles.titoloImg}`}
-                src={rockBraFinded.image[0]}
-                alt={rockBraFinded.name}
-              />
-            </Link>
-          </Col>
-          <div className="py-3 ms-1 align-items-center justify-content-center">
-            <p>
-              Scopri il <strong>RockBra</strong>, il capo che ridefinisce il
-              concetto di lingerie.
-            </p>
-            <ul className="list-unstyled">
-              <li>✔ Vera pelle di altissima qualità</li>
-              <li>✔ Design sartoriale</li>
-              <li>✔ Finiture pregiate</li>
-              <li>✔ Comfort eccezionale</li>
-              <li>✔ Linee minimal e taglio deciso</li>
-              <li>✔ Perfetto da solo o sotto una giacca</li>
-            </ul>
-            <p>
-              <strong>Un must-have per chi ama distinguersi con stile.</strong>
-            </p>
-          </div>
+          <Row className="align-items-center my-5">
+            {/* Immagine */}
+            <Col xs={12} md={6} className="mb-4 mb-md-0">
+              <Link to={`/products/${rockBraFinded.id}`}>
+                <Image
+                  src={rockBraFinded.image[0]}
+                  alt={rockBraFinded.name}
+                  fluid
+                  rounded
+                  className={`hover-effect ${styles.titoloImg}`}
+                />
+              </Link>
+            </Col>
+
+            <Col xs={12} md={6}>
+              <div className="px-3">
+                <h4 className="fw-bold mb-3">
+                  Scopri il <span className="text-uppercase">RockBra</span>
+                </h4>
+                <p className="lead">
+                  Il capo che ridefinisce il concetto di lingerie.
+                </p>
+                <ul className="list-unstyled mb-3">
+                  <li>✔ Vera pelle di altissima qualità</li>
+                  <li>✔ Design sartoriale</li>
+                  <li>✔ Finiture pregiate</li>
+                  <li>✔ Comfort eccezionale</li>
+                  <li>✔ Linee minimal e taglio deciso</li>
+                  <li>✔ Perfetto da solo o sotto una giacca</li>
+                </ul>
+                <p className="fw-semibold">
+                  Un must-have per chi ama distinguersi con stile.
+                </p>
+              </div>
+            </Col>
+          </Row>
         </Row>
         <hr className={`m-0 pb-1`} />
         <Slogan3 />

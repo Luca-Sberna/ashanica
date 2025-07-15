@@ -78,7 +78,11 @@ const CardsCart = () => {
                   ></div>
                 )}
                 <div className="d-flex align-items-center flex-nowrap">
-                  <small className="text-nowrap">{item.size}</small>
+                  {item.size && item.size.length > 0 ? (
+                    <small className="text-nowrap">{item.size}</small>
+                  ) : (
+                    "Taglia Unica"
+                  )}
                 </div>
               </div>
 

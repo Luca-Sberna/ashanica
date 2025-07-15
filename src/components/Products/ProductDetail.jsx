@@ -219,7 +219,7 @@ const ProductDetail = () => {
               lg={3}
               className="d-inline-block"
             >
-              <Card className="h-100 bg-dark text-light border border-secondary">
+              <Card className="h-100 bg-transparent text-light border border-secondary">
                 <Link
                   to={`/products/${product.id}`}
                   className="text-decoration-none"
@@ -284,7 +284,7 @@ const ProductDetail = () => {
                   as="textarea"
                   rows={3}
                   placeholder="Scrivi qualcosa..."
-                  className="bg-dark text-white "
+                  className="bg-transparent text-white "
                 />
               </Form.Group>
               <Button variant="outline-light" className={`mt-3`}>

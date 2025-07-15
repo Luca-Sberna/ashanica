@@ -5,7 +5,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import styles from "./Checkout.module.css";
 import { ArrowLeft } from "react-bootstrap-icons";
 import { FaHome } from "react-icons/fa";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 // Mock dati utente (iniziali)
 const mockUser = {

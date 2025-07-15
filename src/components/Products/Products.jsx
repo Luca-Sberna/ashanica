@@ -33,6 +33,17 @@ const Products = () => {
   const location = useLocation();
   const searchQuery = location.state?.searchQuery || "";
 
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+    setSelectedSubcategory("");
+    setSearch("");
+    location.state = {};
+    setMinPrice("");
+    setMaxPrice("");
+    setOnSale(false);
+    setSortOrder("");
+  };
+
   const toggleFilters = () => setShowFilters(!showFilters);
 
   let filteredProducts = mockProducts.filter((product) => {
@@ -40,9 +51,10 @@ const Products = () => {
       selectedCategory === "Tutti" || product.category === selectedCategory;
     const matchesSubcategory =
       !selectedSubcategory || product.subcategory === selectedSubcategory;
+    const searchTerm = search || searchQuery; // usa search se esiste, altrimenti searchQuery
     const matchesSearch = product.name
       .toLowerCase()
-      .includes(search.toLowerCase() || searchQuery.toLowerCase());
+      .includes(searchTerm.toLowerCase());
     const matchesPrice =
       (!minPrice || product.price >= parseFloat(minPrice)) &&
       (!maxPrice || product.price <= parseFloat(maxPrice));
@@ -84,6 +96,7 @@ const Products = () => {
             onClick={() => {
               setSelectedCategory(cat);
               setSelectedSubcategory("");
+              handleCategoryChange(cat);
             }}
           >
             {cat}
